@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | </title>
+  <title>C++入门语法篇 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="1.引用 引用不是重新定义一个变量，而是为变量取了一个别名，且不重新开辟空间，与引用的实体共享一块空间。  引用的特性：定义时必须初始化，一个变量可以有多个引用，但是一个引用只能引用一个实体。//int &amp;amp;ra 就会编译出错(未初始化)">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++入门语法篇">
+<meta property="og:url" content="http://yoursite.com/2019/08/23/C-入门语法篇/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="1.引用 引用不是重新定义一个变量，而是为变量取了一个别名，且不重新开辟空间，与引用的实体共享一块空间。  引用的特性：定义时必须初始化，一个变量可以有多个引用，但是一个引用只能引用一个实体。//int &amp;amp;ra 就会编译出错(未初始化)">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-23T02:59:51.002Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="C++入门语法篇">
+<meta name="twitter:description" content="1.引用 引用不是重新定义一个变量，而是为变量取了一个别名，且不重新开辟空间，与引用的实体共享一块空间。  引用的特性：定义时必须初始化，一个变量可以有多个引用，但是一个引用只能引用一个实体。//int &amp;amp;ra 就会编译出错(未初始化)">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -150,36 +155,127 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C-入门语法篇" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/23/C-入门语法篇/" class="archive-article-date">
-  	<time datetime="2019-08-23T02:54:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/23/C-入门语法篇/">C++入门语法篇</a>
+    <h1 class="article-title" itemprop="name">
+      C++入门语法篇
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/08/23/C-入门语法篇/" class="archive-article-date">
+  	<time datetime="2019-08-23T02:54:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-引用"><a href="#1-引用" class="headerlink" title="1.引用"></a>1.引用</h2><ul>
+<li><p>引用不是重新定义一个变量，而是为变量取了一个别名，且不重新开辟空间，与引用的实体共享一块空间。</p>
+</li>
+<li><p>引用的特性：定义时必须初始化，一个变量可以有多个引用，但是一个引用只能引用一个实体。<code>//int &amp;ra 就会编译出错(未初始化)</code></p>
+<a id="more"></a></li>
+<li><p>引用的用法：</p>
+<p><code>int a = 10;
+int &amp;ra = a;</code></p>
+</li>
+</ul>
+<p><strong>即类型 &amp;引用对象名 = 引用实体</strong></p>
+<ul>
+<li>常引用：<strong>const 类型 &amp; 引用对象名 = 引用实体</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// eg： const &amp;ra = a；</span><br></pre></td></tr></table></figure>
+
+<p>   但是下面这种方法是不对的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// const int a = 10;  int &amp;ra = a;</span><br></pre></td></tr></table></figure>
+
+<p>显然易见通过ra可以修改a的值</p>
+<ul>
+<li>与指针的区别：<br>a.有多级(NULL)指针，但是没有多级(NULL)引用。<br>b.引用定义时必须初始化，但指针无要求。<br>c.引用只可引用一个实体，但是指针可以指向多个变量。</li>
+</ul>
+<h2 id="2-函数重载"><a href="#2-函数重载" class="headerlink" title="2.函数重载"></a>2.函数重载</h2><ul>
+<li>函数重载的定义：c++允许在同一作用域中声明几个功能类似的同名函数， <pre><code>这些函数的形参列表(参数个数/类型/顺序)必须不一样。</code></pre></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//eg:</span><br><span class="line">int Add(int right, int left)</span><br><span class="line">&#123;</span><br><span class="line">       return left + right;</span><br><span class="line">&#125;</span><br><span class="line">double Add(double right, double left)</span><br><span class="line">&#123;</span><br><span class="line">       return left + right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是，如果参数列表相同，返回值不同，就不是函数重载，而是函数重定义，这是不被允许的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//编译出错</span><br><span class="line">int Add(int left, int right)</span><br><span class="line">	&#123;</span><br><span class="line">		return left + right;</span><br><span class="line">	&#125;</span><br><span class="line">	double Add(int left, int right)</span><br><span class="line">	&#123;</span><br><span class="line">		return left + right;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-auto关键字-c-11"><a href="#3-auto关键字-c-11" class="headerlink" title="3.auto关键字(c++11)"></a>3.auto关键字(c++11)</h2><ul>
+<li>auto声明的变量必须由编译器在编译时推导</li>
+<li>auto的用法：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">auto a = 10;</span><br><span class="line">//</span><br><span class="line">//也可以这样：</span><br><span class="line">int a = 10;</span><br><span class="line">auto b = a;</span><br><span class="line">auto c = &apos;a&apos;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在定义指针时，auto与auto*无区别，但是定义引用时必须时auto&amp;<br><code>int a = 10; auto b = &amp;a; auto *b = &amp;a  //等价的</code></li>
+<li>定义多个变量时，变量类型必须一致</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto a = 10, b =20</span><br><span class="line">auto a = 10,b = 9.0   //编译错误</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>auto不能直接用来声明数组</li>
+<li>auto不能作为形参</li>
+</ul>
+<h2 id="4-基于范围的for循环-c-11"><a href="#4-基于范围的for循环-c-11" class="headerlink" title="4.基于范围的for循环(c++11)"></a>4.基于范围的for循环(c++11)</h2><ul>
+<li>用法：for的括号内容由：分为两部分，一是范围内用于迭代的变量，一是被表示迭代的范围</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a[] = &#123; 0,1,2,3,4,5 &#125;;</span><br><span class="line">	for (auto e:a)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; e;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>使用条件:</p>
+<pre><code>a.迭代的范围必须是确定的
+b.迭代的对象必须实现++和==操作</code></pre></li>
+</ul>
+<h2 id="5-缺省函数"><a href="#5-缺省函数" class="headerlink" title="5.缺省函数"></a>5.缺省函数</h2><ul>
+<li>缺省函数是定义函数时，为其参数定义的一个默认值，调用该函数时，如果没有指定实参，则采用默认值。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void test(int a = 0)&#123;&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">       test(10)// 传参时，使用指定实参</span><br><span class="line">       test()  //无参数时，将使用默认值0</span><br><span class="line">       return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全缺省参数<br><code>void test(int a = 10, int b = 20){}</code></li>
+<li>半缺省参数<br><code>void test(int a,int b = 20){}</code><br>注意：半缺省参数必须从左到右依次给出，不给间隔着给</li>
+<li>缺省函数不能同时出现在函数的声明与定义中</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/aplipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,67 +287,149 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/23/C-入门语法篇/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/21/my-first-blog/" class="archive-article-date">
-  	<time datetime="2019-08-21T12:54:24.171Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/21/hello-world/" class="archive-article-date">
-  	<time datetime="2019-08-21T12:44:15.068Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/21/hello-world/">Hello World</a>
-    </h1>
+  
+    <a href="/2019/08/21/my-first-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-引用"><span class="toc-number">1.</span> <span class="toc-text">1.引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-函数重载"><span class="toc-number">2.</span> <span class="toc-text">2.函数重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-auto关键字-c-11"><span class="toc-number">3.</span> <span class="toc-text">3.auto关键字(c++11)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-基于范围的for循环-c-11"><span class="toc-number">4.</span> <span class="toc-text">4.基于范围的for循环(c++11)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-缺省函数"><span class="toc-number">5.</span> <span class="toc-text">5.缺省函数</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="C-入门语法篇" data-title="C++入门语法篇" data-url="http://yoursite.com/2019/08/23/C-入门语法篇/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
+  <div id="SOHUCS" sid="C-入门语法篇" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -274,8 +452,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

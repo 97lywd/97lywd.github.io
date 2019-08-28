@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>动态规划(一)：从Fbionacci数列谈起 | </title>
+  <title>c++类与对象(一) | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.什么是动态规划动态规划其实是一种分治算法思想的延申，在将大问题化解为小问题的分治过程中， 保存对这些小问题已经处理好的结果，并供后面处理更大规模的问题时直接使用这些结果。">
-<meta name="keywords" content="C++,Algorithm">
+  <meta name="description" content="一.类的定义 定义和声明全在类内  12345678class Date&amp;#123;  public:     void showInfo()&amp;#123;&amp;#125;  private:     int _day;     int _month;&amp;#125;;">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态规划(一)：从Fbionacci数列谈起">
-<meta property="og:url" content="http://yoursite.com/2019/08/25/动态规划-一-：从Fbionacci数列谈起/index.html">
+<meta property="og:title" content="c++类与对象(一)">
+<meta property="og:url" content="http://yoursite.com/2019/08/28/c-类与对象-一/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="一.什么是动态规划动态规划其实是一种分治算法思想的延申，在将大问题化解为小问题的分治过程中， 保存对这些小问题已经处理好的结果，并供后面处理更大规模的问题时直接使用这些结果。">
+<meta property="og:description" content="一.类的定义 定义和声明全在类内  12345678class Date&amp;#123;  public:     void showInfo()&amp;#123;&amp;#125;  private:     int _day;     int _month;&amp;#125;;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-25T07:10:17.647Z">
+<meta property="og:updated_time" content="2019-08-28T09:36:20.848Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态规划(一)：从Fbionacci数列谈起">
-<meta name="twitter:description" content="一.什么是动态规划动态规划其实是一种分治算法思想的延申，在将大问题化解为小问题的分治过程中， 保存对这些小问题已经处理好的结果，并供后面处理更大规模的问题时直接使用这些结果。">
+<meta name="twitter:title" content="c++类与对象(一)">
+<meta name="twitter:description" content="一.类的定义 定义和声明全在类内  12345678class Date&amp;#123;  public:     void showInfo()&amp;#123;&amp;#125;  private:     int _day;     int _month;&amp;#125;;">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -155,60 +155,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-动态规划-一-：从Fbionacci数列谈起" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-c-类与对象-一" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      动态规划(一)：从Fbionacci数列谈起
+      c++类与对象(一)
     </h1>
   
 
         
-        <a href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/" class="archive-article-date">
-  	<time datetime="2019-08-25T06:36:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
+        <a href="/2019/08/28/c-类与对象-一/" class="archive-article-date">
+  	<time datetime="2019-08-28T09:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
 </a>
         
       </header>
 
       
       <div align="center" class="post-count">
-      字数：958字 | 预计阅读时长：3分钟
+      字数：827字 | 预计阅读时长：3分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一-什么是动态规划"><a href="#一-什么是动态规划" class="headerlink" title="一.什么是动态规划"></a>一.什么是动态规划</h2><pre><code>动态规划其实是一种分治算法思想的延申，在将大问题化解为小问题的分治过程中，
-保存对这些小问题已经处理好的结果，并供后面处理更大规模的问题时直接使用这些结果。    </code></pre><a id="more"></a>
-<h2 id="二-动态规划的特点"><a href="#二-动态规划的特点" class="headerlink" title="二.动态规划的特点"></a>二.动态规划的特点</h2><pre><code>1.重叠子问题
-2.保存子问题的解
-3.所有子问题只需解决一次</code></pre><h2 id="三-如何使用动态规划解决问题"><a href="#三-如何使用动态规划解决问题" class="headerlink" title="三.如何使用动态规划解决问题"></a>三.如何使用动态规划解决问题</h2><pre><code>1.定义状态
-2.状态转移方程
-3.状态初始化
-4.返回结果</code></pre><p><strong>A. Fibonacci问题</strong><br>    题目难度：easy<br>   题目来源：<a href="https://www.nowcoder.com/practice/c6c7742f5ba7442aada113136ddea0c3?tpId" target="_blank">牛客网</a><br>*<font color="#0099ff">题目描述：<br>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。<br>n&lt;=39</font>*</p>
-<pre><code>1.定义状态：F(n)---第n项的Fibonacci数
-2.状态转移方程：F(n) = F(n-1) + F(n-2)
-3.初始值: F(0) = 0,F(1) = 1
-4.返回值：F(n)</code></pre><p>代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(n &lt;= <span class="number">0</span>)</span><br><span class="line">       &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span> || n==<span class="number">2</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="number">1</span>;   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> *ret = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        ret[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        ret[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ret[i] = ret[i - <span class="number">1</span>]+ret[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret[n];</span><br><span class="line">        <span class="keyword">delete</span>[]ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <h2 id="一-类的定义"><a href="#一-类的定义" class="headerlink" title="一.类的定义"></a>一.类的定义</h2><ul>
+<li>定义和声明全在类内</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">showInfo</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">     <span class="keyword">int</span> _day;</span><br><span class="line">     <span class="keyword">int</span> _month;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>事实上，我们还可以将空间复杂度O(n)优化至O(1),即只需要记录第n项的n-1项值和n-2项的值，不必保存所有子问题的解。<br><strong>B.变态青蛙跳台阶问题</strong><br>题目难度：easy<br>题目来源：<a href="https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387?tpId" target="_blank" rel="noopener">牛客网</a><br>题目描述：<br>*<font color="#0099ff">一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</font>*</p>
-<pre><code>1.定义状态：F(n)----还剩n个台阶时有多种跳法
-2.状态方程：假设前面跳到了n-1个台阶，那么对于剩下的
-一个台阶而言还是有F(n-1)种，所以我们可得F(n) = 2*F(n-1）
-3.初始值：F(1) = 1
-4.返回值： F(n)</code></pre><p>代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jumpFloorII</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(number &lt;= <span class="number">0</span>)</span><br><span class="line">             <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ret = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; number; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ret *= <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 
-<p>对于上面的代码，我们其实可以优化到O(1),从状态转化方程我们可以看出，这是一个等比数列，所以对于F(n)的求解我们可以使用移位操作，即等于<br>1&lt;&lt;(number-1)</p>
-<p><strong>C.连续子数组的最大值</strong><br>题目难度：easy<br>题目来源：<a href="https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId" target="_blank" rel="noopener">牛客网</a><br>题目描述:<br>*<font color="#0099ff">HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。给一个数组，返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是1)</font>*</p>
-<pre><code>1.定义状态：F(i)---以array[i]元素结尾的子数组最大值
-2.状态方程：F(i) = max(array[i],array[i]+F(i-1)
-3.初始值:F(0) = array[0]
-4.返回值：maxsum（max，F(i))</code></pre><p>代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">FindGreatestSumOfSubArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">array</span>)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(<span class="built_in">array</span>.empty())</span><br><span class="line">           <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="built_in">array</span>[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> maxsum = <span class="built_in">array</span>[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; <span class="built_in">array</span>.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            </span><br><span class="line">          sum = max(<span class="built_in">array</span>[i],<span class="built_in">array</span>[i]+sum);</span><br><span class="line">           maxsum = (sum &lt; maxsum)?maxsum:sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxsum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>声明在头文件，定义在.cpp文件之中</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//date.h文件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showInfo</span><span class="params">()</span></span>;</span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> _day;</span><br><span class="line">    <span class="keyword">int</span> _month;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//date.cpp文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"date.h"</span></span></span><br><span class="line"><span class="keyword">void</span> Date::showInfo()</span><br><span class="line">&#123;</span><br><span class="line">     <span class="built_in">cout</span> &lt;&lt;_month&lt;&lt;--&lt;&lt;_day&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类的定义一般有以上两种方式，但是后者更加规范。<br>在上面的demo里，我们可以看到，类的定义关键词是class,Date是类名，{}里类的主体,并且以;号结尾。<br><strong>其中类的元素,称为类的成员,函数称为类的成员函数,数据称为成员变量。</strong></p>
+<h2 id="二-类的访问限定符"><a href="#二-类的访问限定符" class="headerlink" title="二.类的访问限定符"></a>二.类的访问限定符</h2><ul>
+<li>访问限定符有三种：public,private,protected</li>
+<li>public修饰的成员可以被类外进行访问,private和protected修饰不可。</li>
+<li>class的默认访问权限是private,而struct默认的是public</li>
+</ul>
+<h2 id="三-类的作用域与实例化"><a href="#三-类的作用域与实例化" class="headerlink" title="三.类的作用域与实例化"></a>三.类的作用域与实例化</h2><ul>
+<li>类定义了一个作用域，如果需要在类外定义成员，那么就要使用::作用解析符,指明成员属于哪个域。</li>
+<li>类创建对象的过程，称之为类的实例化</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">char</span>* _name;</span><br><span class="line">        <span class="keyword">int</span> _age;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//实例化</span></span><br><span class="line">     Person man;</span><br><span class="line">     man._name = <span class="string">"Pony"</span></span><br><span class="line">     man._age = <span class="number">10</span>;</span><br><span class="line">     man.display();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-类的大小的计算"><a href="#四-类的大小的计算" class="headerlink" title="四.类的大小的计算"></a>四.类的大小的计算</h2><ul>
+<li>一个类的大小，其实就是所有成员变量之和，当然也遵循内存对齐(就是结构体的对齐规则)，如果是空类，编译器给了一个字符唯一标识这个类。<br>看这样一个demo：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span> :</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">fun1</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> _num;</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span></span><br><span class="line"><span class="class">	&#123;</span>&#125;;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(A) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(B) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(C) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面的输出结果是4，1，1，这就说明了类的大小其实就是成员变量之和。</p>
+<h2 id="五-this指针"><a href="#五-this指针" class="headerlink" title="五.this指针"></a>五.this指针</h2><ul>
+<li>this指针的类型：类类型 * const</li>
+<li>只能在成员函数内部使用</li>
+<li>是成员函数的第一个隐含的形参，由编译器调用</li>
+</ul>
+<p>先看这样一个例子：可以编译通过吗？</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt;<span class="string">" Hello"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   A*p = <span class="literal">NULL</span>;</span><br><span class="line">   p-&gt;fun();</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>事实上，上面的例子可以输出，这是为什么呢？p是一个NULl指针，调用成员函数不会出错误？其实p-&gt;fun()是fun(b);因为没有fun函数没有访问成员，所以不存在解引用，所以正常输出；我们可以通过一个例子来验证</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt;<span class="string">" Hello"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a;</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	   A*p = <span class="literal">NULL</span>;</span><br><span class="line">	   p-&gt;fun();</span><br><span class="line">	   p-&gt;fun2();       <span class="comment">//引发程序崩溃</span></span><br><span class="line">	   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在非静态成员函数内部可以直接使用 this 关键字，this 就代表指向该函数所作用的对象的指针<br>看下面这个程序：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">price</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> num, cost;</span><br><span class="line">		price(<span class="keyword">int</span> n, <span class="keyword">int</span> c)</span><br><span class="line">			:num(n),cost(c)&#123;&#125;</span><br><span class="line">		<span class="function">price <span class="title">add</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">this</span>-&gt;cost++;</span><br><span class="line">			<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	price n1(1,1), n2(0,0);</span><br><span class="line">	n2 = n1.add();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; n2.num&lt;&lt; n2.cost &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出结果：1，2</span></span><br></pre></td></tr></table></figure>
+
+<p>第九行的this的类型是price<em>，所以this-&gt;cost就是cost，</em>this就是n1，所以n2的值才会变成n1。</p>
 
       
 
@@ -249,10 +268,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
         		</li>
       		
 		</ul>
@@ -308,7 +323,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/25/动态规划-一-：从Fbionacci数列谈起/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/28/c-类与对象-一/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -322,18 +337,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/25/动态规划-二-更为复杂的状态方程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          动态规划(二): 更为复杂的状态方程
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/23/C-入门语法篇/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++入门语法篇</div>
+    <a href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">动态规划(三): 更为隐蔽的状态推断</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -360,7 +366,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-什么是动态规划"><span class="toc-number">1.</span> <span class="toc-text">一.什么是动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-动态规划的特点"><span class="toc-number">2.</span> <span class="toc-text">二.动态规划的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-如何使用动态规划解决问题"><span class="toc-number">3.</span> <span class="toc-text">三.如何使用动态规划解决问题</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-类的定义"><span class="toc-number">1.</span> <span class="toc-text">一.类的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-类的访问限定符"><span class="toc-number">2.</span> <span class="toc-text">二.类的访问限定符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-类的作用域与实例化"><span class="toc-number">3.</span> <span class="toc-text">三.类的作用域与实例化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-类的大小的计算"><span class="toc-number">4.</span> <span class="toc-text">四.类的大小的计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-this指针"><span class="toc-number">5.</span> <span class="toc-text">五.this指针</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -374,7 +380,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="动态规划-一-：从Fbionacci数列谈起" data-title="动态规划(一)：从Fbionacci数列谈起" data-url="http://yoursite.com/2019/08/25/动态规划-一-：从Fbionacci数列谈起/"></div>
+	<div class="ds-thread" data-thread-key="c-类与对象-一" data-title="c++类与对象(一)" data-url="http://yoursite.com/2019/08/28/c-类与对象-一/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -396,7 +402,7 @@
   
 
   
-  <div id="SOHUCS" sid="动态规划-一-：从Fbionacci数列谈起" ></div> 
+  <div id="SOHUCS" sid="c-类与对象-一" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

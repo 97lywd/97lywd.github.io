@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>动态规划(二): 更为复杂的状态方程 | </title>
+  <title>Tag: Linux | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在前面我们谈到了一些简单的用动态规划解决的问题：动态规划(一)：从Fibonacci数列谈起但是，在DP问题里，我们很多时候对于状态方程的递推，往往更加复杂，我们看以下几道题：">
-<meta name="keywords" content="C++,Algorithm">
-<meta property="og:type" content="article">
-<meta property="og:title" content="动态规划(二): 更为复杂的状态方程">
-<meta property="og:url" content="http://yoursite.com/2019/08/25/动态规划-二-更为复杂的状态方程/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title">
+<meta property="og:url" content="http://yoursite.com/tags/Linux/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="在前面我们谈到了一些简单的用动态规划解决的问题：动态规划(一)：从Fibonacci数列谈起但是，在DP问题里，我们很多时候对于状态方程的递推，往往更加复杂，我们看以下几道题：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-29T13:56:15.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态规划(二): 更为复杂的状态方程">
-<meta name="twitter:description" content="在前面我们谈到了一些简单的用动态规划解决的问题：动态规划(一)：从Fibonacci数列谈起但是，在DP问题里，我们很多时候对于状态方程的递推，往往更加复杂，我们看以下几道题：">
+<meta name="twitter:title">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -155,266 +150,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-动态规划-二-更为复杂的状态方程" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      动态规划(二): 更为复杂的状态方程
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/08/29/Linux下常见命令以及对权限的理解/" class="archive-article-date">
+  	<time datetime="2019-08-29T13:49:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/08/29/Linux下常见命令以及对权限的理解/">Linux下常见命令以及对权限的理解</a>
     </h1>
   
 
-        
-        <a href="/2019/08/25/动态规划-二-更为复杂的状态方程/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：1.1k字 | 预计阅读时长：5分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在前面我们谈到了一些简单的用动态规划解决的问题：<br><a href="https://blog.csdn.net/weixin_42549259/article/details/97263715" target="_blank" rel="noopener">动态规划(一)：从Fibonacci数列谈起</a><br>但是，在DP问题里，我们很多时候对于状态方程的递推，往往更加复杂，我们看以下几道题：</p>
-<a id="more"></a>
-
-<p><strong>A.字符串分割</strong><br>题目难度：Medium<br>题目来源：<a href="https://www.nowcoder.com/practice/5f3b7bf611764c8ba7868f3ed40d6b2c?tpId" target="_blank" rel="noopener">牛客网</a><br>题目描述：</p>
-<p>*<font color="#00dd00">Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.<br>For example, given<br>s =”leetcode”,<br>dict =[“leet”, “code”].<br>Return true because”leetcode”can be segmented as”leet code”.</font>*</p>
-<pre><code>1.定义状态:F(i)---第i个字符是否可以被字典中的词分割
-2.状态方程：j&lt;i &amp;&amp; dict.find(s.substr(j,i-j)&amp;&amp;F(j)
-3.初始值：F(0) = true
-4.返回值: F(n)</code></pre><p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">wordBreak</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; &amp;dict)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(dict.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;wb(s.size() + <span class="number">1</span>,<span class="literal">false</span>);</span><br><span class="line">        wb[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> j = i - <span class="number">1</span>;j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">         &#123;</span><br><span class="line">             <span class="keyword">if</span>(wb[j] &amp;&amp; dict.find(s.substr(j,i - j)) != dict.end())</span><br><span class="line">             &#123;</span><br><span class="line">                  wb[i] = <span class="literal">true</span>;</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> wb[s.size()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>B.三角矩阵问题</strong><br>题目难度：Medium<br>题目来源：<a href="https://www.nowcoder.com/practice/2b7995aa4f7949d99674d975489cb7da?tpId" target="_blank" rel="noopener">牛客网</a><br>*<font color="#00dd00">Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.<br>For example, given the following triangle<br>[<br>     [2],<br>    [3,4],<br>   [6,5,7],<br>  [4,1,8,3]<br>]<br>The minimum path sum from top to bottom is11(i.e., 2 + 3 + 5 + 1 = 11).<br>Note:<br>Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.</font>*</p>
-<p>方法一：自顶向下</p>
-<pre><code>1.定义状态：F(i,j)---从(0,0)到(i,j)的最小路径之和
-2.状态方程：min(minsum(i-1)(j-1),(i-1)(j)) + triangle(i)(j)
-3.初始值：F(0)(0) = triangle(0)(0)
-4.返回值：min(F(i - 1)(j))</code></pre><p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;triangle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(triangle.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; minsum(triangle);</span><br><span class="line">        <span class="keyword">int</span> line = triangle.size();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; line; i++)</span><br><span class="line">            &#123;</span><br><span class="line">               <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">               &#123;</span><br><span class="line">                 <span class="keyword">if</span>(j==<span class="number">0</span>)&#123;</span><br><span class="line">                     minsum[i][j] = minsum[i - <span class="number">1</span>][j];</span><br><span class="line">                 &#125;</span><br><span class="line">                   <span class="keyword">else</span> <span class="keyword">if</span>(i == j)&#123;</span><br><span class="line">                       minsum[i][j] = minsum[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">else</span>&#123;</span><br><span class="line">                       minsum[i][j] = min(minsum[i - <span class="number">1</span>][j - <span class="number">1</span>],minsum[i <span class="number">-1</span>][j]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   minsum[i][j] = minsum[i][j] + triangle[i][j];</span><br><span class="line">               &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> minresult = minsum[line - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; line; i++)</span><br><span class="line">        &#123;</span><br><span class="line">                   minresult = min(minsum[line - <span class="number">1</span>][i],minresult);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> minresult;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>方法二：自底向上</p>
-<pre><code>1.定义状态： F(i,j)---(i,j)到最后一行的最小路径和
-2.状态方程：F(i,j) = min(F(i+1)(j+1),(i+1)(j)+triangle[i][j]
-3.初始值：F(n-1)(0) = triangle(n-1,0)
-4.返回值F(0)(0)</code></pre><p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;triangle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(triangle.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; minsum(triangle);</span><br><span class="line">        <span class="keyword">int</span> line = triangle.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = line - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">            &#123;</span><br><span class="line">               minsum[i][j] = min(minsum[i+<span class="number">1</span>][j],minsum[i+<span class="number">1</span>][j+<span class="number">1</span>]) + triangle[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> minsum[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>除此之外，本题还可以用一维滚动数组来定义状态，但是缺点是，无法记录所有路径。</p>
-<p><strong>C.路径总数问题</strong><br>题目难度：Medium<br>题目来源：<a href="https://www.nowcoder.com/practice/3cdf08dd4e974260921b712f0a5c8752?tpId" target="_blank" rel="noopener">牛客网</a><br>题目描述：</p>
-<p>*<font color="#00dd00">Follow up for “Unique Paths”:<br>Now consider if some obstacles are added to the grids. How many unique paths would there be?<br>An obstacle and empty space is marked as1and0respectively in the grid.<br>For example,<br>There is one obstacle in the middle of a 3x3 grid as illustrated below.<br>[<br>  [0,0,0],<br>  [0,1,0],<br>  [0,0,0]<br>]<br>The total number of unique paths is2.<br>Note: m and n will be at most 100.*</font></p>
-<pre><code>1.定义状态：F(i)(j)---(0,0)到(i,j)的路径个数
-2.状态方程：F(i)(j)=F(i-1)(j) + F(i)(j-1)
-3.初始值：F(i)(0) = F(0)(j) = 1 if obstacleGrid(i,j) != 1
-4.返回值：F(m-1)(n-1)</code></pre><p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">uniquePathsWithObstacles</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;obstacleGrid)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//F[i][j] = F[i-1][j] + F[i][j-1]</span></span><br><span class="line">        <span class="keyword">int</span> m = obstacleGrid.size();</span><br><span class="line">        <span class="keyword">int</span> n = obstacleGrid[<span class="number">0</span>].size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; uq(m,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n,<span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(obstacleGrid[<span class="number">0</span>][i])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                    uq[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(obstacleGrid[i][<span class="number">0</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                    uq[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                 <span class="keyword">if</span>(obstacleGrid[i][j])</span><br><span class="line">                &#123;</span><br><span class="line">                    uq[i][j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    uq[i][j] = uq[i<span class="number">-1</span>][j] + uq[i][j<span class="number">-1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uq[m<span class="number">-1</span>][n<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/aplipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/25/动态规划-二-更为复杂的状态方程/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          动态规划(三): 更为隐蔽的状态推断
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">动态规划(一)：从Fbionacci数列谈起</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    目录，不存在的…
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="动态规划-二-更为复杂的状态方程" data-title="动态规划(二): 更为复杂的状态方程" data-url="http://yoursite.com/2019/08/25/动态规划-二-更为复杂的状态方程/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="动态规划-二-更为复杂的状态方程" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "true",
-        conf: "true"
-    });
-</script>
-</script>
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -437,9 +226,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

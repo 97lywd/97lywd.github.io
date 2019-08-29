@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>动态规划(二): 更为复杂的状态方程 | </title>
+  <title>Linux下常见命令以及对权限的理解 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在前面我们谈到了一些简单的用动态规划解决的问题：动态规划(一)：从Fibonacci数列谈起但是，在DP问题里，我们很多时候对于状态方程的递推，往往更加复杂，我们看以下几道题：">
-<meta name="keywords" content="C++,Algorithm">
+  <meta name="description" content="一.对目录的操作命令：1. ls命令：ls[选项][目录或文件]    功能：对于目录，列出该目录下的所有子目录及文件。对于文件，    列出文件名以及其他信息。  eg：Linux下输入命令行ls -i: 列出文件的inode节点信息。">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态规划(二): 更为复杂的状态方程">
-<meta property="og:url" content="http://yoursite.com/2019/08/25/动态规划-二-更为复杂的状态方程/index.html">
+<meta property="og:title" content="Linux下常见命令以及对权限的理解">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/Linux下常见命令以及对权限的理解/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="在前面我们谈到了一些简单的用动态规划解决的问题：动态规划(一)：从Fibonacci数列谈起但是，在DP问题里，我们很多时候对于状态方程的递推，往往更加复杂，我们看以下几道题：">
+<meta property="og:description" content="一.对目录的操作命令：1. ls命令：ls[选项][目录或文件]    功能：对于目录，列出该目录下的所有子目录及文件。对于文件，    列出文件名以及其他信息。  eg：Linux下输入命令行ls -i: 列出文件的inode节点信息。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-29T13:56:15.981Z">
+<meta property="og:updated_time" content="2019-08-29T13:56:00.817Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态规划(二): 更为复杂的状态方程">
-<meta name="twitter:description" content="在前面我们谈到了一些简单的用动态规划解决的问题：动态规划(一)：从Fibonacci数列谈起但是，在DP问题里，我们很多时候对于状态方程的递推，往往更加复杂，我们看以下几道题：">
+<meta name="twitter:title" content="Linux下常见命令以及对权限的理解">
+<meta name="twitter:description" content="一.对目录的操作命令：1. ls命令：ls[选项][目录或文件]    功能：对于目录，列出该目录下的所有子目录及文件。对于文件，    列出文件名以及其他信息。  eg：Linux下输入命令行ls -i: 列出文件的inode节点信息。">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -155,65 +155,100 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-动态规划-二-更为复杂的状态方程" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Linux下常见命令以及对权限的理解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      动态规划(二): 更为复杂的状态方程
+      Linux下常见命令以及对权限的理解
     </h1>
   
 
         
-        <a href="/2019/08/25/动态规划-二-更为复杂的状态方程/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
+        <a href="/2019/08/29/Linux下常见命令以及对权限的理解/" class="archive-article-date">
+  	<time datetime="2019-08-29T13:49:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
 </a>
         
       </header>
 
       
       <div align="center" class="post-count">
-      字数：1.1k字 | 预计阅读时长：5分钟
+      字数：1.5k字 | 预计阅读时长：6分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在前面我们谈到了一些简单的用动态规划解决的问题：<br><a href="https://blog.csdn.net/weixin_42549259/article/details/97263715" target="_blank" rel="noopener">动态规划(一)：从Fibonacci数列谈起</a><br>但是，在DP问题里，我们很多时候对于状态方程的递推，往往更加复杂，我们看以下几道题：</p>
+        <h2 id="一-对目录的操作命令："><a href="#一-对目录的操作命令：" class="headerlink" title="一.对目录的操作命令："></a>一.对目录的操作命令：</h2><pre><code>1. ls命令：ls[选项][目录或文件]
+   功能：对于目录，列出该目录下的所有子目录及文件。对于文件，
+   列出文件名以及其他信息。</code></pre><p>  eg：Linux下输入命令行ls -i: 列出文件的inode节点信息。</p>
 <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ ls -i</span><br><span class="line">75803 Desktop    19003916 Downloads     75786 perl5     50331812 Public     50331813 Videos</span><br><span class="line">75804 Documents  19003917 Music      35340381 Pictures  35340380 Templates  19837324 Workspace</span><br></pre></td></tr></table></figure>
 
-<p><strong>A.字符串分割</strong><br>题目难度：Medium<br>题目来源：<a href="https://www.nowcoder.com/practice/5f3b7bf611764c8ba7868f3ed40d6b2c?tpId" target="_blank" rel="noopener">牛客网</a><br>题目描述：</p>
-<p>*<font color="#00dd00">Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.<br>For example, given<br>s =”leetcode”,<br>dict =[“leet”, “code”].<br>Return true because”leetcode”can be segmented as”leet code”.</font>*</p>
-<pre><code>1.定义状态:F(i)---第i个字符是否可以被字典中的词分割
-2.状态方程：j&lt;i &amp;&amp; dict.find(s.substr(j,i-j)&amp;&amp;F(j)
-3.初始值：F(0) = true
-4.返回值: F(n)</code></pre><p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">wordBreak</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; &amp;dict)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(dict.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;wb(s.size() + <span class="number">1</span>,<span class="literal">false</span>);</span><br><span class="line">        wb[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> j = i - <span class="number">1</span>;j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">         &#123;</span><br><span class="line">             <span class="keyword">if</span>(wb[j] &amp;&amp; dict.find(s.substr(j,i - j)) != dict.end())</span><br><span class="line">             &#123;</span><br><span class="line">                  wb[i] = <span class="literal">true</span>;</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> wb[s.size()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><code>2.pwd命令：显示用户当前所在的目录
+例如先用ls指令列出当前所有目录，cd指令进入Workspace目录，输入pwd，
+可得到当前的绝对路径
+[lywd@localhost ~]$ ls
+Desktop  Documents  Downloads  Music  perl5  Pictures  Public  
+Templates  Videos  Workspace
 
-<p><strong>B.三角矩阵问题</strong><br>题目难度：Medium<br>题目来源：<a href="https://www.nowcoder.com/practice/2b7995aa4f7949d99674d975489cb7da?tpId" target="_blank" rel="noopener">牛客网</a><br>*<font color="#00dd00">Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.<br>For example, given the following triangle<br>[<br>     [2],<br>    [3,4],<br>   [6,5,7],<br>  [4,1,8,3]<br>]<br>The minimum path sum from top to bottom is11(i.e., 2 + 3 + 5 + 1 = 11).<br>Note:<br>Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.</font>*</p>
-<p>方法一：自顶向下</p>
-<pre><code>1.定义状态：F(i,j)---从(0,0)到(i,j)的最小路径之和
-2.状态方程：min(minsum(i-1)(j-1),(i-1)(j)) + triangle(i)(j)
-3.初始值：F(0)(0) = triangle(0)(0)
-4.返回值：min(F(i - 1)(j))</code></pre><p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;triangle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(triangle.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; minsum(triangle);</span><br><span class="line">        <span class="keyword">int</span> line = triangle.size();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; line; i++)</span><br><span class="line">            &#123;</span><br><span class="line">               <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">               &#123;</span><br><span class="line">                 <span class="keyword">if</span>(j==<span class="number">0</span>)&#123;</span><br><span class="line">                     minsum[i][j] = minsum[i - <span class="number">1</span>][j];</span><br><span class="line">                 &#125;</span><br><span class="line">                   <span class="keyword">else</span> <span class="keyword">if</span>(i == j)&#123;</span><br><span class="line">                       minsum[i][j] = minsum[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">else</span>&#123;</span><br><span class="line">                       minsum[i][j] = min(minsum[i - <span class="number">1</span>][j - <span class="number">1</span>],minsum[i <span class="number">-1</span>][j]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   minsum[i][j] = minsum[i][j] + triangle[i][j];</span><br><span class="line">               &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> minresult = minsum[line - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; line; i++)</span><br><span class="line">        &#123;</span><br><span class="line">                   minresult = min(minsum[line - <span class="number">1</span>][i],minresult);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> minresult;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+[lywd@localhost ~]$ cd Workspace/
+[lywd@localhost Workspace]$ pwd
+/home/lywd/Workspace</code></pre><p>3.cd指令：cd[目录命]    <strong><em>改变工作目录，将当前工作目录改变到指定目录下</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ cd Workspace/</span><br><span class="line">[lywd@localhost Workspace]$</span><br></pre></td></tr></table></figure>
 
-<p>方法二：自底向上</p>
-<pre><code>1.定义状态： F(i,j)---(i,j)到最后一行的最小路径和
-2.状态方程：F(i,j) = min(F(i+1)(j+1),(i+1)(j)+triangle[i][j]
-3.初始值：F(n-1)(0) = triangle(n-1,0)
-4.返回值F(0)(0)</code></pre><p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;triangle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(triangle.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; minsum(triangle);</span><br><span class="line">        <span class="keyword">int</span> line = triangle.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = line - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">            &#123;</span><br><span class="line">               minsum[i][j] = min(minsum[i+<span class="number">1</span>][j],minsum[i+<span class="number">1</span>][j+<span class="number">1</span>]) + triangle[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> minsum[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>4.mkdir指令： mkdir[选项] dirname <strong><em>在当前目录下创建一个名为“dirname”的目录</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ ls</span><br><span class="line"> Desktop  Documents  Downloads  Music  perl5  Pictures  Public </span><br><span class="line"> Templates  Videos  Workspace</span><br><span class="line">[lywd@localhost ~]$ mkdir dirname</span><br><span class="line">[lywd@localhost ~]$ ls</span><br><span class="line"> Desktop  dirname  Documents  Downloads  Music  perl5 </span><br><span class="line"> Pictures  Public  Templates  Videos  Workspace</span><br></pre></td></tr></table></figure>
 
-<p>除此之外，本题还可以用一维滚动数组来定义状态，但是缺点是，无法记录所有路径。</p>
-<p><strong>C.路径总数问题</strong><br>题目难度：Medium<br>题目来源：<a href="https://www.nowcoder.com/practice/3cdf08dd4e974260921b712f0a5c8752?tpId" target="_blank" rel="noopener">牛客网</a><br>题目描述：</p>
-<p>*<font color="#00dd00">Follow up for “Unique Paths”:<br>Now consider if some obstacles are added to the grids. How many unique paths would there be?<br>An obstacle and empty space is marked as1and0respectively in the grid.<br>For example,<br>There is one obstacle in the middle of a 3x3 grid as illustrated below.<br>[<br>  [0,0,0],<br>  [0,1,0],<br>  [0,0,0]<br>]<br>The total number of unique paths is2.<br>Note: m and n will be at most 100.*</font></p>
-<pre><code>1.定义状态：F(i)(j)---(0,0)到(i,j)的路径个数
-2.状态方程：F(i)(j)=F(i-1)(j) + F(i)(j-1)
-3.初始值：F(i)(0) = F(0)(j) = 1 if obstacleGrid(i,j) != 1
-4.返回值：F(m-1)(n-1)</code></pre><p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">uniquePathsWithObstacles</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;obstacleGrid)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//F[i][j] = F[i-1][j] + F[i][j-1]</span></span><br><span class="line">        <span class="keyword">int</span> m = obstacleGrid.size();</span><br><span class="line">        <span class="keyword">int</span> n = obstacleGrid[<span class="number">0</span>].size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; uq(m,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n,<span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(obstacleGrid[<span class="number">0</span>][i])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                    uq[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(obstacleGrid[i][<span class="number">0</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                    uq[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                 <span class="keyword">if</span>(obstacleGrid[i][j])</span><br><span class="line">                &#123;</span><br><span class="line">                    uq[i][j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    uq[i][j] = uq[i<span class="number">-1</span>][j] + uq[i][j<span class="number">-1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uq[m<span class="number">-1</span>][n<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>5.rmdir指令：rmdir[选项][dirname] rmdir与mkdir相反，rmdir为删除命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ rmdir dirname/</span><br><span class="line">[lywd@localhost ~]$ ls</span><br><span class="line">Desktop  Documents  Downloads  Music  perl5  Pictures  Public  </span><br><span class="line">Templates  Videos  Workspace</span><br></pre></td></tr></table></figure>
 
+<h2 id="二-对文件的操作命令："><a href="#二-对文件的操作命令：" class="headerlink" title="二.对文件的操作命令："></a>二.对文件的操作命令：</h2><ol start="6">
+<li>touch指令：touch[选项][文件名]  <strong><em>更改文档或者目录的日期时间，或者新建一个不存在的文件。</em></strong></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost Workspace]$ cd test/</span><br><span class="line">[lywd@localhost test]$ ls</span><br><span class="line">[lywd@localhost test]$ touch test.c</span><br><span class="line">[lywd@localhost test]$ ls</span><br><span class="line">test.c</span><br><span class="line">[lywd@localhost test]$</span><br></pre></td></tr></table></figure>
+
+<p>7.cat指令:cat[选项][文件] <strong><em>查看目标文件的内容</em></strong><br>  例如我们查看test.c的代码内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost proc]$ cat test.c</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;sys/types.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  while(1)&#123;</span><br><span class="line">      sleep(1);</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>8.cp指令：cp[选项][源文件或目录] <strong><em>复制文件或目录</em></strong></p>
+<p> 我们在test目录下新建文件a.c,并将a.c复制到test.c文件，实列如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost test]$ ls</span><br><span class="line">test.c</span><br><span class="line">[lywd@localhost test]$ touch a.c</span><br><span class="line">[lywd@localhost test]$ ls</span><br><span class="line">a.c  test.c</span><br><span class="line">[lywd@localhost test]$ cp a.c test.c</span><br><span class="line">[lywd@localhost test]$ ls</span><br><span class="line">a.c  test.c</span><br><span class="line">[lywd@localhost test]$ cat test.c </span><br><span class="line">[lywd@localhost test]$ ls</span><br><span class="line">a.c  test.c</span><br><span class="line">[lywd@localhost test]$</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>9.mv指令：mv[选项][源文件][目标文件] <strong><em>移动文件或者将文件改名</em></strong><br>   例如将a.c文件名该为b.c</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost test]$ mv a.c b.c</span><br><span class="line">[lywd@localhost test]$ ls</span><br><span class="line">b.c  test.c</span><br><span class="line">[lywd@localhost test]$</span><br></pre></td></tr></table></figure>
+
+
+<p>10.more指令与less指令：more/less[选项][文件名]<br>      <strong><em>这两个指令和cat指令有者相似的功能可查阅当前文件的内容，more指令可以让屏幕在显示满时暂停，less指令可以分页显示文件且q键可退出浏览。</em></strong></p>
+<p> 11.head和tail指令：head/tail[参数][文件]  <strong><em>head用来显示文件开头至标准输出当中，tail用来看文件的结尾。</em></strong></p>
+<h2 id="三-Linux权限的概念："><a href="#三-Linux权限的概念：" class="headerlink" title="三.Linux权限的概念："></a>三.Linux权限的概念：</h2><blockquote>
+<p>linux下有两种用户：超级用户(root),普通用户。<br>用户的切换指令：su（普通-&gt;root）su  user(root-&gt;普通)</p>
+</blockquote>
+<h3 id="0-如何查看文件的权限：ls-la或者ls-ID"><a href="#0-如何查看文件的权限：ls-la或者ls-ID" class="headerlink" title="0.如何查看文件的权限：ls -la或者ls -ID"></a>0.如何查看文件的权限：ls -la或者ls -ID</h3><p>如下我们用ls -la即可看到每个文件的权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ ls -la</span><br><span class="line">total 60</span><br><span class="line">drwx------. 19 lywd lywd  4096 Apr 19 10:44 .</span><br><span class="line">drwxr-xr-x.  3 root root    18 Dec 22 08:14 ..</span><br><span class="line">-rw-------.  1 lywd lywd  3292 Apr 19 07:12 .bash_history</span><br><span class="line">-rw-r--r--.  1 lywd lywd    18 Apr 10  2018 .bash_logout</span><br><span class="line">-rw-r--r--.  1 lywd lywd   193 Apr 10  2018 .bash_profile</span><br><span class="line">-rw-r--r--.  1 lywd lywd   231 Apr 10  2018 .bashrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-权限的分类以及种类："><a href="#1-权限的分类以及种类：" class="headerlink" title="1.权限的分类以及种类："></a>1.权限的分类以及种类：</h3><blockquote>
+<p>文件和文件目录的所有者：u——-User<br>文件和文件目录所在组的用户：g——–Group<br>其他用户：o——–Others<br>r—可读   w—-可写  x—–可执行<br>rwx可以用数三位八进制表示即777即（111 111 111）</p>
+</blockquote>
+<p>例如r–  只读，  rwx（777）， 可读可写可执行</p>
+<p>设定或重置指定用户类型的权限</p>
+<h3 id="2-有关文件权限的命令："><a href="#2-有关文件权限的命令：" class="headerlink" title="2.有关文件权限的命令："></a>2.有关文件权限的命令：</h3><h4 id="1-chmod命令：chmod【参数】【权限】【文件名】-设置文件的访问权限"><a href="#1-chmod命令：chmod【参数】【权限】【文件名】-设置文件的访问权限" class="headerlink" title="1)chmod命令：chmod【参数】【权限】【文件名】  设置文件的访问权限"></a>1)chmod命令：chmod【参数】【权限】【文件名】  <strong><em>设置文件的访问权限</em></strong></h4><p>来看下段代码，我们可以看到文件b.c并没有可执行权限，我们通过chmod命令可以给其所属组增加可执行权限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost test]$ ls</span><br><span class="line">b.c  test.c</span><br><span class="line">[lywd@localhost test]$ ls -la</span><br><span class="line">total 0</span><br><span class="line">drwxrwxr-x. 2 lywd lywd 31 Apr 19 07:03 .</span><br><span class="line">drwxrwxr-x. 5 lywd lywd 45 Apr 19 06:54 ..</span><br><span class="line">-rw-rw-r--. 1 lywd lywd  0 Apr 19 06:56 b.c</span><br><span class="line">-rw-rw-r--. 1 lywd lywd  0 Apr 19 06:56 test.c</span><br><span class="line">[lywd@localhost test]$ chmod u+x b.c</span><br><span class="line">[lywd@localhost test]$ ls -la</span><br><span class="line">total 0</span><br><span class="line">drwxrwxr-x. 2 lywd lywd 31 Apr 19 07:03 .</span><br><span class="line">drwxrwxr-x. 5 lywd lywd 45 Apr 19 06:54 ..</span><br><span class="line">-rwxrw-r--. 1 lywd lywd  0 Apr 19 06:56 b.c</span><br><span class="line">-rw-rw-r--. 1 lywd lywd  0 Apr 19 06:56 test.c</span><br></pre></td></tr></table></figure>
+
+<h4 id="2）chown命令：类似于chmod命令"><a href="#2）chown命令：类似于chmod命令" class="headerlink" title="2）chown命令：类似于chmod命令"></a>2）chown命令：类似于chmod命令</h4><p>这里展示使用数字表示权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# chown 777 b.c</span><br><span class="line">[root@localhost test]# ls -la</span><br><span class="line">total 0</span><br><span class="line">drwxrwxr-x. 2 lywd lywd 31 Apr 19 07:03 .</span><br><span class="line">drwxrwxr-x. 5 lywd lywd 45 Apr 19 06:54 ..</span><br><span class="line">-rwxrwxr--. 1  777 lywd  0 Apr 19 06:56 b.c</span><br><span class="line">-rw-rw-r--. 1 lywd lywd  0 Apr 19 06:56 test.c</span><br></pre></td></tr></table></figure>
+
+<h4 id="3）chgrp命令：chgrp【参数】【用户组名】【文件名】修改文件或目录的所属组"><a href="#3）chgrp命令：chgrp【参数】【用户组名】【文件名】修改文件或目录的所属组" class="headerlink" title="3）chgrp命令：chgrp【参数】【用户组名】【文件名】修改文件或目录的所属组"></a>3）chgrp命令：chgrp【参数】【用户组名】【文件名】<strong><em>修改文件或目录的所属组</em></strong></h4><h4 id="4）umask命令：umask-【权限值】-查看或修改文件掩码"><a href="#4）umask命令：umask-【权限值】-查看或修改文件掩码" class="headerlink" title="4）umask命令：umask 【权限值】 查看或修改文件掩码"></a>4）umask命令：umask 【权限值】 <strong><em>查看或修改文件掩码</em></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost test]$ umask</span><br><span class="line">0777</span><br></pre></td></tr></table></figure>
+
+<p>其中第一个0与特殊权限有关，可以不用考虑。</p>
+<p><strong>总结：</strong></p>
+<blockquote>
+<p>文件的访问及使用限制由文件本身的权限决定，但是文件名称的修改、文件本身的<br> 删除是由文件所在目录的w权限决定的。<br> 文件的拥有者或者root可以修改档案或者目录的权限。<br> cd、ls等系统提供的命令也是有权限的，可以通过删除其x权限禁止用户使<br>用该命令。<br> 用户使用系统：即用户通过一个程序去操作文件或档案，要顺利进行这一动作，得<br> 满足两个条件：<br> （1）对该程序的访问权限：如对 cd 、ls 等的x权限<br> （2）对要操作的目标文件的访问权限</p>
+</blockquote>
 
       
 
@@ -253,11 +288,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -313,7 +344,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/25/动态规划-二-更为复杂的状态方程/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/29/Linux下常见命令以及对权限的理解/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,18 +358,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          动态规划(三): 更为隐蔽的状态推断
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">动态规划(一)：从Fbionacci数列谈起</div>
+    <a href="/2019/08/28/c-类与对象-一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">c++类与对象(一)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -365,7 +387,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-对目录的操作命令："><span class="toc-number">1.</span> <span class="toc-text">一.对目录的操作命令：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-对文件的操作命令："><span class="toc-number">2.</span> <span class="toc-text">二.对文件的操作命令：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-Linux权限的概念："><span class="toc-number">3.</span> <span class="toc-text">三.Linux权限的概念：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-如何查看文件的权限：ls-la或者ls-ID"><span class="toc-number">3.1.</span> <span class="toc-text">0.如何查看文件的权限：ls -la或者ls -ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-权限的分类以及种类："><span class="toc-number">3.2.</span> <span class="toc-text">1.权限的分类以及种类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-有关文件权限的命令："><span class="toc-number">3.3.</span> <span class="toc-text">2.有关文件权限的命令：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-chmod命令：chmod【参数】【权限】【文件名】-设置文件的访问权限"><span class="toc-number">3.3.1.</span> <span class="toc-text">1)chmod命令：chmod【参数】【权限】【文件名】  设置文件的访问权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2）chown命令：类似于chmod命令"><span class="toc-number">3.3.2.</span> <span class="toc-text">2）chown命令：类似于chmod命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3）chgrp命令：chgrp【参数】【用户组名】【文件名】修改文件或目录的所属组"><span class="toc-number">3.3.3.</span> <span class="toc-text">3）chgrp命令：chgrp【参数】【用户组名】【文件名】修改文件或目录的所属组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4）umask命令：umask-【权限值】-查看或修改文件掩码"><span class="toc-number">3.3.4.</span> <span class="toc-text">4）umask命令：umask 【权限值】 查看或修改文件掩码</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -379,7 +401,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="动态规划-二-更为复杂的状态方程" data-title="动态规划(二): 更为复杂的状态方程" data-url="http://yoursite.com/2019/08/25/动态规划-二-更为复杂的状态方程/"></div>
+	<div class="ds-thread" data-thread-key="Linux下常见命令以及对权限的理解" data-title="Linux下常见命令以及对权限的理解" data-url="http://yoursite.com/2019/08/29/Linux下常见命令以及对权限的理解/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -401,7 +423,7 @@
   
 
   
-  <div id="SOHUCS" sid="动态规划-二-更为复杂的状态方程" ></div> 
+  <div id="SOHUCS" sid="Linux下常见命令以及对权限的理解" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

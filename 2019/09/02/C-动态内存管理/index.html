@@ -16,7 +16,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="一.c语言中malloc/calloc/realloc的区别我们来看一下以下demo：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-02T15:45:16.729Z">
+<meta property="og:updated_time" content="2019-09-02T15:49:05.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++:动态内存管理">
 <meta name="twitter:description" content="一.c语言中malloc/calloc/realloc的区别我们来看一下以下demo：">
@@ -187,8 +187,9 @@
 <li>malloc会在堆上开辟指定字节的空间，但不会初始化。</li>
 <li>calloc与malloc相似 ，但是会初始化成0，并且可以指定元素个数</li>
 <li>realloc是给已分配空间的指针重新分配指定大小的空间</li>
-<li>需要注意的是，如上例中，我们注意到realloc指定的空间太大，导致后面的空间不够时，会重新开辟一段空间，并且将原来的值拷贝过来。<h1 id="二-C-中是如何实现动态内存管理"><a href="#二-C-中是如何实现动态内存管理" class="headerlink" title="二.C++中是如何实现动态内存管理"></a>二.C++中是如何实现动态内存管理</h1><h2 id="1-内置类型"><a href="#1-内置类型" class="headerlink" title="1.内置类型"></a>1.内置类型</h2>看以下demo：</li>
+<li>需要注意的是，如上例中，我们注意到realloc指定的空间太大，导致后面的空间不够时，会重新开辟一段空间，并且将原来的值拷贝过来。</li>
 </ul>
+<h1 id="二-C-中是如何实现动态内存管理"><a href="#二-C-中是如何实现动态内存管理" class="headerlink" title="二.C++中是如何实现动态内存管理"></a>二.C++中是如何实现动态内存管理</h1><h2 id="1-内置类型"><a href="#1-内置类型" class="headerlink" title="1.内置类型"></a>1.内置类型</h2><p>看以下demo：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p1 = <span class="keyword">new</span> <span class="keyword">int</span>;  <span class="comment">//动态申请一个int类型空间</span></span><br><span class="line">	<span class="keyword">delete</span> p1;</span><br><span class="line">	<span class="keyword">int</span> *p2 = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">10</span>);  <span class="comment">//动态申请一个int类型空间</span></span><br><span class="line">	<span class="keyword">delete</span> p2;;</span><br><span class="line">	<span class="keyword">int</span> *p3 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];   <span class="comment">//动态申请十个int类型空间</span></span><br><span class="line">	<span class="keyword">delete</span> []p3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -496,11 +497,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | </title>
+  <title>C++:动态内存管理 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="一.c语言中malloc/calloc/realloc的区别我们来看一下以下demo：">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++:动态内存管理">
+<meta property="og:url" content="http://yoursite.com/2019/09/02/C-动态内存管理/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="一.c语言中malloc/calloc/realloc的区别我们来看一下以下demo：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-02T15:45:16.729Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="C++:动态内存管理">
+<meta name="twitter:description" content="一.c语言中malloc/calloc/realloc的区别我们来看一下以下demo：">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -150,36 +155,105 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-C-动态内存管理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      C++:动态内存管理
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/02/C-动态内存管理/" class="archive-article-date">
+
+        
+        <a href="/2019/09/02/C-动态内存管理/" class="archive-article-date">
   	<time datetime="2019-09-02T15:42:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/02/C-动态内存管理/">C++:动态内存管理</a>
-    </h1>
-  
+        
+      </header>
 
-        <div class="article-info info-on-right">
-          
+      
+      <div align="center" class="post-count">
+      字数：986字 | 预计阅读时长：3分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-c语言中malloc-calloc-realloc的区别"><a href="#一-c语言中malloc-calloc-realloc的区别" class="headerlink" title="一.c语言中malloc/calloc/realloc的区别"></a>一.c语言中malloc/calloc/realloc的区别</h1><p>我们来看一下以下demo：</p>
+<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p1 = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="built_in">free</span>(p1);</span><br><span class="line">	<span class="keyword">int</span> *p2 = (<span class="keyword">int</span>*)<span class="built_in">calloc</span>(<span class="number">4</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="comment">//free(p2);</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; &amp;p2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//00EFF9A4</span></span><br><span class="line">	<span class="keyword">int</span> *p3 = (<span class="keyword">int</span>*)<span class="built_in">realloc</span>(p2, <span class="keyword">sizeof</span>(<span class="number">10000</span>));</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; &amp;p3 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//00EFF998</span></span><br><span class="line">	<span class="built_in">free</span>(p3);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>malloc会在堆上开辟指定字节的空间，但不会初始化。</li>
+<li>calloc与malloc相似 ，但是会初始化成0，并且可以指定元素个数</li>
+<li>realloc是给已分配空间的指针重新分配指定大小的空间</li>
+<li>需要注意的是，如上例中，我们注意到realloc指定的空间太大，导致后面的空间不够时，会重新开辟一段空间，并且将原来的值拷贝过来。<h1 id="二-C-中是如何实现动态内存管理"><a href="#二-C-中是如何实现动态内存管理" class="headerlink" title="二.C++中是如何实现动态内存管理"></a>二.C++中是如何实现动态内存管理</h1><h2 id="1-内置类型"><a href="#1-内置类型" class="headerlink" title="1.内置类型"></a>1.内置类型</h2>看以下demo：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p1 = <span class="keyword">new</span> <span class="keyword">int</span>;  <span class="comment">//动态申请一个int类型空间</span></span><br><span class="line">	<span class="keyword">delete</span> p1;</span><br><span class="line">	<span class="keyword">int</span> *p2 = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">10</span>);  <span class="comment">//动态申请一个int类型空间</span></span><br><span class="line">	<span class="keyword">delete</span> p2;;</span><br><span class="line">	<span class="keyword">int</span> *p3 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];   <span class="comment">//动态申请十个int类型空间</span></span><br><span class="line">	<span class="keyword">delete</span> []p3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>事实上，对于内置类型，new底层调用是operator new（实际上也是malloc来实现的），delete底层调用的是operator delete (实际上是用free来实现的)。<h2 id="2-自定义类型"><a href="#2-自定义类型" class="headerlink" title="2.自定义类型"></a>2.自定义类型</h2>先看下面的demo：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">demo</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		demo()</span><br><span class="line">			:_data(<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"test()"</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		~demo()</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"~test()"</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> _data;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		demo *p1 = (demo*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(demo));</span><br><span class="line">		<span class="built_in">free</span>(p1);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		demo *p2 = <span class="keyword">new</span> demo;</span><br><span class="line">		<span class="keyword">delete</span> p2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		test2();</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自定义类型使用new时会调用构造函数，delete会调用析构函数。而malloc和free不会。<h1 id="三-new和delete底层实现原理"><a href="#三-new和delete底层实现原理" class="headerlink" title="三.new和delete底层实现原理"></a>三.new和delete底层实现原理</h1><h3 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h3>与malloc/delete基本一致，如果申请连续空间，则需要new[]/delete[]<h3 id="自定义类型"><a href="#自定义类型" class="headerlink" title="自定义类型"></a>自定义类型</h3></li>
+<li>new的原理</li>
+</ul>
+<p>1.调用operator new申请空间<br>2.调用构造函数，完成对象的构造</p>
+<ul>
+<li>delete的原理</li>
+</ul>
+<p>1.调用析构函数，完成对象的清理<br>2.调用operato delete释放空间<br>对于连续n个空间，则执行n次上述操作。</p>
+<h3 id="定位new表达式"><a href="#定位new表达式" class="headerlink" title="定位new表达式"></a>定位new表达式</h3><p>在已分配的空间调用构造函数初始化一个对象<br>使用方法：(以上面的demo类为例)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p1现在指向的是demo对象大小相同的一段空间，但是并不是一个对象</span></span><br><span class="line">demo* p1 = (demo*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(demo));</span><br><span class="line"><span class="comment">//执行完new即调用构造函数后，它就成为了一个对象，</span></span><br><span class="line"><span class="comment">//注意，构造函数有参数，那么下面的代码需要传参</span></span><br><span class="line"><span class="keyword">new</span>(pt) demo;</span><br></pre></td></tr></table></figure>
+
+<h1 id="四-new-delete-与-malloc-free区别总结"><a href="#四-new-delete-与-malloc-free区别总结" class="headerlink" title="四.new/delete 与 malloc/free区别总结"></a>四.new/delete 与 malloc/free区别总结</h1><ul>
+<li><h4 id="1-属性"><a href="#1-属性" class="headerlink" title="1.属性"></a>1.属性</h4><p>new/delete是C++关键字，需要编译器支持。malloc/free是库函数，需要头文件支持。</p>
+</li>
+<li><h4 id="2-参数"><a href="#2-参数" class="headerlink" title="2.参数"></a>2.参数</h4><p>使用new操作符申请内存分配时无须指定内存块的大小，编译器会根据类型信息自行计算。而malloc则需要显式地指出所需内存的尺寸。</p>
+</li>
+<li><h3 id="3-返回类型"><a href="#3-返回类型" class="headerlink" title="3.返回类型"></a>3.返回类型</h3><p>new操作符内存分配成功时，返回的是对象类型的指针，类型严格与对象匹配，无须进行类型转换，故new是符合类型安全性的操作符。而malloc内存分配成功则是返回void * ，需要通过强制类型转换将void*指针转换成我们需要的类型。</p>
+</li>
+<li><h4 id="4-分配失败"><a href="#4-分配失败" class="headerlink" title="4.分配失败"></a>4.分配失败</h4><p>new内存分配失败时，会抛出bac_alloc异常。malloc分配内存失败时返回NULL。</p>
+</li>
+<li><h4 id="5-自定义类型"><a href="#5-自定义类型" class="headerlink" title="5.自定义类型"></a>5.自定义类型</h4><p>new会先调用operator new函数，申请足够的内存（通常底层使用malloc实现）。然后调用类型的构造函数，初始化成员变量，最后返回自定义类型指针。delete先调用析构函数，然后调用operator delete函数释放内存（通常底层使用free实现）。<br>malloc/free是库函数，只能动态的申请和释放内存，无法强制要求其做自定义类型对象构造和析构工作。</p>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/aplipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,335 +265,149 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/02/C-动态内存管理/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/01/C-类与对象-三/" class="archive-article-date">
-  	<time datetime="2019-09-01T14:38:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/01/C-类与对象-三/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++类与对象(三)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/01/C-类与对象-三/">C++类与对象(三)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-c语言中malloc-calloc-realloc的区别"><span class="toc-number">1.</span> <span class="toc-text">一.c语言中malloc/calloc/realloc的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-C-中是如何实现动态内存管理"><span class="toc-number">2.</span> <span class="toc-text">二.C++中是如何实现动态内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-内置类型"><span class="toc-number">2.1.</span> <span class="toc-text">1.内置类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-自定义类型"><span class="toc-number">2.2.</span> <span class="toc-text">2.自定义类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三-new和delete底层实现原理"><span class="toc-number">3.</span> <span class="toc-text">三.new和delete底层实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内置类型"><span class="toc-number">3.0.1.</span> <span class="toc-text">内置类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义类型"><span class="toc-number">3.0.2.</span> <span class="toc-text">自定义类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位new表达式"><span class="toc-number">3.0.3.</span> <span class="toc-text">定位new表达式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四-new-delete-与-malloc-free区别总结"><span class="toc-number">4.</span> <span class="toc-text">四.new/delete 与 malloc/free区别总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-属性"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">1.属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-参数"><span class="toc-number">4.0.0.2.</span> <span class="toc-text">2.参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-返回类型"><span class="toc-number">4.0.1.</span> <span class="toc-text">3.返回类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-分配失败"><span class="toc-number">4.0.1.1.</span> <span class="toc-text">4.分配失败</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-自定义类型"><span class="toc-number">4.0.1.2.</span> <span class="toc-text">5.自定义类型</span></a></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/31/C-类与对象-二/" class="archive-article-date">
-  	<time datetime="2019-08-31T07:58:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
-</a>
-        </div>
-    	 
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="C-动态内存管理" data-title="C++:动态内存管理" data-url="http://yoursite.com/2019/09/02/C-动态内存管理/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/31/C-类与对象-二/">C++类与对象(二)</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/29/Linux下常见命令以及对权限的理解/" class="archive-article-date">
-  	<time datetime="2019-08-29T13:49:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/29/Linux下常见命令以及对权限的理解/">Linux下常见命令以及对权限的理解</a>
-    </h1>
+  <div id="SOHUCS" sid="C-动态内存管理" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/28/C-类与对象-一/" class="archive-article-date">
-  	<time datetime="2019-08-28T09:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/28/C-类与对象-一/">c++类与对象(一)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:19:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/">动态规划(三): 更为隐蔽的状态推断</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/25/动态规划-二-更为复杂的状态方程/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/25/动态规划-二-更为复杂的状态方程/">动态规划(二): 更为复杂的状态方程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/" class="archive-article-date">
-  	<time datetime="2019-08-25T06:36:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/">动态规划(一)：从Fbionacci数列谈起</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/23/C-入门语法篇/" class="archive-article-date">
-  	<time datetime="2019-08-23T02:54:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/23/C-入门语法篇/">C++入门语法篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -542,8 +430,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

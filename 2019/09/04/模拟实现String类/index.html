@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>c++类与对象(一) | </title>
+  <title>模拟实现String类 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.类的定义 定义和声明全在类内  12345678class Date&amp;#123;  public:     void showInfo()&amp;#123;&amp;#125;  private:     int _day;     int _month;&amp;#125;;">
-<meta name="keywords" content="C++">
+  <meta name="description" content="string类是什么 string是表示字符串的字符串类 该类的接口与常规容器的接口基本相同，再添加了一些专门用来操作string的常规操作。 string在底层实际是：basic_string模板类的别名，typedef basic_string&amp;lt;char, char_traits, allocator&amp;gt; string; 不能操作多字节或者变长字符的序列。">
+<meta name="keywords" content="C++,STL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c++类与对象(一)">
-<meta property="og:url" content="http://yoursite.com/2019/08/28/C-类与对象-一/index.html">
+<meta property="og:title" content="模拟实现String类">
+<meta property="og:url" content="http://yoursite.com/2019/09/04/模拟实现String类/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="一.类的定义 定义和声明全在类内  12345678class Date&amp;#123;  public:     void showInfo()&amp;#123;&amp;#125;  private:     int _day;     int _month;&amp;#125;;">
+<meta property="og:description" content="string类是什么 string是表示字符串的字符串类 该类的接口与常规容器的接口基本相同，再添加了一些专门用来操作string的常规操作。 string在底层实际是：basic_string模板类的别名，typedef basic_string&amp;lt;char, char_traits, allocator&amp;gt; string; 不能操作多字节或者变长字符的序列。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-28T09:36:20.848Z">
+<meta property="og:updated_time" content="2019-09-04T14:59:00.535Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="c++类与对象(一)">
-<meta name="twitter:description" content="一.类的定义 定义和声明全在类内  12345678class Date&amp;#123;  public:     void showInfo()&amp;#123;&amp;#125;  private:     int _day;     int _month;&amp;#125;;">
+<meta name="twitter:title" content="模拟实现String类">
+<meta name="twitter:description" content="string类是什么 string是表示字符串的字符串类 该类的接口与常规容器的接口基本相同，再添加了一些专门用来操作string的常规操作。 string在底层实际是：basic_string模板类的别名，typedef basic_string&amp;lt;char, char_traits, allocator&amp;gt; string; 不能操作多字节或者变长字符的序列。">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -155,79 +155,51 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C-类与对象-一" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-模拟实现String类" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      c++类与对象(一)
+      模拟实现String类
     </h1>
   
 
         
-        <a href="/2019/08/28/C-类与对象-一/" class="archive-article-date">
-  	<time datetime="2019-08-28T09:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
+        <a href="/2019/09/04/模拟实现String类/" class="archive-article-date">
+  	<time datetime="2019-09-04T14:53:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
 </a>
         
       </header>
 
       
       <div align="center" class="post-count">
-      字数：827字 | 预计阅读时长：3分钟
+      字数：575字 | 预计阅读时长：2分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一-类的定义"><a href="#一-类的定义" class="headerlink" title="一.类的定义"></a>一.类的定义</h2><ul>
-<li>定义和声明全在类内</li>
+        <h1 id="string类是什么"><a href="#string类是什么" class="headerlink" title="string类是什么"></a>string类是什么</h1><ul>
+<li>string是表示字符串的字符串类</li>
+<li>该类的接口与常规容器的接口基本相同，再添加了一些专门用来操作string的常规操作。</li>
+<li>string在底层实际是：basic_string模板类的别名，typedef basic_string&lt;char, char_traits, allocator&gt; string;</li>
+<li>不能操作多字节或者变长字符的序列。<a id="more"></a>
+<h1 id="string类的接口实现"><a href="#string类的接口实现" class="headerlink" title="string类的接口实现"></a>string类的接口实现</h1><h2 id="1-构造函数"><a href="#1-构造函数" class="headerlink" title="1.构造函数"></a>1.构造函数</h2></li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">showInfo</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">     <span class="keyword">int</span> _day;</span><br><span class="line">     <span class="keyword">int</span> _month;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String(<span class="keyword">const</span> <span class="keyword">char</span>* str = <span class="string">""</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">size_t</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">		_size = len;</span><br><span class="line">		_capacity = _size;</span><br><span class="line">		_str = <span class="keyword">new</span> <span class="keyword">char</span>[_capacity + <span class="number">1</span>];</span><br><span class="line">		<span class="built_in">strcpy</span>(_str, str);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<a id="more"></a>
+<h2 id="2-析构函数"><a href="#2-析构函数" class="headerlink" title="2.析构函数"></a>2.析构函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">~String()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (_str)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">delete</span>[] _str;</span><br><span class="line">			_str = <span class="literal">nullptr</span>;</span><br><span class="line">			_size = _capacity = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>声明在头文件，定义在.cpp文件之中</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//date.h文件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showInfo</span><span class="params">()</span></span>;</span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> _day;</span><br><span class="line">    <span class="keyword">int</span> _month;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-拷贝构造函数"><a href="#3-拷贝构造函数" class="headerlink" title="3.拷贝构造函数"></a>3.拷贝构造函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">String(<span class="keyword">const</span> String&amp; s)</span><br><span class="line">		:_str(<span class="literal">nullptr</span>)</span><br><span class="line">		, _size(<span class="number">0</span>)</span><br><span class="line">		, _capacity(<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="function">String <span class="title">tmp</span><span class="params">(s._str)</span></span>;</span><br><span class="line">		Swap(tmp);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Swap</span><span class="params">(String&amp; s)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		swap(_str, s._str);</span><br><span class="line">		swap(_size, s._size);</span><br><span class="line">		swap(_capacity, s._capacity);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//date.cpp文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"date.h"</span></span></span><br><span class="line"><span class="keyword">void</span> Date::showInfo()</span><br><span class="line">&#123;</span><br><span class="line">     <span class="built_in">cout</span> &lt;&lt;_month&lt;&lt;--&lt;&lt;_day&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-插入"><a href="#4-插入" class="headerlink" title="4.插入"></a>4.插入</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入的是字符，如果是字符串，重载这个函数即可</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(<span class="keyword">size_t</span> pos, <span class="keyword">const</span> <span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		assert(pos &lt;= _size);</span><br><span class="line">		<span class="keyword">if</span> (_size == _capacity)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">size_t</span> newC = _capacity == <span class="number">0</span> ? <span class="number">15</span> : <span class="number">2</span> * _capacity;</span><br><span class="line">			Reserve(newC);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">size_t</span> end = _size;</span><br><span class="line">		<span class="keyword">while</span> (end &gt; pos)</span><br><span class="line">		&#123;</span><br><span class="line">			_str[end] = _str[end - <span class="number">1</span>];</span><br><span class="line">			--end;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		_str[pos] = c;</span><br><span class="line">		_str[++_size] = <span class="string">'\0'</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<p>类的定义一般有以上两种方式，但是后者更加规范。<br>在上面的demo里，我们可以看到，类的定义关键词是class,Date是类名，{}里类的主体,并且以;号结尾。<br><strong>其中类的元素,称为类的成员,函数称为类的成员函数,数据称为成员变量。</strong></p>
-<h2 id="二-类的访问限定符"><a href="#二-类的访问限定符" class="headerlink" title="二.类的访问限定符"></a>二.类的访问限定符</h2><ul>
-<li>访问限定符有三种：public,private,protected</li>
-<li>public修饰的成员可以被类外进行访问,private和protected修饰不可。</li>
-<li>class的默认访问权限是private,而struct默认的是public</li>
-</ul>
-<h2 id="三-类的作用域与实例化"><a href="#三-类的作用域与实例化" class="headerlink" title="三.类的作用域与实例化"></a>三.类的作用域与实例化</h2><ul>
-<li>类定义了一个作用域，如果需要在类外定义成员，那么就要使用::作用解析符,指明成员属于哪个域。</li>
-<li>类创建对象的过程，称之为类的实例化</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">char</span>* _name;</span><br><span class="line">        <span class="keyword">int</span> _age;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//实例化</span></span><br><span class="line">     Person man;</span><br><span class="line">     man._name = <span class="string">"Pony"</span></span><br><span class="line">     man._age = <span class="number">10</span>;</span><br><span class="line">     man.display();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-删除"><a href="#5-删除" class="headerlink" title="5.删除"></a>5.删除</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Erase</span><span class="params">(<span class="keyword">size_t</span> pos, <span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		assert(pos &lt; _size);</span><br><span class="line">		<span class="keyword">if</span> (n &gt;= _size - pos)</span><br><span class="line">		&#123;</span><br><span class="line">			_size = pos;</span><br><span class="line">			_str[_size] = <span class="string">'\0'</span>;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">size_t</span> begin = pos + n;</span><br><span class="line">		<span class="keyword">while</span> (begin &lt;= _size)</span><br><span class="line">		&#123;</span><br><span class="line">			_str[pos++] = _str[begin];</span><br><span class="line">			++begin;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		_size -= n;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="四-类的大小的计算"><a href="#四-类的大小的计算" class="headerlink" title="四.类的大小的计算"></a>四.类的大小的计算</h2><ul>
-<li>一个类的大小，其实就是所有成员变量之和，当然也遵循内存对齐(就是结构体的对齐规则)，如果是空类，编译器给了一个字符唯一标识这个类。<br>看这样一个demo：</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span> :</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">fun1</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> _num;</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span></span><br><span class="line"><span class="class">	&#123;</span>&#125;;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(A) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(B) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(C) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找"><a href="#6-查找" class="headerlink" title="6.查找"></a>6.查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里是查找一个字符，如果是字符串，重载这个函数即可</span></span><br><span class="line"><span class="keyword">size_t</span> find(<span class="keyword">size_t</span> pos, <span class="keyword">char</span> c)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = pos; i &lt; _size; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (_str[i] == c)</span><br><span class="line">				<span class="keyword">return</span> i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<p>上面的输出结果是4，1，1，这就说明了类的大小其实就是成员变量之和。</p>
-<h2 id="五-this指针"><a href="#五-this指针" class="headerlink" title="五.this指针"></a>五.this指针</h2><ul>
-<li>this指针的类型：类类型 * const</li>
-<li>只能在成员函数内部使用</li>
-<li>是成员函数的第一个隐含的形参，由编译器调用</li>
-</ul>
-<p>先看这样一个例子：可以编译通过吗？</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt;<span class="string">" Hello"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   A*p = <span class="literal">NULL</span>;</span><br><span class="line">   p-&gt;fun();</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>事实上，上面的例子可以输出，这是为什么呢？p是一个NULl指针，调用成员函数不会出错误？其实p-&gt;fun()是fun(b);因为没有fun函数没有访问成员，所以不存在解引用，所以正常输出；我们可以通过一个例子来验证</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt;<span class="string">" Hello"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a;</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	   A*p = <span class="literal">NULL</span>;</span><br><span class="line">	   p-&gt;fun();</span><br><span class="line">	   p-&gt;fun2();       <span class="comment">//引发程序崩溃</span></span><br><span class="line">	   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在非静态成员函数内部可以直接使用 this 关键字，this 就代表指向该函数所作用的对象的指针<br>看下面这个程序：</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">price</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> num, cost;</span><br><span class="line">		price(<span class="keyword">int</span> n, <span class="keyword">int</span> c)</span><br><span class="line">			:num(n),cost(c)&#123;&#125;</span><br><span class="line">		<span class="function">price <span class="title">add</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">this</span>-&gt;cost++;</span><br><span class="line">			<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	price n1(1,1), n2(0,0);</span><br><span class="line">	n2 = n1.add();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; n2.num&lt;&lt; n2.cost &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出结果：1，2</span></span><br></pre></td></tr></table></figure>
-
-<p>第九行的this的类型是price<em>，所以this-&gt;cost就是cost，</em>this就是n1，所以n2的值才会变成n1。</p>
+<h1 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h1><h2 id="1-浅拷贝"><a href="#1-浅拷贝" class="headerlink" title="1.浅拷贝"></a>1.浅拷贝</h2><p>也叫位拷贝，即编译器只将对象中的值拷贝过来，不考虑资源的管理。<br>然而对于上述的例子，即string类的实现，这种方法就行不通。string类中私有成员里有一个char* 成员变量，在调用赋值或者拷贝构造时，就会两个对象共享一片内存，此时析构函数清理资源时，就会出现重复销毁。</p>
+<h2 id="2-深拷贝"><a href="#2-深拷贝" class="headerlink" title="2.深拷贝"></a>2.深拷贝</h2><p>如果一个类中涉及到资源的管理，其拷贝构造函数、赋值运算符重载以及析构函数必须要显式给出，一般都是按照深拷贝方式提供。<br>深拷贝的执行方式是，为每一个对象独立分配资源，此时清理资源时，就不会造成访问违规现象。</p>
 
       
 
@@ -268,6 +240,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
         		</li>
       		
 		</ul>
@@ -323,7 +299,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/28/C-类与对象-一/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/04/模拟实现String类/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -337,18 +313,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/29/Linux下常见命令以及对权限的理解/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux下常见命令以及对权限的理解
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">动态规划(三): 更为隐蔽的状态推断</div>
+    <a href="/2019/09/03/Linux下的常用工具/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux下的常用工具</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -375,7 +342,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-类的定义"><span class="toc-number">1.</span> <span class="toc-text">一.类的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-类的访问限定符"><span class="toc-number">2.</span> <span class="toc-text">二.类的访问限定符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-类的作用域与实例化"><span class="toc-number">3.</span> <span class="toc-text">三.类的作用域与实例化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-类的大小的计算"><span class="toc-number">4.</span> <span class="toc-text">四.类的大小的计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-this指针"><span class="toc-number">5.</span> <span class="toc-text">五.this指针</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#string类是什么"><span class="toc-number">1.</span> <span class="toc-text">string类是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#string类的接口实现"><span class="toc-number">2.</span> <span class="toc-text">string类的接口实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-构造函数"><span class="toc-number">2.1.</span> <span class="toc-text">1.构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-析构函数"><span class="toc-number">2.2.</span> <span class="toc-text">2.析构函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-拷贝构造函数"><span class="toc-number">2.3.</span> <span class="toc-text">3.拷贝构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-插入"><span class="toc-number">2.4.</span> <span class="toc-text">4.插入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-删除"><span class="toc-number">2.5.</span> <span class="toc-text">5.删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-查找"><span class="toc-number">2.6.</span> <span class="toc-text">6.查找</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深拷贝与浅拷贝"><span class="toc-number">3.</span> <span class="toc-text">深拷贝与浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-浅拷贝"><span class="toc-number">3.1.</span> <span class="toc-text">1.浅拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-深拷贝"><span class="toc-number">3.2.</span> <span class="toc-text">2.深拷贝</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -389,7 +356,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C-类与对象-一" data-title="c++类与对象(一)" data-url="http://yoursite.com/2019/08/28/C-类与对象-一/"></div>
+	<div class="ds-thread" data-thread-key="模拟实现String类" data-title="模拟实现String类" data-url="http://yoursite.com/2019/09/04/模拟实现String类/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -411,7 +378,7 @@
   
 
   
-  <div id="SOHUCS" sid="C-类与对象-一" ></div> 
+  <div id="SOHUCS" sid="模拟实现String类" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

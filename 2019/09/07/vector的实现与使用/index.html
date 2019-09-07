@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | </title>
+  <title>vector的实现与使用 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="1.vector的介绍与使用接口1.1 vector是什么 vector是一种序列式容器 其底层实现原理和数组一样，但不同的是，它的大小可动态改变 与其他序列式容器相比vector的随机访问使访问效率更加高效(O(1))1.2 iterator的使用">
+<meta name="keywords" content="C++,STL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vector的实现与使用">
+<meta property="og:url" content="http://yoursite.com/2019/09/07/vector的实现与使用/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="1.vector的介绍与使用接口1.1 vector是什么 vector是一种序列式容器 其底层实现原理和数组一样，但不同的是，它的大小可动态改变 与其他序列式容器相比vector的随机访问使访问效率更加高效(O(1))1.2 iterator的使用">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190907153416566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-09-07T08:21:05.834Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="vector的实现与使用">
+<meta name="twitter:description" content="1.vector的介绍与使用接口1.1 vector是什么 vector是一种序列式容器 其底层实现原理和数组一样，但不同的是，它的大小可动态改变 与其他序列式容器相比vector的随机访问使访问效率更加高效(O(1))1.2 iterator的使用">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190907153416566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -150,36 +157,111 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-vector的实现与使用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      vector的实现与使用
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/07/vector的实现与使用/" class="archive-article-date">
+
+        
+        <a href="/2019/09/07/vector的实现与使用/" class="archive-article-date">
   	<time datetime="2019-09-07T08:18:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/07/vector的实现与使用/">vector的实现与使用</a>
-    </h1>
-  
+        
+      </header>
 
-        <div class="article-info info-on-right">
-          
+      
+      <div align="center" class="post-count">
+      字数：1.3k字 | 预计阅读时长：6分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-vector的介绍与使用接口"><a href="#1-vector的介绍与使用接口" class="headerlink" title="1.vector的介绍与使用接口"></a>1.vector的介绍与使用接口</h1><h2 id="1-1-vector是什么"><a href="#1-1-vector是什么" class="headerlink" title="1.1 vector是什么"></a>1.1 vector是什么</h2><ul>
+<li>vector是一种序列式容器</li>
+<li>其底层实现原理和数组一样，但不同的是，它的大小可动态改变</li>
+<li>与其他序列式容器相比vector的随机访问使访问效率更加高效(O(1))<h2 id="1-2-iterator的使用"><a href="#1-2-iterator的使用" class="headerlink" title="1.2 iterator的使用"></a>1.2 iterator的使用</h2><a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//vector的使用</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vt;</span><br><span class="line">	vt.push_back(<span class="number">1</span>);</span><br><span class="line">	vt.push_back(<span class="number">2</span>);</span><br><span class="line">	vt.push_back(<span class="number">3</span>);</span><br><span class="line">	vt.push_back(<span class="number">4</span>);</span><br><span class="line">	<span class="comment">//通过拿到迭代器首位置，遍历所有元素</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it = vt.begin();</span><br><span class="line">	<span class="keyword">while</span> (it != vt.end())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		it++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//通过反向迭代器，拿到末尾，遍历所有元素</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::reverse_iterator rit = vt.rbegin();</span><br><span class="line">	<span class="keyword">while</span> (rit != vt.rend())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *rit &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		rit++;</span><br><span class="line">	&#125;</span><br><span class="line">		system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="1-3-vector空间增长倍率"><a href="#1-3-vector空间增长倍率" class="headerlink" title="1.3 vector空间增长倍率"></a>1.3 vector空间增长倍率</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试vector的容量</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">	<span class="keyword">size_t</span> sz;</span><br><span class="line">	sz = v.capacity();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		v.push_back(i);</span><br><span class="line">		<span class="keyword">if</span> (sz != v.capacity())</span><br><span class="line">		&#123;</span><br><span class="line">			sz = v.capacity();</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; sz &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>从上面的demo我们可以测得在VS下        vector空间的增长速率大概在1.5倍左右<h2 id="1-4-vector的增删改查"><a href="#1-4-vector的增删改查" class="headerlink" title="1.4 vector的增删改查"></a>1.4 vector的增删改查</h2></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vt;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		vt.push_back(i);</span><br><span class="line">	<span class="comment">//修改0的值</span></span><br><span class="line">	vt[<span class="number">0</span>] = <span class="number">200</span>;</span><br><span class="line">	<span class="comment">//使用find查找6</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator pos = find(vt.begin(), vt.end(), <span class="number">6</span>);</span><br><span class="line">	<span class="comment">//在6之前插入100</span></span><br><span class="line">	vt.insert(pos, <span class="number">100</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> e : vt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//删除pos位置的数据</span></span><br><span class="line">	pos = find(vt.begin(), vt.end(), <span class="number">6</span>);</span><br><span class="line">	vt.erase(pos);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> e : vt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-reverse与resize"><a href="#1-5-reverse与resize" class="headerlink" title="1.5 reverse与resize"></a>1.5 reverse与resize</h2><p><strong>reverse与resize都有改变容器大小的能力，它们区别之处在哪呢？来看下面的demo。</strong><br>在测试reverse的demo里，我们在未插入之前修改capacity的大小，在后续插入时，会发现capacity并未改动。假设我们将reserve的值改为50，我们会发现capacity的值回改动</p>
+<ul>
+<li>所以我们可知，reverse的作用在于直接修改capacity的容量，如果后续容量不够，会从设定的reverse值开始扩容。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试reverse</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vt;</span><br><span class="line">	<span class="keyword">size_t</span> sz = vt.capacity();</span><br><span class="line">	vt.reserve(<span class="number">100</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		vt.push_back(i);</span><br><span class="line">		<span class="keyword">if</span> (sz != vt.capacity())</span><br><span class="line">		&#123;</span><br><span class="line">			sz = vt.capacity();</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; sz &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>在下面测试resize的demo里，我们可以看到如果resize的值小于capacity值时，直接去掉resize传进来的值到end之间的元素，当然resize还可以指定插入元素，如下面的例子6-8将会被初始化为100，如果未指定且这个坐标下无元素时将会被初始化为0。</p>
+<ul>
+<li>所以我们可知，resize的作用在于修改当前end指向的位置，并且对其初始化，如果大于capacity时，会调用reverse借口进行扩容。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试resize</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vt;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		vt.push_back(i);</span><br><span class="line">	vt.resize(<span class="number">5</span>);   <span class="comment">//0,1,2,3,4</span></span><br><span class="line">	vt.resize(<span class="number">8</span>, <span class="number">100</span>);  <span class="comment">//0,1,2,3,4,100,100,100</span></span><br><span class="line">	vt.resize(<span class="number">10</span>);    <span class="comment">//0,1,2,3,4,100,100,100,0,0</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> e : vt)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="2-vector的模拟实现"><a href="#2-vector的模拟实现" class="headerlink" title="2.vector的模拟实现"></a>2.vector的模拟实现</h1><h2 id="2-1-底层原理"><a href="#2-1-底层原理" class="headerlink" title="2.1 底层原理"></a>2.1 底层原理</h2><p>来看下图<img src="https://img-blog.csdnimg.cn/20190907153416566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>vector的底层有三个指针，一是指向首位置，一是指向当前size的位置，一是指向当前capacity的位置。</p>
+<h2 id="2-2-构造函数"><a href="#2-2-构造函数" class="headerlink" title="2.2 构造函数"></a>2.2 构造函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vector()</span><br><span class="line">		:_start(<span class="literal">nullptr</span>)</span><br><span class="line">		, _finish(<span class="literal">nullptr</span>)</span><br><span class="line">		, _endOfStorage(<span class="literal">nullptr</span>)</span><br><span class="line">	&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-析构函数"><a href="#2-3-析构函数" class="headerlink" title="2.3 析构函数"></a>2.3 析构函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~Vector()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">delete</span>[]_start;</span><br><span class="line">		_start = _endOfStorage = _finish;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-插入"><a href="#2-4-插入" class="headerlink" title="2.4 插入"></a>2.4 插入</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//尾插</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushback</span><span class="params">(<span class="keyword">const</span> T&amp;val)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (_finish == _endOfStorage)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">size_t</span> newCapacity = Capacity() == <span class="number">0</span> ? <span class="number">1</span> : Capacity() * <span class="number">2</span>;</span><br><span class="line">			Reserve(newCapacity);</span><br><span class="line">		&#125;</span><br><span class="line">		*_finish = val;</span><br><span class="line">		++_finish;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//利用迭代器实现随机插入</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(T* pos, <span class="keyword">const</span> T&amp;val)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		assert(pos &lt;= _finish &amp;&amp; pos &gt;= _start);</span><br><span class="line">		<span class="keyword">if</span> (_finish == _endOfStorage)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">size_t</span> size = Size();</span><br><span class="line">			<span class="keyword">size_t</span> newCapacity = Capacity() == <span class="number">0</span> ? <span class="number">1</span> : Capacity() * <span class="number">2</span>;</span><br><span class="line">			Reserve(newCapacity);</span><br><span class="line">			pos = _start + size;</span><br><span class="line">		&#125;</span><br><span class="line">		iterator end = _finish - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (pos &lt;= end) &#123;</span><br><span class="line">			*end = *(end - <span class="number">1</span>);</span><br><span class="line">			end--;</span><br><span class="line">		&#125;</span><br><span class="line">		*pos = val;</span><br><span class="line">		_finish++;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-删除"><a href="#2-5-删除" class="headerlink" title="2.5 删除"></a>2.5 删除</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">Erase</span><span class="params">(iterator pos)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		assert(pos &lt; _finish &amp;&amp; pos &gt;= _start);</span><br><span class="line">		iterator begin = pos + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (begin &lt; _finish) &#123;</span><br><span class="line">			*(begin - <span class="number">1</span>) = *(begin);</span><br><span class="line">			begin++;</span><br><span class="line">		&#125;</span><br><span class="line">		_finish--;</span><br><span class="line">		<span class="keyword">return</span> pos;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-vector迭代器失效的问题"><a href="#3-vector迭代器失效的问题" class="headerlink" title="3.vector迭代器失效的问题"></a>3.vector迭代器失效的问题</h1><p>我们继续来看上面的一个demo：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vt;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		vt.push_back(i);</span><br><span class="line">	<span class="comment">//修改0的值</span></span><br><span class="line">	vt[<span class="number">0</span>] = <span class="number">200</span>;</span><br><span class="line">	<span class="comment">//使用find查找6</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator pos = find(vt.begin(), vt.end(), <span class="number">3</span>);</span><br><span class="line">	<span class="comment">//在6之前插入100</span></span><br><span class="line">	vt.insert(pos, <span class="number">100</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> e : vt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//删除pos位置的数据</span></span><br><span class="line">	<span class="comment">//pos = find(vt.begin(), vt.end(), 3);</span></span><br><span class="line">	vt.erase(pos);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> e : vt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里插入元素后，我们注释掉了重新拿到迭代器的代码，运行发现访问异常，这就是迭代器实效问题，在上面这个例子里面，插入元素导致扩容，扩容后pos还指向原来的空间，但是原来的空间已经被释放。</p>
+<ul>
+<li>对于插入操作，如果未引发扩容，迭代器容有效，如果引发扩容，迭代器失效。</li>
+</ul>
+<p>那么删除操作是怎么样造成的呢? 在删除操作的实现函数里，pos值是在start和finish之间，然后从pos+1开始到finish依次向前移动，此时pos指向已经发生变化并且finish位置也会变化，随后it++可能出现指向finish后面的位置，所以访问异常。</p>
+<ul>
+<li>对于删除操作，pos之前迭代器有效，pos之后迭代器失效。</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/aplipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -195,376 +277,148 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/07/vector的实现与使用/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/04/模拟实现String类/" class="archive-article-date">
-  	<time datetime="2019-09-04T14:53:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/04/模拟实现String类/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">模拟实现String类</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/04/模拟实现String类/">模拟实现String类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-vector的介绍与使用接口"><span class="toc-number">1.</span> <span class="toc-text">1.vector的介绍与使用接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-vector是什么"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 vector是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-iterator的使用"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 iterator的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-vector空间增长倍率"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 vector空间增长倍率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-vector的增删改查"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 vector的增删改查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-reverse与resize"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 reverse与resize</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-vector的模拟实现"><span class="toc-number">2.</span> <span class="toc-text">2.vector的模拟实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-底层原理"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 底层原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-构造函数"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-析构函数"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 析构函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-插入"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 插入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-删除"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 删除</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-vector迭代器失效的问题"><span class="toc-number">3.</span> <span class="toc-text">3.vector迭代器失效的问题</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/03/Linux下的常用工具/" class="archive-article-date">
-  	<time datetime="2019-09-03T14:41:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        </div>
-    	 
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="vector的实现与使用" data-title="vector的实现与使用" data-url="http://yoursite.com/2019/09/07/vector的实现与使用/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/03/Linux下的常用工具/">Linux下的常用工具</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/02/C-动态内存管理/" class="archive-article-date">
-  	<time datetime="2019-09-02T15:42:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/02/C-动态内存管理/">C++:动态内存管理</a>
-    </h1>
+  <div id="SOHUCS" sid="vector的实现与使用" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/01/C-类与对象-三/" class="archive-article-date">
-  	<time datetime="2019-09-01T14:38:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/01/C-类与对象-三/">C++类与对象(三)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/31/C-类与对象-二/" class="archive-article-date">
-  	<time datetime="2019-08-31T07:58:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/31/C-类与对象-二/">C++类与对象(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/29/Linux下常见命令以及对权限的理解/" class="archive-article-date">
-  	<time datetime="2019-08-29T13:49:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/29/Linux下常见命令以及对权限的理解/">Linux下常见命令以及对权限的理解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/28/C-类与对象-一/" class="archive-article-date">
-  	<time datetime="2019-08-28T09:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/28/C-类与对象-一/">c++类与对象(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:19:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/">动态规划(三): 更为隐蔽的状态推断</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/25/动态规划-二-更为复杂的状态方程/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/25/动态规划-二-更为复杂的状态方程/">动态规划(二): 更为复杂的状态方程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -588,8 +442,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

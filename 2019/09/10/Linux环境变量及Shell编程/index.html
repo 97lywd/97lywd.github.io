@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>模拟实现String类 | </title>
+  <title>Linux环境变量及Shell编程 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="string类是什么 string是表示字符串的字符串类 该类的接口与常规容器的接口基本相同，再添加了一些专门用来操作string的常规操作。 string在底层实际是：basic_string模板类的别名，typedef basic_string&amp;lt;char, char_traits, allocator&amp;gt; string; 不能操作多字节或者变长字符的序列。">
-<meta name="keywords" content="C++,STL">
+  <meta name="description" content="一.环境变量： 环境变量是什么 环境变量一般是指在操作系统中用来指定操作系统运行环境的一些参数，在系统中具有全局特性。 常见环境变量 PATH:指定命令的搜索路径HOME：指定用户的主工作目录HISTSIZE：指保存历史命令的条数SHELL：shell的全路径名echo $NAME   //NAME: 环境变量名称">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模拟实现String类">
-<meta property="og:url" content="http://yoursite.com/2019/09/04/模拟实现String类/index.html">
+<meta property="og:title" content="Linux环境变量及Shell编程">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/Linux环境变量及Shell编程/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="string类是什么 string是表示字符串的字符串类 该类的接口与常规容器的接口基本相同，再添加了一些专门用来操作string的常规操作。 string在底层实际是：basic_string模板类的别名，typedef basic_string&amp;lt;char, char_traits, allocator&amp;gt; string; 不能操作多字节或者变长字符的序列。">
+<meta property="og:description" content="一.环境变量： 环境变量是什么 环境变量一般是指在操作系统中用来指定操作系统运行环境的一些参数，在系统中具有全局特性。 常见环境变量 PATH:指定命令的搜索路径HOME：指定用户的主工作目录HISTSIZE：指保存历史命令的条数SHELL：shell的全路径名echo $NAME   //NAME: 环境变量名称">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-04T14:59:00.535Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190426185816330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-09-10T14:30:20.041Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="模拟实现String类">
-<meta name="twitter:description" content="string类是什么 string是表示字符串的字符串类 该类的接口与常规容器的接口基本相同，再添加了一些专门用来操作string的常规操作。 string在底层实际是：basic_string模板类的别名，typedef basic_string&amp;lt;char, char_traits, allocator&amp;gt; string; 不能操作多字节或者变长字符的序列。">
+<meta name="twitter:title" content="Linux环境变量及Shell编程">
+<meta name="twitter:description" content="一.环境变量： 环境变量是什么 环境变量一般是指在操作系统中用来指定操作系统运行环境的一些参数，在系统中具有全局特性。 常见环境变量 PATH:指定命令的搜索路径HOME：指定用户的主工作目录HISTSIZE：指保存历史命令的条数SHELL：shell的全路径名echo $NAME   //NAME: 环境变量名称">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190426185816330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -155,51 +157,137 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-模拟实现String类" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Linux环境变量及Shell编程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      模拟实现String类
+      Linux环境变量及Shell编程
     </h1>
   
 
         
-        <a href="/2019/09/04/模拟实现String类/" class="archive-article-date">
-  	<time datetime="2019-09-04T14:53:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
+        <a href="/2019/09/10/Linux环境变量及Shell编程/" class="archive-article-date">
+  	<time datetime="2019-09-10T14:23:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
 </a>
         
       </header>
 
       
       <div align="center" class="post-count">
-      字数：575字 | 预计阅读时长：2分钟
+      字数：1.1k字 | 预计阅读时长：4分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="string类是什么"><a href="#string类是什么" class="headerlink" title="string类是什么"></a>string类是什么</h1><ul>
-<li>string是表示字符串的字符串类</li>
-<li>该类的接口与常规容器的接口基本相同，再添加了一些专门用来操作string的常规操作。</li>
-<li>string在底层实际是：basic_string模板类的别名，typedef basic_string&lt;char, char_traits, allocator&gt; string;</li>
-<li>不能操作多字节或者变长字符的序列。<a id="more"></a>
-<h1 id="string类的接口实现"><a href="#string类的接口实现" class="headerlink" title="string类的接口实现"></a>string类的接口实现</h1><h2 id="1-构造函数"><a href="#1-构造函数" class="headerlink" title="1.构造函数"></a>1.构造函数</h2></li>
+        <h2 id="一-环境变量："><a href="#一-环境变量：" class="headerlink" title="一.环境变量："></a>一.环境变量：</h2><ul>
+<li><p><strong><em>环境变量是什么</em></strong></p>
+<pre><code>环境变量一般是指在操作系统中用来指定操作系统运行环境的一些参数，在系统中具有全局特性。</code></pre><ul>
+<li><p><strong><em>常见环境变量</em></strong></p>
+<p>PATH<em>:指定命令的搜索路径<br>HOME</em>：指定用户的主工作目录<br>HISTSIZE<em>：指保存历史命令的条数<br>SHELL</em>：shell的全路径名<br>echo $NAME   //NAME: 环境变量名称</p>
+</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String(<span class="keyword">const</span> <span class="keyword">char</span>* str = <span class="string">""</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">size_t</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">		_size = len;</span><br><span class="line">		_capacity = _size;</span><br><span class="line">		_str = <span class="keyword">new</span> <span class="keyword">char</span>[_capacity + <span class="number">1</span>];</span><br><span class="line">		<span class="built_in">strcpy</span>(_str, str);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
 
-<h2 id="2-析构函数"><a href="#2-析构函数" class="headerlink" title="2.析构函数"></a>2.析构函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">~String()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (_str)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">delete</span>[] _str;</span><br><span class="line">			_str = <span class="literal">nullptr</span>;</span><br><span class="line">			_size = _capacity = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p> 例如我们现在我们来查看上述常见变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ echo $HOME</span><br><span class="line">/home/lywd</span><br><span class="line">[lywd@localhost ~]$ echo $PATH</span><br><span class="line">/usr/lib64/qt-3.3/bin:/home/lywd/perl5/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/lywd/.local/bin:/home/lywd/bin</span><br><span class="line">[lywd@localhost ~]$ echo $HISTSIZE</span><br><span class="line">1000</span><br><span class="line">[lywd@localhost ~]$ echo $SHELL</span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-拷贝构造函数"><a href="#3-拷贝构造函数" class="headerlink" title="3.拷贝构造函数"></a>3.拷贝构造函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">String(<span class="keyword">const</span> String&amp; s)</span><br><span class="line">		:_str(<span class="literal">nullptr</span>)</span><br><span class="line">		, _size(<span class="number">0</span>)</span><br><span class="line">		, _capacity(<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="function">String <span class="title">tmp</span><span class="params">(s._str)</span></span>;</span><br><span class="line">		Swap(tmp);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Swap</span><span class="params">(String&amp; s)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		swap(_str, s._str);</span><br><span class="line">		swap(_size, s._size);</span><br><span class="line">		swap(_capacity, s._capacity);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>与环境变量相关的命令</em></strong></li>
+</ul>
+<blockquote>
+<p>1.echo: 显示某个环境变量值</p>
+</blockquote>
+<blockquote>
+<p>2.export： 设置一个新的环境变量</p>
+</blockquote>
+<blockquote>
+<p>3.env：显示所有环境变量</p>
+</blockquote>
+<blockquote>
+<p>4.set：显示本地定义的Shell变量和环境变量</p>
+</blockquote>
+<blockquote>
+<p> 5.unset：清除环境变量</p>
+</blockquote>
+<blockquote>
+<p>6.readonly：设置只读环境变量</p>
+</blockquote>
+<p>例如我们现在将一个变量设置成为环境变量，并查看环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ export myname=Yang</span><br><span class="line">[lywd@localhost ~]$ env</span><br><span class="line"></span><br><span class="line">SELINUX_LEVEL_REQUESTED=</span><br><span class="line">myname=Yang</span><br><span class="line">HISTCONTROL=ignoredups</span><br><span class="line">SHLVL=1</span><br><span class="line">HOME=/home/lywd</span><br><span class="line">PERL_LOCAL_LIB_ROOT=:/home/lywd/perl5</span><br><span class="line">LOGNAME=lywd</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-插入"><a href="#4-插入" class="headerlink" title="4.插入"></a>4.插入</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入的是字符，如果是字符串，重载这个函数即可</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(<span class="keyword">size_t</span> pos, <span class="keyword">const</span> <span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		assert(pos &lt;= _size);</span><br><span class="line">		<span class="keyword">if</span> (_size == _capacity)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">size_t</span> newC = _capacity == <span class="number">0</span> ? <span class="number">15</span> : <span class="number">2</span> * _capacity;</span><br><span class="line">			Reserve(newC);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">size_t</span> end = _size;</span><br><span class="line">		<span class="keyword">while</span> (end &gt; pos)</span><br><span class="line">		&#123;</span><br><span class="line">			_str[end] = _str[end - <span class="number">1</span>];</span><br><span class="line">			--end;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		_str[pos] = c;</span><br><span class="line">		_str[++_size] = <span class="string">'\0'</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>环境变量的组织方式</em></strong></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20190426185816330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如上图每个程序都会收到一张环境表，环境表是一个字符指针数组，<br>每个指针指向一个以’\0’结尾的环境字符串。</p>
+<ul>
+<li>用c代码来获取环境变量</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost enviro]$ cat test.c</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[],<span class="keyword">char</span> *env[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (; env[i]; i++) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,env[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[lywd@localhost enviro]$ ./test </span><br><span class="line">XDG_SESSION_ID=<span class="number">2</span></span><br><span class="line">HOSTNAME=localhost.localdomain</span><br><span class="line">SELINUX_ROLE_REQUESTED=</span><br><span class="line">TERM=xterm</span><br><span class="line">SHELL=/bin/bash</span><br><span class="line">HISTSIZE=<span class="number">1000</span></span><br><span class="line">SSH_CLIENT=<span class="number">192.168</span><span class="number">.116</span><span class="number">.1</span> <span class="number">55237</span> <span class="number">22</span></span><br><span class="line">PERL5LIB=/home/lywd/perl5/lib/perl5:</span><br><span class="line">SELINUX_USE_CURRENT_RANGE=</span><br><span class="line">QTDIR=/usr/lib64/qt<span class="number">-3.3</span></span><br><span class="line">OLDPWD=/home/lywd/Workspace</span><br><span class="line">QTINC=/usr/lib64/qt<span class="number">-3.3</span>/include</span><br><span class="line">PERL_MB_OPT=--install_base /home/lywd/perl5</span><br><span class="line">SSH_TTY=/dev/pts/<span class="number">0</span></span><br><span class="line">QT_GRAPHICSSYSTEM_CHECKED=<span class="number">1</span></span><br><span class="line">USER=lywd</span><br></pre></td></tr></table></figure>
 
-<h2 id="5-删除"><a href="#5-删除" class="headerlink" title="5.删除"></a>5.删除</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Erase</span><span class="params">(<span class="keyword">size_t</span> pos, <span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		assert(pos &lt; _size);</span><br><span class="line">		<span class="keyword">if</span> (n &gt;= _size - pos)</span><br><span class="line">		&#123;</span><br><span class="line">			_size = pos;</span><br><span class="line">			_str[_size] = <span class="string">'\0'</span>;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">size_t</span> begin = pos + n;</span><br><span class="line">		<span class="keyword">while</span> (begin &lt;= _size)</span><br><span class="line">		&#123;</span><br><span class="line">			_str[pos++] = _str[begin];</span><br><span class="line">			++begin;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		_size -= n;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过系统调用获取环境变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost enviro]$ cat test.c</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  printf(&quot;%s\n&quot;,getenv(&quot;PATH&quot;));</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[lywd@localhost enviro]$ ./test </span><br><span class="line">/usr/lib64/qt-3.3/bin:/home/lywd/perl5/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/lywd/.local/bin:/home/lywd/bin</span><br></pre></td></tr></table></figure>
 
-<h2 id="6-查找"><a href="#6-查找" class="headerlink" title="6.查找"></a>6.查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里是查找一个字符，如果是字符串，重载这个函数即可</span></span><br><span class="line"><span class="keyword">size_t</span> find(<span class="keyword">size_t</span> pos, <span class="keyword">char</span> c)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = pos; i &lt; _size; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (_str[i] == c)</span><br><span class="line">				<span class="keyword">return</span> i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二-Shell编程"><a href="#二-Shell编程" class="headerlink" title="二.Shell编程:"></a><strong>二.Shell编程:</strong></h2><ul>
+<li><p>Shell中变量的数学运算相关命令：</p>
+<ul>
+<li>expr命令：对整数进行算术运算，在算术表达式中如果出现变量，必须在变量前加$，并且运算符与变量之间要加空格。</li>
+<li>let命令：将算术表达式跟在let命令后面就可以实现数值的运算。</li>
+</ul>
+</li>
+<li><p>元字符</p>
+</li>
+</ul>
+<blockquote>
+<p>=  为变量赋值<br>$去除变量值<br>                &gt;输出重定定向<br>                &gt;&gt;输出追加到文件<br>                ~代表家目录</p>
+</blockquote>
+<ul>
+<li><p>Shell中的控制语句：</p>
+<ul>
+<li><strong>if语句：</strong><pre><code>if expression
+then statement
+fi
+例如如下demo：</code></pre></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost 0425]$ cat test1.sh</span><br><span class="line">if test -f test.sh</span><br><span class="line">then echo &quot;ordinary file&quot;</span><br><span class="line">else echo&quot;not ordinary file&quot;</span><br><span class="line">fi</span><br><span class="line">[lywd@localhost 0425]$ sh test1.sh</span><br><span class="line">ordinary file</span><br></pre></td></tr></table></figure>
 
-<h1 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h1><h2 id="1-浅拷贝"><a href="#1-浅拷贝" class="headerlink" title="1.浅拷贝"></a>1.浅拷贝</h2><p>也叫位拷贝，即编译器只将对象中的值拷贝过来，不考虑资源的管理。<br>然而对于上述的例子，即string类的实现，这种方法就行不通。string类中私有成员里有一个char* 成员变量，在调用赋值或者拷贝构造时，就会两个对象共享一片内存，此时析构函数清理资源时，就会出现重复销毁。</p>
-<h2 id="2-深拷贝"><a href="#2-深拷贝" class="headerlink" title="2.深拷贝"></a>2.深拷贝</h2><p>如果一个类中涉及到资源的管理，其拷贝构造函数、赋值运算符重载以及析构函数必须要显式给出，一般都是按照深拷贝方式提供。<br>深拷贝的执行方式是，为每一个对象独立分配资源，此时清理资源时，就不会造成访问违规现象。</p>
+<ul>
+<li><p><strong>case语句</strong></p>
+<p>   用法：case $变量名 in模式1）</p>
+<p>   命令序列1</p>
+<p>  ;;</p>
+<p>  模式2）</p>
+<p>   命令序列2</p>
+<p>   ;; </p>
+<p>   *）</p>
+<p>   默认执行的命令序列 </p>
+<p>   ;; </p>
+<p>   esac </p>
+</li>
+</ul>
+<p>例如我们实现一个简单的四则运算demo：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost 04252]$ cat test.sh </span><br><span class="line">echo "输入第一个数"</span><br><span class="line">read num1</span><br><span class="line">read -p "输入运算符" str</span><br><span class="line">read -p "输入第二个数" num2</span><br><span class="line">case $str in</span><br><span class="line">  +) let result=$num1+$num2</span><br><span class="line">    echo "Result = $result";;</span><br><span class="line">  -) let result=$num1-$num2</span><br><span class="line">    echo "Result = $result";;</span><br><span class="line"> \ *) let result=$num1*$num2</span><br><span class="line">    echo "Result = $result";;</span><br><span class="line">  /) let result=$num1/$num2</span><br><span class="line">    echo "Result = $result";;</span><br><span class="line">esac</span><br><span class="line">[lywd@localhost 04252]$ sh test.sh </span><br><span class="line">输入第一个数</span><br><span class="line">1</span><br><span class="line">输入运算符+</span><br><span class="line">输入第二个数2</span><br><span class="line">Result = 3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>for语句</strong><br>用法格式如下：<br>for var in {list}<br>do<br>  Loop body<br>  done<br>  例如我们现在实现一个demo：求1~100的累加和</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost 0425]$ cat sum.sh </span><br><span class="line"></span><br><span class="line">sum=0;</span><br><span class="line">for ((i=1;i&lt;100;i++))</span><br><span class="line">do</span><br><span class="line">  let "sum+=i"</span><br><span class="line">done</span><br><span class="line">echo "the sum is $sum"</span><br><span class="line">[lywd@localhost 0425]$ sh sum.sh </span><br><span class="line">the sum is 4950</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>注意这里我们的列表内容用了类似于C语言的循环语句，除此以外，for语句还一种用法比如列表的内容是1~100的奇数那么可以这样表示{1..100..2}这里1指的是起始数值，100为结束数值，2为步长。</em></strong></p>
+<ul>
+<li><strong>while语句</strong><br>语法格式如下：<br>while expression<br>do<br>Loop body<br>done<br>例如我们实现一个猜数字游戏的demo：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost 0425]$ cat guess.sh </span><br><span class="line">echo "Please input the num(1-10)"</span><br><span class="line">read num</span><br><span class="line">while [ $num != 4 ]</span><br><span class="line">do</span><br><span class="line">  if [ $num -lt 4 ]</span><br><span class="line">  then</span><br><span class="line">    echo "Too Small,Try again"</span><br><span class="line">    read num</span><br><span class="line">  elif [ $num -gt 4 ]</span><br><span class="line">  then</span><br><span class="line">    echo "Too Big,Try again"</span><br><span class="line">    read num</span><br><span class="line">  else</span><br><span class="line">    exit 0</span><br><span class="line">  fi</span><br><span class="line">done</span><br><span class="line">echo "you are right"</span><br><span class="line"></span><br><span class="line">[lywd@localhost 0425]$ sh guess.sh </span><br><span class="line">Please input the num(1-10)</span><br><span class="line">5</span><br><span class="line">Too Big,Try again</span><br><span class="line">4</span><br><span class="line">you are right</span><br></pre></td></tr></table></figure>
+
+
 
       
 
@@ -239,11 +327,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -299,7 +383,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/04/模拟实现String类/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/10/Linux环境变量及Shell编程/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -313,18 +397,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/07/vector的实现与使用/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          vector的实现与使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/03/Linux下的常用工具/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux下的常用工具</div>
+    <a href="/2019/09/08/Linux下进程的概念/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux下进程的概念</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -351,7 +426,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#string类是什么"><span class="toc-number">1.</span> <span class="toc-text">string类是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#string类的接口实现"><span class="toc-number">2.</span> <span class="toc-text">string类的接口实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-构造函数"><span class="toc-number">2.1.</span> <span class="toc-text">1.构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-析构函数"><span class="toc-number">2.2.</span> <span class="toc-text">2.析构函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-拷贝构造函数"><span class="toc-number">2.3.</span> <span class="toc-text">3.拷贝构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-插入"><span class="toc-number">2.4.</span> <span class="toc-text">4.插入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-删除"><span class="toc-number">2.5.</span> <span class="toc-text">5.删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-查找"><span class="toc-number">2.6.</span> <span class="toc-text">6.查找</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深拷贝与浅拷贝"><span class="toc-number">3.</span> <span class="toc-text">深拷贝与浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-浅拷贝"><span class="toc-number">3.1.</span> <span class="toc-text">1.浅拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-深拷贝"><span class="toc-number">3.2.</span> <span class="toc-text">2.深拷贝</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-环境变量："><span class="toc-number">1.</span> <span class="toc-text">一.环境变量：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-Shell编程"><span class="toc-number">2.</span> <span class="toc-text">二.Shell编程:</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -365,7 +440,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="模拟实现String类" data-title="模拟实现String类" data-url="http://yoursite.com/2019/09/04/模拟实现String类/"></div>
+	<div class="ds-thread" data-thread-key="Linux环境变量及Shell编程" data-title="Linux环境变量及Shell编程" data-url="http://yoursite.com/2019/09/10/Linux环境变量及Shell编程/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -387,7 +462,7 @@
   
 
   
-  <div id="SOHUCS" sid="模拟实现String类" ></div> 
+  <div id="SOHUCS" sid="Linux环境变量及Shell编程" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

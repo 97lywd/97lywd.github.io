@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Linux下进程的概念 | </title>
+  <title>socket接口介绍 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.进程的基本概念： 站在用户角度：进程就是运行中的程序  站在操作系统的角度：进程就是操作系统进行资源分配和调度的一个独立单位">
-<meta name="keywords" content="Linux,C">
+  <meta name="description" content="1.socket的创建12int socket(int domain, int type, int protocol);  dmain — 指定底层协议（AF_INET）type  — 指定服务类型（STREAM/DGRAM）protocol — 指定具体协议 2.绑定端口号12int bind(int socket, const struct sockaddr *address, socklen">
+<meta name="keywords" content="Linux,socket">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux下进程的概念">
-<meta property="og:url" content="http://yoursite.com/2019/09/08/Linux下进程的概念/index.html">
+<meta property="og:title" content="socket接口介绍">
+<meta property="og:url" content="http://yoursite.com/2019/10/11/socket接口介绍/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="一.进程的基本概念： 站在用户角度：进程就是运行中的程序  站在操作系统的角度：进程就是操作系统进行资源分配和调度的一个独立单位">
+<meta property="og:description" content="1.socket的创建12int socket(int domain, int type, int protocol);  dmain — 指定底层协议（AF_INET）type  — 指定服务类型（STREAM/DGRAM）protocol — 指定具体协议 2.绑定端口号12int bind(int socket, const struct sockaddr *address, socklen">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190424232341401.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190424232506454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-09-08T15:22:11.234Z">
+<meta property="og:updated_time" content="2019-10-11T16:08:24.143Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux下进程的概念">
-<meta name="twitter:description" content="一.进程的基本概念： 站在用户角度：进程就是运行中的程序  站在操作系统的角度：进程就是操作系统进行资源分配和调度的一个独立单位">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190424232341401.png">
+<meta name="twitter:title" content="socket接口介绍">
+<meta name="twitter:description" content="1.socket的创建12int socket(int domain, int type, int protocol);  dmain — 指定底层协议（AF_INET）type  — 指定服务类型（STREAM/DGRAM）protocol — 指定具体协议 2.绑定端口号12int bind(int socket, const struct sockaddr *address, socklen">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -158,146 +155,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Linux下进程的概念" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-socket接口介绍" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Linux下进程的概念
+      socket接口介绍
     </h1>
   
 
         
-        <a href="/2019/09/08/Linux下进程的概念/" class="archive-article-date">
-  	<time datetime="2019-09-08T15:18:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
+        <a href="/2019/10/11/socket接口介绍/" class="archive-article-date">
+  	<time datetime="2019-10-11T15:40:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
 </a>
         
       </header>
 
       
       <div align="center" class="post-count">
-      字数：1.8k字 | 预计阅读时长：8分钟
+      字数：67字 | 预计阅读时长：1分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一-进程的基本概念："><a href="#一-进程的基本概念：" class="headerlink" title="一.进程的基本概念："></a>一.进程的基本概念：</h2><ul>
-<li><p>站在用户角度：进程就是运行中的程序</p>
-</li>
-<li><p>站在操作系统的角度：进程就是操作系统进行资源分配和调度的一个独立单位</p>
-<a id="more"></a>
+        <h1 id="1-socket的创建"><a href="#1-socket的创建" class="headerlink" title="1.socket的创建"></a>1.socket的创建</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">(<span class="keyword">int</span> domain, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span>;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<h2 id="二-描述进程-PCB-process-control-bolck"><a href="#二-描述进程-PCB-process-control-bolck" class="headerlink" title="二.描述进程-PCB(process control bolck):"></a>二.描述进程-PCB(process control bolck):</h2><ul>
-<li><p>PCB</p>
-<pre><code>包含进程的描述信息和控制信息，是进程存在的唯一标志。</code></pre><ul>
-<li><p>task_struct </p>
-<pre><code>在Linux中描述进程的结构体是 task_struct
-task_struct是Linux内核的一种数据结构，它会被装载到
-RAM里并包含着进程的信息。</code></pre></li>
-<li><p>task_struct的内容分类</p>
-</li>
-</ul>
-<blockquote>
-<p><font color="#008fff">标识符（PID）：描述本进程的唯一标识符，用来区别于其他进程。</font></p>
-<pre><code>进程状态： 退出信号，退出代码等。
-优先级：相对于其他进程的优先级
-程序计数器：程序中即将被执行的下一个指令的地址。
-内存指针：程序代码和进程相关数据的指针，其他进程共享内存块的指针。
-上下文数据：进程执行时寄存器中的数据。
- I / O状态信息：显示的I/O请求，分配给进程的I/O设备和进程使用的文件列表。
- 记账信息：使用的时钟数总和，时间限制，记账号等。
- 其他信息：&lt;/font&gt;</code></pre></blockquote>
-</li>
-</ul>
-<h2 id="三-进程的创建以及状态的分类："><a href="#三-进程的创建以及状态的分类：" class="headerlink" title="三. 进程的创建以及状态的分类："></a>三. 进程的创建以及状态的分类：</h2><ul>
-<li><strong>查看进程</strong><br>进程的信息可以通过  /proc系统文件查看<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ ls /proc/</span><br><span class="line">1     1052  11    267  3    390   4886  5296  5613  5856  5930  6027  6305  651   8          dma          kmsg          partitions     tty</span><br><span class="line">10    1054  1134  268  359  391   4891  5364  5618  5872  5932  6033  6416  6516  87         driver       kpagecount    sched_debug    uptime</span><br></pre></td></tr></table></figure>
+<p>dmain — 指定底层协议（AF_INET）<br>type  — 指定服务类型（STREAM/DGRAM）<br>protocol — 指定具体协议</p>
+<h1 id="2-绑定端口号"><a href="#2-绑定端口号" class="headerlink" title="2.绑定端口号"></a>2.绑定端口号</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bind</span><span class="params">(<span class="keyword">int</span> socket, <span class="keyword">const</span> struct sockaddr *address,</span></span></span><br><span class="line"><span class="function"><span class="params"> <span class="keyword">socklen_t</span> address_len)</span></span>;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<ul>
-<li><strong>创建进程</strong>  </li>
-</ul>
-<p>通过系统调用创建进程-初识fork</p>
-<pre><code>fork()   操作系统提供的创建进程的接口
-fork 通过复制父进程创建一个新的子进程
-    返回值： 在父进程中，返回子进程pid＞0，
-           在子进程中返回0。用户可通过返回值对父子进程进行代码分流。</code></pre><p>我们看以下代码用fork创建子进程，并用ret接收返回值，根据返回值的不同对代码进行分流。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost proc]$ cat fork.c</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ret = fork();</span><br><span class="line">  <span class="keyword">if</span>(ret &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    perror(<span class="string">"fork"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(ret == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">//child</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"I am child! : %d,ret :%d \n"</span>,getpid(),ret);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//father</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"I am father! : %d,ret ；%d\n"</span>,getpid(),ret);</span><br><span class="line">  &#125;</span><br><span class="line">  sleep(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">[lywd@localhost proc]$ ./fork </span><br><span class="line">I am father : <span class="number">6953</span>!,ret ；<span class="number">6954</span></span><br><span class="line">I am child :<span class="number">6954</span>!,ret :<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>进程的状态</strong><br>Linux下的进程状态： 运行( R)，可中断睡眠(S)，不可中断睡眠(D)，停止(T)，    僵尸(Z)。<ul>
-<li><strong>进程的查看</strong><br>命令：ps -ef  / ps -aux(两者的输出结果差别不大，但展示风格不同。aux是BSD风格，-ef是System V风格。）<br>例如我们现在写一个非常简单的demo：</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost pid]$ cat pid.c</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>现在我们使用ps -aux＋管道符 来查看进程及其状态：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ ps -aux |grep pidd</span><br><span class="line">lywd       6915  0.0  0.0   4208   348 pts/0    S+   11:09   0:00 ./pidd</span><br><span class="line">lywd       6926  0.0  0.2 112704   972 pts/1    R+   11:09   0:00 grep --color=auto pidd</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>进程状态的修改：</strong><br>先介绍一个命令：kill——发送指定的信号到相应进程。<br>注意：不指定型号将发送SIGTERM（15）终止指定进程。如果无法终止该程序可用“-KILL” 参数，其发送的信号为SIGKILL(9) ，将强制结束进程。</li>
-</ul>
-<p><strong><em>kill 一般用法为 kill【参数】【进程号】</em></strong><br>kill -l 列出所有信号名称：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ kill -l</span><br><span class="line"> 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP</span><br><span class="line"> 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1</span><br><span class="line">11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM</span><br><span class="line">16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP</span><br><span class="line">21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ</span><br><span class="line">26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR</span><br><span class="line">31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3</span><br><span class="line">38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8</span><br><span class="line">43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13</span><br><span class="line">48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12</span><br><span class="line">53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7</span><br><span class="line">58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2</span><br><span class="line">63) SIGRTMAX-1	64) SIGRTMAX</span><br></pre></td></tr></table></figure>
-
-<p>现在我们修改刚才的进程状态：<br>先看修改前：<img src="https://img-blog.csdnimg.cn/20190424232341401.png" alt="在这里插入图片描述"></p>
-<p>现在我们打开另一个对话并修改进程状态：<br><img src="https://img-blog.csdnimg.cn/20190424232506454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="四-僵尸进程与孤儿进程："><a href="#四-僵尸进程与孤儿进程：" class="headerlink" title="四.僵尸进程与孤儿进程："></a>四.僵尸进程与孤儿进程：</h2><ul>
-<li><strong>僵尸进程</strong><br>处于僵尸状态的进程</li>
-<li>危害：资源泄露</li>
-<li>产生：子进程先于父进程退出。</li>
-<li>处理：退出父进程<ul>
-<li>预防： 进程等待<br>现在我们创建一个僵尸进程的demo：</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost Js]$ cat test.c</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">pid_t</span> pid = fork();</span><br><span class="line">  <span class="keyword">if</span>(pid &lt; <span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">"fork"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    sleep(<span class="number">30</span>); <span class="comment">//如果是父进程让其等待</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>); <span class="comment">//如果是子进程让其提出</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>此时我们来看进程的状态：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost Js]$ ps -aux |grep test</span><br><span class="line">lywd       7620  0.0  0.0   4208   348 pts/0    S+   11:47   0:00 ./test</span><br><span class="line">lywd       7621  0.0  0.0      0     0 pts/0    Z+   11:47   0:00 [test] &lt;defunct&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Z+表示当前为僵尸进程。</p>
-<ul>
-<li><strong>孤儿进程</strong><br> 父进程先于子进程退出，子进程被称为之孤儿进程，孤儿进程的父进程将变为1号init进程，并且孤儿进程退出，不会产生僵尸进程。<br>现在我们创建一个孤儿进程的demo：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost Ge]$ cat test.c</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">pid_t</span> pid = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(pid &lt; <span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">"fork"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">//子进程，让其等待</span></span><br><span class="line">    sleep(<span class="number">10</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//父进程，让其退出</span></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>现在我们来查看进程状态：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost Js]$ ps -aux |grep test</span><br><span class="line">lywd       8064  0.0  0.0   4208   348 pts/0    S+   12:04   0:00 ./test</span><br><span class="line">lywd       8066  0.0  0.2 112704   968 pts/1    R+   12:04   0:00 grep --color=auto test</span><br></pre></td></tr></table></figure>
-
-<p>很显然，未产生僵尸进程。</p>
-<h2 id="五-进程的优先级："><a href="#五-进程的优先级：" class="headerlink" title="五.进程的优先级："></a>五.进程的优先级：</h2><p>   查看：  ps -l<br>  功能：决定cpu资源的优先分布权。<br>  现在我们用ps -l命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[lywd@localhost ~]$ ps -l</span><br><span class="line">F S   UID    PID   PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</span><br><span class="line">0 S  1000   6102   6098  0  80   0 - 29186 do_wai pts/0    00:00:00 bash</span><br><span class="line">0 R  1000   8173   6102  0  80   0 - 38300 -      pts/0    00:00:00 ps</span><br></pre></td></tr></table></figure>
-
-<p>我们很容易的注意到几个值：</p>
-<ul>
-<li><p>UID：代表执行者的身份</p>
-</li>
-<li><p>PID:  代表进程号</p>
-</li>
-<li><p>PPID：父进程的进程号</p>
-</li>
-<li><p>PRI：代表可被执行的优先级，值越小越早被执行。</p>
-</li>
-<li><p>NI：代表nice值</p>
-</li>
-<li><p>优先级无法直接修改，但是可以通过NI的值进而对优先级做出设置</p>
-<ul>
-<li>PRI = PRI + NI </li>
-<li>nice值的范围： -20~19</li>
-</ul>
-<p>修改进程优先级的命令：nice renice<br>我们对刚才的代码进行测试：在这里我们用renice 但执行成功需要足够的权限</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost pid]# renice 5 -p 8321</span><br><span class="line">8321 (process ID) old priority -5, new priority 5</span><br><span class="line">[root@localhost pid]# ps -l</span><br><span class="line">F S   UID    PID   PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</span><br><span class="line">4 S     0   8315   6102  0  80   0 - 57948 do_wai pts/0    00:00:00 su</span><br><span class="line">4 S     0   8321   8315  0  85   5 - 29182 do_wai pts/0    00:00:00 bash</span><br><span class="line">0 R     0   8570   8321  0  85   5 - 38300 -      pts/0    00:00:00 ps</span><br></pre></td></tr></table></figure>
-
-<p>除此之外top命令也可以修改已经存在进程的nice：<br> 进入top命令后，按r，后输入进程的PID，最后输入新的nice值。</p>
-
+<p>socket — socket描述符<br>address — IP地址<br>address_len — 地址长度</p>
+<h1 id="3-监听"><a href="#3-监听" class="headerlink" title="3.监听"></a>3.监听</h1>
       
 
       
@@ -340,7 +228,7 @@ fork 通过复制父进程创建一个新的子进程
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">socket</a>
         		</li>
       		
 		</ul>
@@ -396,7 +284,7 @@ fork 通过复制父进程创建一个新的子进程
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/08/Linux下进程的概念/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/11/socket接口介绍/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -410,18 +298,18 @@ fork 通过复制父进程创建一个新的子进程
   
 <nav id="article-nav">
   
-    <a href="/2019/09/10/Linux环境变量及Shell编程/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/16/list的实现及使用/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Linux环境变量及Shell编程
+          list的实现及使用
         
       </div>
     </a>
   
   
-    <a href="/2019/09/07/vector的实现与使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">vector的实现与使用</div>
+    <a href="/2019/09/10/Linux环境变量及Shell编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux环境变量及Shell编程</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -448,7 +336,7 @@ fork 通过复制父进程创建一个新的子进程
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-进程的基本概念："><span class="toc-number">1.</span> <span class="toc-text">一.进程的基本概念：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-描述进程-PCB-process-control-bolck"><span class="toc-number">2.</span> <span class="toc-text">二.描述进程-PCB(process control bolck):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-进程的创建以及状态的分类："><span class="toc-number">3.</span> <span class="toc-text">三. 进程的创建以及状态的分类：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-僵尸进程与孤儿进程："><span class="toc-number">4.</span> <span class="toc-text">四.僵尸进程与孤儿进程：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-进程的优先级："><span class="toc-number">5.</span> <span class="toc-text">五.进程的优先级：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-socket的创建"><span class="toc-number">1.</span> <span class="toc-text">1.socket的创建</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-绑定端口号"><span class="toc-number">2.</span> <span class="toc-text">2.绑定端口号</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-监听"><span class="toc-number">3.</span> <span class="toc-text">3.监听</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -462,7 +350,7 @@ fork 通过复制父进程创建一个新的子进程
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Linux下进程的概念" data-title="Linux下进程的概念" data-url="http://yoursite.com/2019/09/08/Linux下进程的概念/"></div>
+	<div class="ds-thread" data-thread-key="socket接口介绍" data-title="socket接口介绍" data-url="http://yoursite.com/2019/10/11/socket接口介绍/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -484,7 +372,7 @@ fork 通过复制父进程创建一个新的子进程
   
 
   
-  <div id="SOHUCS" sid="Linux下进程的概念" ></div> 
+  <div id="SOHUCS" sid="socket接口介绍" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

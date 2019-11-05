@@ -255,13 +255,13 @@
 
       
       <div align="center" class="post-count">
-      字数：67字 | 预计阅读时长：1分钟
+      字数：91字 | 预计阅读时长：1分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-socket的创建"><a href="#1-socket的创建" class="headerlink" title="1.socket的创建"></a>1.socket的创建</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">(<span class="keyword">int</span> domain, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span>;</span><br></pre></td></tr></table></figure>
 
-<p>dmain — 指定底层协议（AF_INET）<br>type  — 指定服务类型（STREAM/DGRAM）<br>protocol — 指定具体协议</p>
+<p>dmain — 指定底层协议（AF_INET）<br>type  — 套接字类型（STREAM/DGRAM）<br>protocol — 指定具体协议（Tcp -6，Tcp -17，0 -默认协议）<br>返回值 — 文件描述符—&gt;套接字操作句柄</p>
 <h1 id="2-绑定端口号"><a href="#2-绑定端口号" class="headerlink" title="2.绑定端口号"></a>2.绑定端口号</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bind</span><span class="params">(<span class="keyword">int</span> socket, <span class="keyword">const</span> struct sockaddr *address,</span></span></span><br><span class="line"><span class="function"><span class="params"> <span class="keyword">socklen_t</span> address_len)</span></span>;</span><br></pre></td></tr></table></figure>
 
 <p>socket — socket描述符<br>address — IP地址<br>address_len — 地址长度</p>

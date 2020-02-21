@@ -6,21 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title></title>
+  <title>进程间通信 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: 进程间通信date: 2019-12-28 23:38:22tags: - Linux      - 进程 1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程">
+  <meta name="description" content="1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。2.进程通信的">
+<meta name="keywords" content="Linux,进程">
 <meta property="og:type" content="article">
-<meta property="og:title">
+<meta property="og:title" content="进程间通信">
 <meta property="og:url" content="http://yoursite.com/2019/12/28/进程间通信/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="title: 进程间通信date: 2019-12-28 23:38:22tags: - Linux      - 进程 1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程">
+<meta property="og:description" content="1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。2.进程通信的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2020021517293062.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200215173006197.png">
-<meta property="og:updated_time" content="2020-02-19T14:22:02.795Z">
+<meta property="og:updated_time" content="2020-02-21T12:29:29.190Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
-<meta name="twitter:description" content="title: 进程间通信date: 2019-12-28 23:38:22tags: - Linux      - 进程 1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程">
+<meta name="twitter:title" content="进程间通信">
+<meta name="twitter:description" content="1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。2.进程通信的">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020021517293062.png">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
@@ -160,14 +161,28 @@
             <article id="post-进程间通信" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      进程间通信
+    </h1>
+  
+
+        
+        <a href="/2019/12/28/进程间通信/" class="archive-article-date">
+  	<time datetime="2019-12-28T15:38:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-28</time>
+</a>
+        
+      </header>
+
+      
       <div align="center" class="post-count">
       字数：1.5k字 | 预计阅读时长：6分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: 进程间通信<br>date: 2019-12-28 23:38:22<br>tags: - Linux<br>      - 进程</p>
-<h1 id="1-什么需要进程间通信？"><a href="#1-什么需要进程间通信？" class="headerlink" title="1. 什么需要进程间通信？"></a>1. 什么需要进程间通信？</h1><ul>
+        <h1 id="1-什么需要进程间通信？"><a href="#1-什么需要进程间通信？" class="headerlink" title="1. 什么需要进程间通信？"></a>1. 什么需要进程间通信？</h1><ul>
 <li>数据传输：一个进程需要将它的数据发送给另一个进程 </li>
 <li>资源共享：多个进程之间共享同样的资源。 </li>
 <li>通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。 </li>
@@ -262,6 +277,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">进程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -378,7 +408,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="进程间通信" data-title="" data-url="http://yoursite.com/2019/12/28/进程间通信/"></div>
+	<div class="ds-thread" data-thread-key="进程间通信" data-title="进程间通信" data-url="http://yoursite.com/2019/12/28/进程间通信/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -510,15 +540,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
             
             <div class="clearfix"></div>

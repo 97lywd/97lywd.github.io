@@ -60,9 +60,9 @@
 			</ul>
 		</nav>
 		<nav>
-		总文章数: 17
+		总文章数: 18
 		</nav>
-		总字数: <span class="post-count">17.5k</span>
+		总字数: <span class="post-count">18.7k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -151,6 +151,122 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-多态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/21/多态/">多态</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/21/多态/" class="archive-article-date">
+  	<time datetime="2020-02-21T12:22:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-21</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：1.1k字 | 预计阅读时长：4分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-多态的条件"><a href="#1-多态的条件" class="headerlink" title="1.多态的条件"></a>1.多态的条件</h1><ul>
+<li>调用函数的对象必须是指针或者引用</li>
+<li>被调用函数必须是虚函数，且完成了虚函数</li>
+</ul>
+<p><strong>那么什么是虚函数?</strong><br>虚函数：在类的成员函数前面加上virtual关键字<br>虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。</p>
+<ul>
+<li>虚函数重写的例外：协变<br>重写的虚函数返回值可以不同，但是必须分别是基类指针和派生类指针或者引用。</li>
+<li>虚函数的作用：使用基类指针调用任一派生类对象时，基类指针调用其虚成员函数，则会调用其真正的指向的成员函数。如果没有虚函数，则基类指针不管调用哪个派生类对象，调用时都会调用基类中定义的那个函数。</li>
+</ul>
+<h1 id="2-析构函数重写问题"><a href="#2-析构函数重写问题" class="headerlink" title="2.析构函数重写问题"></a>2.析构函数重写问题</h1><ul>
+<li>析构函数最好写成虚函数，避免基类指针指向派生类对象时，析构调用父类的析构函数。<br>来看如下demo：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	~Father() &#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"~Father()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span> :</span> <span class="keyword">public</span> Father &#123;</span><br><span class="line">	~Son() &#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"~Son()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Father* f = <span class="keyword">new</span> Son();</span><br><span class="line">	<span class="keyword">delete</span> f;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//程序输出结果为：~Father()</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基类中的析构函数如果是虚函数，那么派生类析构函数就重写了基类的析构函数。这里它们函数名看起来不一样，违背了重写原则，但实际上，编译后的析构函数名称统一处理成destructor</li>
+</ul>
+<h1 id="3-重写、重载、重定义的区别"><a href="#3-重写、重载、重定义的区别" class="headerlink" title="3.重写、重载、重定义的区别"></a>3.重写、重载、重定义的区别</h1><ul>
+<li>重载：两个函数在同一作用域、函数名/参数相同</li>
+<li>重写：两个函数分别在基类和派生类两个作用域、函数名/参数/返回值都必须相同</li>
+<li>重定义：两个函数分别在基类和派生类两个作用域、函数名相同、两个基类和派生类的同名函数不构成重写就是重定义。</li>
+</ul>
+<h1 id="4-多态实现的原理"><a href="#4-多态实现的原理" class="headerlink" title="4.多态实现的原理"></a>4.多态实现的原理</h1><h2 id="4-1虚函数表"><a href="#4-1虚函数表" class="headerlink" title="4.1虚函数表"></a>4.1虚函数表</h2><p>来看这样一个demo：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"f()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> _a;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(Base) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序输出结果为8，除了_a占用了4个字节外，还有一个指针_vfptr占了四个大小，这个指针指向了虚函数表，称之为虚函数表指针，一个含有虚函数的类中都至少都有一个虚函数表指针，因为虚函数的地址要被放到虚函数表中， 虚函数表也简称虚表。<br>我们继续看如下demo：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base::Func1()"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Func2</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base::Func2()"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Func3</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base::Func3()"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line"><span class="keyword">private</span>:    </span><br><span class="line">	<span class="keyword">int</span> _b = <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derive</span> :</span> <span class="keyword">public</span> Base </span><br><span class="line">&#123; </span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derive::Func1()"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line"><span class="keyword">private</span>:   </span><br><span class="line">	<span class="keyword">int</span> _d = <span class="number">2</span>; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Base b;    </span><br><span class="line">	Derive d;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以在调试窗口看到如下信息：<br><img src="https://img-blog.csdnimg.cn/20200204165827743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Derive继承了Base类后，保存了其指针，除此之外，因为fun1函数重写了基类的fun1函数，所以在Base的虚表里是Base::Fun1()，而在Derive的虚表了是Derive::Fun1()<br> 总结一下派生类的虚表生成：</p>
+<ul>
+<li>先将基类中的虚表内容拷贝一份到派生类虚表中</li>
+<li>如果派生类重写了基 类中某个虚函数，用派生类自己的虚函数覆盖虚表中基类的虚函数 <ul>
+<li>派生类自己新增加的虚函数按其在 派生类中的声明次序增加到派生类虚表的最后<h2 id="4-2多继承中的虚函数表"><a href="#4-2多继承中的虚函数表" class="headerlink" title="4.2多继承中的虚函数表"></a>4.2多继承中的虚函数表</h2>我们看如下demo</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base1</span> &#123;</span> </span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base1::func1"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;    </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base1::func2"</span> &lt;&lt; <span class="built_in">endl</span>; &#125; </span><br><span class="line"><span class="keyword">private</span>:   </span><br><span class="line"><span class="keyword">int</span> b1;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base2</span> &#123;</span> </span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base2::func1"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;   </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base2::func2"</span> &lt;&lt; <span class="built_in">endl</span>; &#125; </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line"> <span class="keyword">int</span> b2; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derive</span> :</span> <span class="keyword">public</span> Base1, <span class="keyword">public</span> Base2 &#123;</span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derive::func1"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;   </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func3</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derive::func3"</span> &lt;&lt; <span class="built_in">endl</span>; &#125; </span><br><span class="line"><span class="keyword">private</span>:   </span><br><span class="line"> <span class="keyword">int</span> d1; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> Base1 b1;</span><br><span class="line"> Base2 b2;</span><br><span class="line"> Derive d;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过调试窗口我们可以发现，在多继承中派生类的未重写函数放在第一个继承基类部分的选好念书表。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/21/多态/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-进程间通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -933,84 +1049,6 @@
 
 
   
-    <article id="post-C-类与对象-三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/01/C-类与对象-三/">C++类与对象(三)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/01/C-类与对象-三/" class="archive-article-date">
-  	<time datetime="2019-09-01T14:38:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：690字 | 预计阅读时长：2分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一-构造函数的初始化列表"><a href="#一-构造函数的初始化列表" class="headerlink" title="一.构造函数的初始化列表"></a>一.构造函数的初始化列表</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Date(<span class="keyword">int</span> year, <span class="keyword">int</span> month ,<span class="keyword">int</span> day)</span><br><span class="line">		:_year(year),</span><br><span class="line">		_month(month),</span><br><span class="line">		_day(day)</span><br><span class="line">	&#123;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> _year;</span><br><span class="line">	<span class="keyword">int</span> _month;</span><br><span class="line">	<span class="keyword">int</span> _day;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/01/C-类与对象-三/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1112,7 +1150,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1120,7 +1158,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
             
             <div class="clearfix"></div>

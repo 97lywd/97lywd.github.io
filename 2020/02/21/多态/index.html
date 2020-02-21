@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++类与对象(二) | </title>
+  <title>多态 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.构造函数 名字与类名相同，创建类类型时编译器自动调用 无返回值 可以重载 本质不是开辟空间创建对象，而是初始化对象 如果未定义构造函数，编译器会自动生成默认的构造函数">
+  <meta name="description" content="1.多态的条件 调用函数的对象必须是指针或者引用 被调用函数必须是虚函数，且完成了虚函数  那么什么是虚函数?虚函数：在类的成员函数前面加上virtual关键字虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。  虚函数重写的例外：协变重写的虚函数返回值可以不同，但是必须分别是基类指针和派生类指针或者引用。 虚函数的作用">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++类与对象(二)">
-<meta property="og:url" content="http://yoursite.com/2019/08/31/C-类与对象-二/index.html">
+<meta property="og:title" content="多态">
+<meta property="og:url" content="http://yoursite.com/2020/02/21/多态/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="1.构造函数 名字与类名相同，创建类类型时编译器自动调用 无返回值 可以重载 本质不是开辟空间创建对象，而是初始化对象 如果未定义构造函数，编译器会自动生成默认的构造函数">
+<meta property="og:description" content="1.多态的条件 调用函数的对象必须是指针或者引用 被调用函数必须是虚函数，且完成了虚函数  那么什么是虚函数?虚函数：在类的成员函数前面加上virtual关键字虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。  虚函数重写的例外：协变重写的虚函数返回值可以不同，但是必须分别是基类指针和派生类指针或者引用。 虚函数的作用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-31T08:05:32.000Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204165827743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-02-21T12:24:27.448Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++类与对象(二)">
-<meta name="twitter:description" content="1.构造函数 名字与类名相同，创建类类型时编译器自动调用 无返回值 可以重载 本质不是开辟空间创建对象，而是初始化对象 如果未定义构造函数，编译器会自动生成默认的构造函数">
+<meta name="twitter:title" content="多态">
+<meta name="twitter:description" content="1.多态的条件 调用函数的对象必须是指针或者引用 被调用函数必须是虚函数，且完成了虚函数  那么什么是虚函数?虚函数：在类的成员函数前面加上virtual关键字虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。  虚函数重写的例外：协变重写的虚函数返回值可以不同，但是必须分别是基类指针和派生类指针或者引用。 虚函数的作用">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200204165827743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -155,95 +157,69 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C-类与对象-二" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-多态" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++类与对象(二)
+      多态
     </h1>
   
 
         
-        <a href="/2019/08/31/C-类与对象-二/" class="archive-article-date">
-  	<time datetime="2019-08-31T07:58:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
+        <a href="/2020/02/21/多态/" class="archive-article-date">
+  	<time datetime="2020-02-21T12:22:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-21</time>
 </a>
         
       </header>
 
       
       <div align="center" class="post-count">
-      字数：996字 | 预计阅读时长：4分钟
+      字数：1.1k字 | 预计阅读时长：4分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-构造函数"><a href="#1-构造函数" class="headerlink" title="1.构造函数"></a>1.构造函数</h2><ul>
-<li>名字与类名相同，创建类类型时编译器自动调用</li>
-<li>无返回值</li>
-<li>可以重载</li>
-<li>本质不是开辟空间创建对象，而是初始化对象</li>
-<li>如果未定义构造函数，编译器会自动生成默认的构造函数</li>
+        <h1 id="1-多态的条件"><a href="#1-多态的条件" class="headerlink" title="1.多态的条件"></a>1.多态的条件</h1><ul>
+<li>调用函数的对象必须是指针或者引用</li>
+<li>被调用函数必须是虚函数，且完成了虚函数</li>
 </ul>
-<a id="more"></a>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Date() &#123;&#125;  <span class="comment">//无参构造</span></span><br><span class="line">	Date(<span class="keyword">int</span> year, <span class="keyword">int</span> month, <span class="keyword">int</span> day)   <span class="comment">//带参构造</span></span><br><span class="line">	&#123;</span><br><span class="line">		_year = year;</span><br><span class="line">		_month = month;</span><br><span class="line">		_day = day;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> _year;</span><br><span class="line">	<span class="keyword">int</span> _month;</span><br><span class="line">	<span class="keyword">int</span> _day;</span><br><span class="line">&#125;;</span><br><span class="line">Date d1;   <span class="comment">//调用无参构造</span></span><br><span class="line"><span class="function">Date <span class="title">d2</span><span class="params">(<span class="number">2000</span>, <span class="number">5</span>, <span class="number">4</span>)</span></span>;  <span class="comment">//调用带参构造</span></span><br><span class="line"><span class="function">Date <span class="title">d3</span><span class="params">()</span></span>;   <span class="comment">//注意这行代码其实是声明了d3函数</span></span><br></pre></td></tr></table></figure>
+<p><strong>那么什么是虚函数?</strong><br>虚函数：在类的成员函数前面加上virtual关键字<br>虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。</p>
+<ul>
+<li>虚函数重写的例外：协变<br>重写的虚函数返回值可以不同，但是必须分别是基类指针和派生类指针或者引用。</li>
+<li>虚函数的作用：使用基类指针调用任一派生类对象时，基类指针调用其虚成员函数，则会调用其真正的指向的成员函数。如果没有虚函数，则基类指针不管调用哪个派生类对象，调用时都会调用基类中定义的那个函数。</li>
+</ul>
+<h1 id="2-析构函数重写问题"><a href="#2-析构函数重写问题" class="headerlink" title="2.析构函数重写问题"></a>2.析构函数重写问题</h1><ul>
+<li>析构函数最好写成虚函数，避免基类指针指向派生类对象时，析构调用父类的析构函数。<br>来看如下demo：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	~Father() &#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"~Father()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span> :</span> <span class="keyword">public</span> Father &#123;</span><br><span class="line">	~Son() &#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"~Son()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Father* f = <span class="keyword">new</span> Son();</span><br><span class="line">	<span class="keyword">delete</span> f;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//程序输出结果为：~Father()</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>全缺省的构造函数和无参的构造函数都是默认构造函数<br>来看下面一个demo</li>
+<li>基类中的析构函数如果是虚函数，那么派生类析构函数就重写了基类的析构函数。这里它们函数名看起来不一样，违背了重写原则，但实际上，编译后的析构函数名称统一处理成destructor</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line">错误	C2668	“main::Date::Date”: 对重载函数的调用不明确	</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Date()</span><br><span class="line">	&#123;</span><br><span class="line">		_year = <span class="number">2000</span>;</span><br><span class="line">		_month = <span class="number">10</span>;</span><br><span class="line">		_day = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Date(<span class="keyword">int</span> year = <span class="number">1999</span>, <span class="keyword">int</span> month = <span class="number">10</span>, <span class="keyword">int</span> day = <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		_year = year;</span><br><span class="line">		_month = month;</span><br><span class="line">		_day = day;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> _year;</span><br><span class="line">	<span class="keyword">int</span> _month;</span><br><span class="line">	<span class="keyword">int</span> _day;</span><br><span class="line">&#125;;</span><br><span class="line">Date d1;</span><br></pre></td></tr></table></figure>
-
-<p>这里为什么会出现这这样的错误呢，因为这里的d1的调用出现了歧义，即无参，全缺省的带参都可调用</p>
-<h2 id="2-析构函数"><a href="#2-析构函数" class="headerlink" title="2.析构函数"></a>2.析构函数</h2><ul>
-<li>析构函数其实就是在函数声明周期结束时对构造的对象进行资源清理</li>
-<li>函数名时类名前加~</li>
-<li>无参数，无返回值</li>
-<li>一个类只有一个析构函数，若未显式定义，系统会自动生成默认析构函数<br>例如如下析构函数（模拟实现string类定义的析构函数）</li>
+<h1 id="3-重写、重载、重定义的区别"><a href="#3-重写、重载、重定义的区别" class="headerlink" title="3.重写、重载、重定义的区别"></a>3.重写、重载、重定义的区别</h1><ul>
+<li>重载：两个函数在同一作用域、函数名/参数相同</li>
+<li>重写：两个函数分别在基类和派生类两个作用域、函数名/参数/返回值都必须相同</li>
+<li>重定义：两个函数分别在基类和派生类两个作用域、函数名相同、两个基类和派生类的同名函数不构成重写就是重定义。</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">~String()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (_str)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">delete</span>[] _str;</span><br><span class="line">			_str = <span class="literal">nullptr</span>;</span><br><span class="line">			_size = _capacity = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-多态实现的原理"><a href="#4-多态实现的原理" class="headerlink" title="4.多态实现的原理"></a>4.多态实现的原理</h1><h2 id="4-1虚函数表"><a href="#4-1虚函数表" class="headerlink" title="4.1虚函数表"></a>4.1虚函数表</h2><p>来看这样一个demo：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"f()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> _a;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(Base) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-拷贝构造函数"><a href="#3-拷贝构造函数" class="headerlink" title="3.拷贝构造函数"></a>3.拷贝构造函数</h2><ul>
-<li>拷贝构造函数是构造函数的重载</li>
-<li>参数只有一个，且必须是引用传参，否则会引发无穷递归调用</li>
-</ul>
-<p>看下面的demo</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Date(<span class="keyword">int</span> year = <span class="number">2000</span>, <span class="keyword">int</span> month = <span class="number">9</span>, <span class="keyword">int</span> day = <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			_year = year;</span><br><span class="line">			_month = month;</span><br><span class="line">			_day = day;</span><br><span class="line">	&#125;</span><br><span class="line">	Date(<span class="keyword">const</span> Date&amp;d)</span><br><span class="line">	&#123;</span><br><span class="line">		_year = d._year;</span><br><span class="line">		_month = d._month;</span><br><span class="line">		_day = d._day;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> _year;</span><br><span class="line">	<span class="keyword">int</span> _month;</span><br><span class="line">	<span class="keyword">int</span> _day;</span><br><span class="line">&#125;;</span><br><span class="line">Date d1;</span><br><span class="line"><span class="function">Date <span class="title">d2</span><span class="params">(d1)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>程序输出结果为8，除了_a占用了4个字节外，还有一个指针_vfptr占了四个大小，这个指针指向了虚函数表，称之为虚函数表指针，一个含有虚函数的类中都至少都有一个虚函数表指针，因为虚函数的地址要被放到虚函数表中， 虚函数表也简称虚表。<br>我们继续看如下demo：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base::Func1()"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Func2</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base::Func2()"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Func3</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base::Func3()"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line"><span class="keyword">private</span>:    </span><br><span class="line">	<span class="keyword">int</span> _b = <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derive</span> :</span> <span class="keyword">public</span> Base </span><br><span class="line">&#123; </span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derive::Func1()"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line"><span class="keyword">private</span>:   </span><br><span class="line">	<span class="keyword">int</span> _d = <span class="number">2</span>; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Base b;    </span><br><span class="line">	Derive d;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>调用d1,需要调用类Date的拷贝构造函数，而调用Date拷贝构造函数的结果就是再次调用拷贝构造，如此递归下去。</p>
+<p>我们可以在调试窗口看到如下信息：<br><img src="https://img-blog.csdnimg.cn/20200204165827743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Derive继承了Base类后，保存了其指针，除此之外，因为fun1函数重写了基类的fun1函数，所以在Base的虚表里是Base::Fun1()，而在Derive的虚表了是Derive::Fun1()<br> 总结一下派生类的虚表生成：</p>
 <ul>
-<li>若未显示定义拷贝构造函数，系统会自动生成默认的函数，但注意是浅拷贝</li>
-</ul>
-<h2 id="4-赋值运算符重载"><a href="#4-赋值运算符重载" class="headerlink" title="4.赋值运算符重载"></a>4.赋值运算符重载</h2><h4 id="A-运算符重载"><a href="#A-运算符重载" class="headerlink" title="A.运算符重载"></a>A.运算符重载</h4><ul>
-<li>函数名为 关键字operator后跟要重载的运算符<ul>
-<li>函数原型：返回类型 operator操作符(参数)<br>例如在Date类中对==运算符的重载，代码如下：</li>
+<li>先将基类中的虚表内容拷贝一份到派生类虚表中</li>
+<li>如果派生类重写了基 类中某个虚函数，用派生类自己的虚函数覆盖虚表中基类的虚函数 <ul>
+<li>派生类自己新增加的虚函数按其在 派生类中的声明次序增加到派生类虚表的最后<h2 id="4-2多继承中的虚函数表"><a href="#4-2多继承中的虚函数表" class="headerlink" title="4.2多继承中的虚函数表"></a>4.2多继承中的虚函数表</h2>我们看如下demo</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> Date&amp; d)<span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> (_year == d._year) &amp;&amp;</span><br><span class="line">		 (_month == d._month) &amp;&amp; (_day == d._day);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base1</span> &#123;</span> </span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base1::func1"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;    </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base1::func2"</span> &lt;&lt; <span class="built_in">endl</span>; &#125; </span><br><span class="line"><span class="keyword">private</span>:   </span><br><span class="line"><span class="keyword">int</span> b1;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base2</span> &#123;</span> </span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base2::func1"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;   </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base2::func2"</span> &lt;&lt; <span class="built_in">endl</span>; &#125; </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line"> <span class="keyword">int</span> b2; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derive</span> :</span> <span class="keyword">public</span> Base1, <span class="keyword">public</span> Base2 &#123;</span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derive::func1"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;   </span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func3</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derive::func3"</span> &lt;&lt; <span class="built_in">endl</span>; &#125; </span><br><span class="line"><span class="keyword">private</span>:   </span><br><span class="line"> <span class="keyword">int</span> d1; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> Base1 b1;</span><br><span class="line"> Base2 b2;</span><br><span class="line"> Derive d;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="B-赋值运算符重载"><a href="#B-赋值运算符重载" class="headerlink" title="B.赋值运算符重载"></a>B.赋值运算符重载</h4><ul>
-<li>返回值是引用（可以连续赋值）</li>
-<li>要检查是否是自己给自己赋值</li>
-<li>返回*this<br>例如在Date类的实现里，赋值运算符的重载，代码如下</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Date&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Date &amp;d) <span class="comment">// =重载</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span> != &amp;d)</span><br><span class="line">	&#123;</span><br><span class="line">		_year = d._year;</span><br><span class="line">		_day = d._day;</span><br><span class="line">		_month = d._month;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>若未显示定义拷贝构造函数，系统会自动生成默认的函数，注意也是浅拷贝</li>
-</ul>
-<h2 id="5-const成员函数"><a href="#5-const成员函数" class="headerlink" title="5.const成员函数"></a>5.const成员函数</h2><ul>
-<li>const修饰的类成员函数就是const成员函数</li>
-<li>实际上修饰的是隐含的this指针，表明在改函数中，不能对类成员进行修改<br>来看下面的代码</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"display()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; year &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; month &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span><span class="keyword">const</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"display()const"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; year &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; month &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> year;</span><br><span class="line">	<span class="keyword">int</span> month;</span><br><span class="line">&#125;;</span><br><span class="line">Date d1;</span><br><span class="line">d1.display();</span><br><span class="line"><span class="keyword">const</span> Date d2;</span><br><span class="line">d2.display();</span><br></pre></td></tr></table></figure>
-
-<p>那么上面的代码d1，d2都调用display函数，它怎么辨别的呢？这时就是看调用对象的属性了。所以有以下结论。</p>
-<ul>
-<li>const成员函数可以访问非const对象的非const成员</li>
-<li>非const成员函数只能访问非const对象的任意成员</li>
-<li>const成员函数可以访问const对象的所有成员</li>
-</ul>
+<p>通过调试窗口我们可以发现，在多继承中派生类的未重写函数放在第一个继承基类部分的选好念书表。</p>
 
       
 
@@ -339,7 +315,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/31/C-类与对象-二/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/02/21/多态/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +329,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/01/C-类与对象-三/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++类与对象(三)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/29/Linux下常见命令以及对权限的理解/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux下常见命令以及对权限的理解</div>
+    <a href="/2019/12/28/进程间通信/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -391,7 +358,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-构造函数"><span class="toc-number">1.</span> <span class="toc-text">1.构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-析构函数"><span class="toc-number">2.</span> <span class="toc-text">2.析构函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-拷贝构造函数"><span class="toc-number">3.</span> <span class="toc-text">3.拷贝构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-赋值运算符重载"><span class="toc-number">4.</span> <span class="toc-text">4.赋值运算符重载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-运算符重载"><span class="toc-number">4.0.1.</span> <span class="toc-text">A.运算符重载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-赋值运算符重载"><span class="toc-number">4.0.2.</span> <span class="toc-text">B.赋值运算符重载</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-const成员函数"><span class="toc-number">5.</span> <span class="toc-text">5.const成员函数</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-多态的条件"><span class="toc-number">1.</span> <span class="toc-text">1.多态的条件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-析构函数重写问题"><span class="toc-number">2.</span> <span class="toc-text">2.析构函数重写问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-重写、重载、重定义的区别"><span class="toc-number">3.</span> <span class="toc-text">3.重写、重载、重定义的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-多态实现的原理"><span class="toc-number">4.</span> <span class="toc-text">4.多态实现的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1虚函数表"><span class="toc-number">4.1.</span> <span class="toc-text">4.1虚函数表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2多继承中的虚函数表"><span class="toc-number">4.2.</span> <span class="toc-text">4.2多继承中的虚函数表</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -405,7 +372,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C-类与对象-二" data-title="C++类与对象(二)" data-url="http://yoursite.com/2019/08/31/C-类与对象-二/"></div>
+	<div class="ds-thread" data-thread-key="多态" data-title="多态" data-url="http://yoursite.com/2020/02/21/多态/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -427,7 +394,7 @@
   
 
   
-  <div id="SOHUCS" sid="C-类与对象-二" ></div> 
+  <div id="SOHUCS" sid="多态" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

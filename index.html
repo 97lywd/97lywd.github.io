@@ -60,9 +60,9 @@
 			</ul>
 		</nav>
 		<nav>
-		总文章数: 20
+		总文章数: 21
 		</nav>
-		总字数: <span class="post-count">21.6k</span>
+		总字数: <span class="post-count">22k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -151,6 +151,98 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-类型转换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/26/类型转换/">类型转换</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/26/类型转换/" class="archive-article-date">
+  	<time datetime="2020-02-26T01:29:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-26</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：385字 | 预计阅读时长：1分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-static-cast"><a href="#1-static-cast" class="headerlink" title="1.static_cast"></a>1.static_cast</h1><p>static_cast用于非多态类型转换（静态转换），编译器隐式执行的任何类型转换都可用static_cast,但它不能用于两个不相关类型的转换。<br>例如如下demo：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">double</span> i = <span class="number">3.14</span>;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(i);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-reinterpret-cast"><a href="#2-reinterpret-cast" class="headerlink" title="2.reinterpret_cast"></a>2.reinterpret_cast</h1><p>reinterpret_cast操作符通常为操作数的位模式提供较低层次的重新解释，用于将一种类型转换为另一种不 同的类型</p>
+<h1 id="3-const-cast"><a href="#3-const-cast" class="headerlink" title="3.const_cast"></a>3.const_cast</h1><p>const_cast最常用的用途就是删除变量的const属性，方便赋值<br> 看如下demo：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> *a = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span>*&gt;(&amp;i);</span><br><span class="line">    *a = <span class="number">100</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-dynamic-cast"><a href="#4-dynamic-cast" class="headerlink" title="4.dynamic_cast"></a>4.dynamic_cast</h1><p>dynamic_cast用于将一个父类对象的指针转换为子类对象的指针或引用(动态转换)<br>但注意：</p>
+<ul>
+<li>dynamic_cast只能用于含有虚函数的类 。</li>
+<li>dynamic_cast会先检查是否能转换成功，能成功则转 换，不能则返回0。<br>看下面的demo：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span><span class="keyword">public</span> A&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f1</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(A* p)</span></span>&#123;</span><br><span class="line">  B*pb1 = <span class="keyword">static_cast</span>&lt;B*&gt;(p);</span><br><span class="line">  B*pb2 = <span class="keyword">dynamic_cast</span>&lt;B*&gt;(p);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pb1:"</span> &lt;&lt; pb1 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pb2:"</span> &lt;&lt; pb2 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    B b;</span><br><span class="line">    fun(&amp;a);</span><br><span class="line">    fun(&amp;b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">pb1:<span class="number">0x7ffd41d29260</span></span><br><span class="line">pb2:<span class="number">0</span></span><br><span class="line">pb1:<span class="number">0x7ffd41d29250</span></span><br><span class="line">pb2:<span class="number">0x7ffd41d29250</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="5-RTTI"><a href="#5-RTTI" class="headerlink" title="5.RTTI"></a>5.RTTI</h1><p>RTTI：Run-time Type identiﬁcation的简称，即：运行时类型识别。<br>C++通过以下方式来支持RTTI：<br>    1.typeid运算符<br>    2.dynamic_cast运算符</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/26/类型转换/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-智能指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1086,95 +1178,9 @@
 
 
   
-    <article id="post-模拟实现String类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/04/模拟实现String类/">模拟实现String类</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/04/模拟实现String类/" class="archive-article-date">
-  	<time datetime="2019-09-04T14:53:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：575字 | 预计阅读时长：2分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="string类是什么"><a href="#string类是什么" class="headerlink" title="string类是什么"></a>string类是什么</h1><ul>
-<li>string是表示字符串的字符串类</li>
-<li>该类的接口与常规容器的接口基本相同，再添加了一些专门用来操作string的常规操作。</li>
-<li>string在底层实际是：basic_string模板类的别名，typedef basic_string&lt;char, char_traits, allocator&gt; string;</li>
-<li>不能操作多字节或者变长字符的序列。
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/04/模拟实现String类/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1269,15 +1275,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">STL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">

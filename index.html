@@ -60,9 +60,9 @@
 			</ul>
 		</nav>
 		<nav>
-		总文章数: 21
+		总文章数: 22
 		</nav>
-		总字数: <span class="post-count">22k</span>
+		总字数: <span class="post-count">23k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -151,6 +151,112 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-关联式容器-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/27/关联式容器-一/">关联式容器(一)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/27/关联式容器-一/" class="archive-article-date">
+  	<time datetime="2020-02-27T11:16:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-27</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：1k字 | 预计阅读时长：4分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-什么是关联式容器"><a href="#1-什么是关联式容器" class="headerlink" title="1.什么是关联式容器"></a>1.什么是关联式容器</h1><p>类似于vector，list，deque，等我们称之为序列式容器，它的底层是线性结构，存放的是数值本身，而关联式容器存放的是<strong>key-value</strong>键值对。</p>
+<ul>
+<li>键值对：用来表示具有一一对应关系的一种结构，该结构中一般只包含两个成员变量key和value，key代表键值， value表示与key对应的信息。</li>
+</ul>
+<h1 id="2-map"><a href="#2-map" class="headerlink" title="2.map"></a>2.map</h1><p>map是最常用的关联式容器之一，它会按照key来比较顺序存储元素，支持下标访问。</p>
+<h2 id="2-1-map的使用"><a href="#2-1-map的使用" class="headerlink" title="2.1 map的使用"></a>2.1 map的使用</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>,<span class="built_in">std</span>::<span class="built_in">string</span>&gt;m1;</span><br><span class="line">   <span class="comment">//列表初始化</span></span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>,<span class="built_in">std</span>::<span class="built_in">string</span>&gt;m2&#123;</span><br><span class="line">      &#123;<span class="string">"1"</span>,<span class="string">"一"</span>&#125;,&#123;<span class="string">"2"</span>,<span class="string">"二"</span>&#125;,&#123;<span class="string">"3"</span>,<span class="string">"三"</span>&#125;</span><br><span class="line">   &#125;;</span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; m2[<span class="string">"1"</span>] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">   <span class="comment">//拷贝构造</span></span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>,<span class="built_in">std</span>::<span class="built_in">string</span>&gt;m3(m2);</span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; m3[<span class="string">"1"</span>] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">   <span class="comment">//使用迭代器遍历</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">auto</span> it = m2.begin(); it != m2.end(); it++)&#123;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; (*it).first &lt;&lt;<span class="string">"---"</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//修改</span></span><br><span class="line">   m2[<span class="string">"1"</span>] = <span class="string">"yi"</span>;</span><br><span class="line">   <span class="comment">//元素个数</span></span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; m2.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">   <span class="comment">//插入</span></span><br><span class="line">   <span class="comment">//用pair构造键值对，然后调用insert结构</span></span><br><span class="line">   m2.insert(<span class="built_in">std</span>::pair&lt;<span class="built_in">std</span>::<span class="built_in">string</span>,<span class="built_in">std</span>::<span class="built_in">string</span>&gt;(<span class="string">"4"</span>,<span class="string">"四"</span>));</span><br><span class="line">   <span class="comment">//也可以用make_pair构造键值对</span></span><br><span class="line">   m2.insert(<span class="built_in">std</span>::make_pair(<span class="string">"5"</span>,<span class="string">"五"</span>));</span><br><span class="line">   <span class="comment">//删除</span></span><br><span class="line">   m2.erase(<span class="string">"5"</span>);</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">auto</span> it = m2.begin(); it != m2.end(); it++)&#123;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; (*it).first &lt;&lt;<span class="string">"---"</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------</span><br><span class="line">一</span><br><span class="line">一</span><br><span class="line"><span class="number">1</span>---一</span><br><span class="line"><span class="number">2</span>---二</span><br><span class="line"><span class="number">3</span>---三</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">1</span>---yi</span><br><span class="line"><span class="number">2</span>---二</span><br><span class="line"><span class="number">3</span>---三</span><br><span class="line"><span class="number">4</span>---四</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2map总结"><a href="#2-2map总结" class="headerlink" title="2.2map总结"></a>2.2map总结</h2><ul>
+<li>key值唯一且不可修改。</li>
+<li>默认按照小于的方式对key进行比较 。</li>
+<li>map中的元素如果用迭代器去遍历，可以得到一个有序的序列 。</li>
+<li>默认按照小于的方式对key进行比较。</li>
+<li>map的底层为平衡搜索树(红黑树)。</li>
+</ul>
+<h2 id="2-3multimap"><a href="#2-3multimap" class="headerlink" title="2.3multimap"></a>2.3multimap</h2><p>multimap和map的唯一不同就是：map中的key是唯一的，而multimap中key是可以重复的。<br>注意multiamp没有重载operator[]。</p>
+<h2 id="2-4模拟实现map"><a href="#2-4模拟实现map" class="headerlink" title="2.4模拟实现map"></a>2.4模拟实现map</h2><p>map和set的底层都是红黑树，实现map的关键是实现红黑树，这里不展示红黑树实现细节，只展示使用红黑树怎么实现map的基本接口。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"_rb_tree.h"</span></span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">K</span>,<span class="title">class</span> <span class="title">V</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">map</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">mapKeyOfValue</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">		<span class="function"><span class="keyword">const</span> K&amp; <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> pair&lt;K, V&gt;&amp; data)</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> data.first; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> RBTree&lt;K, pair&lt;K, V&gt;, mapKeyOfValue&gt;::iterator iterator;</span><br><span class="line">		pair&lt;iterator, <span class="keyword">bool</span>&gt; Insert(<span class="keyword">const</span> pair&lt;K, V&gt;&amp; data)</span><br><span class="line">	&#123;</span><br><span class="line">			<span class="keyword">return</span> rbt.Insert(data);</span><br><span class="line">	&#125;</span><br><span class="line">		<span class="function">iterator <span class="title">begin</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> rbt.begin();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function">iterator <span class="title">end</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> rbt.end();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Inoder</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			rbt.Inoder();</span><br><span class="line">		&#125;</span><br><span class="line">		V&amp; <span class="keyword">operator</span>[](<span class="keyword">const</span> K&amp; key)</span><br><span class="line">		&#123;</span><br><span class="line">			pair&lt;iterator, <span class="keyword">bool</span>&gt; ret = rbt.Insert(make_pair(key, V()));</span><br><span class="line">			<span class="keyword">return</span> ret.first-&gt;second;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	RBTree&lt;K, pair&lt;K, V&gt;, mapKeyOfValue&gt; rbt;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-set"><a href="#3-set" class="headerlink" title="3.set"></a>3.set</h1><p>在set中，插入只需插入value即可，set中元素不可修改，且不重复。</p>
+<h2 id="3-1set的使用"><a href="#3-1set的使用" class="headerlink" title="3.1set的使用"></a>3.1set的使用</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">//构造</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;s;</span><br><span class="line">  <span class="comment">//插入</span></span><br><span class="line">  s.insert(<span class="number">1</span>);</span><br><span class="line">  s.insert(<span class="number">4</span>);</span><br><span class="line">  s.insert(<span class="number">1</span>);</span><br><span class="line">  s.insert(<span class="number">2</span>);</span><br><span class="line">  <span class="comment">//使用迭代器遍历元素</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;e : s)&#123;</span><br><span class="line">     <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//删除</span></span><br><span class="line">  s.erase(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; s.size() &lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">----------------------------------</span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2set总结"><a href="#3-2set总结" class="headerlink" title="3.2set总结"></a>3.2set总结</h2><ul>
+<li>set中插入元素时，只需要插入value即可，不需要构造键值对。 </li>
+<li>set中的元素不可以重复(因此可以使用set进行去重)。 </li>
+<li>set中的元素不允许修改<h2 id="3-3multiset"><a href="#3-3multiset" class="headerlink" title="3.3multiset"></a>3.3multiset</h2>与set的区别是，multiset中的元素可以重复，set是中value是唯一的 </li>
+</ul>
+<h2 id="3-4模拟实现set"><a href="#3-4模拟实现set" class="headerlink" title="3.4模拟实现set"></a>3.4模拟实现set</h2><p>从底层实现我们可以发现，虽然我们使用set插入时，直接插入value，但其实底层是以&lt;value,value&gt;的形式存储的。    </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"_rb_tree.h"</span></span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">K</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">set</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">setKeyOfValue</span> &#123;</span></span><br><span class="line">		<span class="function"><span class="keyword">const</span> K&amp; <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> K&amp; key)</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> key;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> RBTree&lt;K, K, setKeyOfValue&gt;::iterator iterator;</span><br><span class="line">	pair&lt;iterator, <span class="keyword">bool</span>&gt;Insert(<span class="keyword">const</span> K&amp; data)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> st.Insert(data);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">iterator <span class="title">begin</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> st.begin();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">iterator <span class="title">end</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> st.end();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Inoder</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		st.Inoder();</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	RBTree&lt;K, K, setKeyOfValue&gt; st;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/27/关联式容器-一/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-类型转换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1093,91 +1199,6 @@
 
 
   
-    <article id="post-vector的实现与使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/07/vector的实现与使用/">vector的实现与使用</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/07/vector的实现与使用/" class="archive-article-date">
-  	<time datetime="2019-09-07T08:18:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：1.3k字 | 预计阅读时长：6分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-vector的介绍与使用接口"><a href="#1-vector的介绍与使用接口" class="headerlink" title="1.vector的介绍与使用接口"></a>1.vector的介绍与使用接口</h1><h2 id="1-1-vector是什么"><a href="#1-1-vector是什么" class="headerlink" title="1.1 vector是什么"></a>1.1 vector是什么</h2><ul>
-<li>vector是一种序列式容器</li>
-<li>其底层实现原理和数组一样，但不同的是，它的大小可动态改变</li>
-<li>与其他序列式容器相比vector的随机访问使访问效率更加高效(O(1))<h2 id="1-2-iterator的使用"><a href="#1-2-iterator的使用" class="headerlink" title="1.2 iterator的使用"></a>1.2 iterator的使用</h2>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/07/vector的实现与使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1275,11 +1296,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">

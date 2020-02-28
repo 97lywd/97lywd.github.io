@@ -60,9 +60,9 @@
 			</ul>
 		</nav>
 		<nav>
-		总文章数: 22
+		总文章数: 23
 		</nav>
-		总字数: <span class="post-count">23k</span>
+		总字数: <span class="post-count">23.3k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -151,6 +151,88 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-关联式容器（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/28/关联式容器（二）/">关联式容器（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/28/关联式容器（二）/" class="archive-article-date">
+  	<time datetime="2020-02-28T13:48:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-28</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：299字 | 预计阅读时长：1分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-unordered-map"><a href="#1-unordered-map" class="headerlink" title="1.unordered_map"></a>1.unordered_map</h1><p>unordered_map不同于map的地方如它的前缀名一样，它是无序的，这是由于它的底层是由哈希表实现的。</p>
+<h2 id="1-1-unordered-map的使用"><a href="#1-1-unordered-map的使用" class="headerlink" title="1.1 unordered_map的使用"></a>1.1 unordered_map的使用</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; um;</span><br><span class="line">    <span class="comment">//初始化列表插入 initializer list insert</span></span><br><span class="line">    um.insert(&#123;&#123;<span class="number">1</span>,<span class="number">2</span>&#125;,&#123;<span class="number">2</span>,<span class="number">4</span>&#125;&#125;);</span><br><span class="line">    <span class="comment">//拷贝构造</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; um2(um);</span><br><span class="line">    <span class="comment">//移动构造&amp;插入  move insert</span></span><br><span class="line">    um2.insert(<span class="built_in">std</span>::make_pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(<span class="number">3</span>,<span class="number">6</span>));</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; um3;</span><br><span class="line">    <span class="comment">//赋值</span></span><br><span class="line">    um3 = &#123;&#123;<span class="number">4</span>,<span class="number">8</span>&#125;,&#123;<span class="number">5</span>,<span class="number">10</span>&#125;&#125;;</span><br><span class="line">    <span class="comment">//范围插入 range insert</span></span><br><span class="line">    um2.insert(um3.begin(),um3.end());</span><br><span class="line">    <span class="comment">//删除</span></span><br><span class="line">    um2.erase(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//迭代器遍历</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it = um2.begin(); it != um2.begin(); it++)&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="string">"---"</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//访问</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; um2[<span class="number">2</span>] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------</span><br><span class="line"><span class="number">4</span>--<span class="number">-8</span></span><br><span class="line"><span class="number">5</span>--<span class="number">-10</span></span><br><span class="line"><span class="number">3</span>--<span class="number">-6</span></span><br><span class="line"><span class="number">2</span>--<span class="number">-4</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-unordered-set"><a href="#2-unordered-set" class="headerlink" title="2. unordered_set"></a>2. unordered_set</h1><h2 id="2-1-unordered-set的使用"><a href="#2-1-unordered-set的使用" class="headerlink" title="2.1 unordered_set的使用"></a>2.1 unordered_set的使用</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; us = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; us3 = &#123;<span class="number">7</span>,<span class="number">8</span>&#125;;</span><br><span class="line">    <span class="comment">//copy insert</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; us2(us);</span><br><span class="line">    <span class="comment">//range insert</span></span><br><span class="line">    us2.insert(us3.begin(),us3.end());</span><br><span class="line">    <span class="comment">//initializer list insert</span></span><br><span class="line">    us2.insert(&#123;<span class="number">9</span>,<span class="number">10</span>&#125;);</span><br><span class="line">    <span class="comment">//erase</span></span><br><span class="line">    us2.erase(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//iterator</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it = us2.begin(); it != us2.end(); it++)&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/28/关联式容器（二）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-关联式容器-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1114,91 +1196,6 @@
 
 
   
-    <article id="post-Linux下进程的概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/08/Linux下进程的概念/">Linux下进程的概念</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/08/Linux下进程的概念/" class="archive-article-date">
-  	<time datetime="2019-09-08T15:18:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：1.8k字 | 预计阅读时长：8分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一-进程的基本概念："><a href="#一-进程的基本概念：" class="headerlink" title="一.进程的基本概念："></a>一.进程的基本概念：</h2><ul>
-<li><p>站在用户角度：进程就是运行中的程序</p>
-</li>
-<li><p>站在操作系统的角度：进程就是操作系统进行资源分配和调度的一个独立单位</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/08/Linux下进程的概念/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1296,15 +1293,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">

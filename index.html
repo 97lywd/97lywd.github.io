@@ -60,9 +60,9 @@
 			</ul>
 		</nav>
 		<nav>
-		总文章数: 23
+		总文章数: 24
 		</nav>
-		总字数: <span class="post-count">23.3k</span>
+		总字数: <span class="post-count">24.6k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -151,6 +151,128 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-信号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/信号/">“信号</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/01/信号/" class="archive-article-date">
+  	<time datetime="2020-03-01T12:58:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-01</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：1.3k字 | 预计阅读时长：5分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-如何理解信号"><a href="#1-如何理解信号" class="headerlink" title="1.如何理解信号"></a>1.如何理解信号</h1><p>例如在生活中，快递员告诉我们快递到了，那么我们会终止手上的事，去取快递，这就是一种信号。<br>站在操作系统的角度，再来理解信号：<br>1.用户输入命令,在Shell下启动一个前台进程。 </p>
+<ol start="2">
+<li>用户按下 Ctrl-C ,这个键盘输入产生一个硬件中断，被OS获取，解释成信号，发送给目标前台进程 </li>
+<li>前台进程因为收到信号，进而退出。<br>所以，显而易见，信号是操作系统与用户通信的一种方式，也可以是进程间通信的方式。</li>
+</ol>
+<h1 id="2-Linux下信号机制"><a href="#2-Linux下信号机制" class="headerlink" title="2. Linux下信号机制"></a>2. Linux下信号机制</h1><ul>
+<li>信号是进程间时间异步通知的一种方式，属于软中断。<br>在Linux下我们可以使用<strong>kill -l</strong>命令查看系统定义的信号列表。</li>
+</ul>
+<h2 id="2-1-信号常见的处理方式"><a href="#2-1-信号常见的处理方式" class="headerlink" title="2.1 信号常见的处理方式"></a>2.1 信号常见的处理方式</h2><ul>
+<li>忽略此信号。</li>
+<li>执行该信号的默认处理动作。</li>
+<li>提供一个信号处理函数，要求内核在处理信号时切换到用户态执行这个处理函数，这种处理方式称之为捕捉一个信号。<h2 id="2-2-产生信号的方式"><a href="#2-2-产生信号的方式" class="headerlink" title="2.2 产生信号的方式"></a>2.2 产生信号的方式</h2></li>
+<li>通终端按键产生信号(如常用的Ctrl+z)</li>
+<li>调用系统函数向进程发信号</li>
+<li>由软件条件产生信号</li>
+<li>硬件异常产生信号<h1 id="3-Linux下信号阻塞"><a href="#3-Linux下信号阻塞" class="headerlink" title="3. Linux下信号阻塞"></a>3. Linux下信号阻塞</h1>先来了解一些信号相关常见的概念：<br>信号递达(Delivery)：实际执行信号的处理动作<br>未决信号(Pending)：信号从产生到传递之间的状态。<br>阻塞信号(Blocking)：被阻塞的信号产生时将保持在未决状态,直到进程解除对此信号的阻塞,才执行递达的动作. </li>
+</ul>
+<p><strong>在内核中，每个信号都有两个标志位表示阻塞和未决，还有一个函数表示处理动作，信号产生时，内核在PCB中设置该信号的未决标志，知道信号递达才清除该标志。</strong></p>
+<h2 id="3-1sigprocmask"><a href="#3-1sigprocmask" class="headerlink" title="3.1sigprocmask"></a>3.1sigprocmask</h2><p>调用sigprocmask函数可以读取或者更改进程信号屏蔽字（阻塞信号集）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigprocmask</span><span class="params">(<span class="keyword">int</span> how, <span class="keyword">const</span> <span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">sigset_t</span> *oset)</span></span>; </span><br><span class="line">返回值:若成功则为<span class="number">0</span>,若出错则为<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+
+<p>来看下面的demo来体会使用sigprocmask阻塞信号</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sigcb</span><span class="params">(<span class="keyword">int</span> signum)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"recv a signal:%d\n"</span>,signum);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    signal(SIGINT,sigcb);</span><br><span class="line">    signal(<span class="number">40</span>,sigcb);</span><br><span class="line">    <span class="keyword">sigset_t</span> <span class="built_in">set</span>,old;</span><br><span class="line">    sigemptyset(&amp;<span class="built_in">set</span>);   <span class="comment">//清空信号集合</span></span><br><span class="line">    sigemptyset(&amp;old);</span><br><span class="line">    sigfillset(&amp;<span class="built_in">set</span>);    <span class="comment">//将所有信号都添加到set集合</span></span><br><span class="line">    sigprocmask(SIG_BLOCK,&amp;<span class="built_in">set</span>,&amp;old);  <span class="comment">//阻塞所有信号</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"enter to continue\n"</span>);</span><br><span class="line">    getchar();</span><br><span class="line">    sigprocmask(SIG_UNBLOCK,&amp;<span class="built_in">set</span>,<span class="literal">NULL</span>); <span class="comment">//解除阻塞</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到执行程序后，按下CTRL+c ，并不能退出程序，因为SIHGINT信号被阻塞。</p>
+<h1 id="4-捕捉信号"><a href="#4-捕捉信号" class="headerlink" title="4.捕捉信号"></a>4.捕捉信号</h1><h2 id="4-1-内核如何实现信号的捕捉"><a href="#4-1-内核如何实现信号的捕捉" class="headerlink" title="4.1 内核如何实现信号的捕捉"></a>4.1 内核如何实现信号的捕捉</h2><p>以SIGQUIT信号为例</p>
+<ol>
+<li>用户注册了SIGQUIT信号的处理函数sighandler，当前正在执行 main函数,这时发生中断或异常切换到内核态。 </li>
+<li>在中断处理完毕后要返回用户态的main函数之前检查到有信号 SIGQUIT递达。</li>
+<li>内核执行sighandler函数，其与main函数是两个独立的控制流程。</li>
+<li>sighandler函数返 回后自动执行特殊的系统调用sigreturn再次进入内核态。</li>
+<li>如果没有新的信号要递达,这次再返回用户态就是恢复 main函数的上下文继续执行。</li>
+</ol>
+<h2 id="4-2-sigaction函数的演示"><a href="#4-2-sigaction函数的演示" class="headerlink" title="4.2 sigaction函数的演示"></a>4.2 sigaction函数的演示</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigaction</span><span class="params">(<span class="keyword">int</span> signo, <span class="keyword">const</span> struct sigaction *act, struct sigaction *oact)</span></span>; </span><br><span class="line"><span class="comment">// signo --- 指定信号的编号</span></span><br><span class="line">   act   --- 自定义动作</span><br><span class="line">   oact  --- 保存信号原有处理动作</span><br></pre></td></tr></table></figure>
+
+<p>再来看看sigaction结构体：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> &#123;</span></span><br><span class="line">               <span class="keyword">void</span>     (*sa_handler)(<span class="keyword">int</span>);</span><br><span class="line">               <span class="keyword">void</span>     (*sa_sigaction)(<span class="keyword">int</span>, <span class="keyword">siginfo_t</span> *, <span class="keyword">void</span> *);</span><br><span class="line">               <span class="keyword">sigset_t</span>   sa_mask;</span><br><span class="line">               <span class="keyword">int</span>        sa_fla <span class="number">5</span>gs;</span><br><span class="line">               <span class="keyword">void</span>     (*sa_restorer)(<span class="keyword">void</span>);</span><br><span class="line">           &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>sigaction函数可以读取和修改与指定信号相关联的处理动作。调用成功则返回0,出错则返回- 1。</p>
+<p>以下demo演示sigaction函数的使用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sigcb</span><span class="params">(<span class="keyword">int</span> signum)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"recv signum : %d\n"</span>,signum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">newact</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">oldact</span>;</span></span><br><span class="line">    newact.sa_handler = sigcb;</span><br><span class="line">    newact.sa_flags = <span class="number">0</span>;</span><br><span class="line">    sigemptyset(&amp;newact.sa_mask);</span><br><span class="line">    sigaction(SIGINT,&amp;newact,&amp;oldact);</span><br><span class="line">    <span class="comment">//sigaction修改信号的处理动作作为newact，原来的动作使用oldact保存</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"hello\n"</span>);</span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-SIGCHLD信号"><a href="#5-SIGCHLD信号" class="headerlink" title="5.SIGCHLD信号"></a>5.SIGCHLD信号</h1><p>我们清理僵尸进程的方式有wait和waitpid函数，调用wait时，父进程会阻塞的等待子进程结束，后者调用时，是轮询查询是否有子进程退出。<br>但其实子进程退出时会向父进程发送SIGCHLD信号，该信号的默认处理方式是忽略，父进程可以定义SIGCHLD信号的处理函数，父进程在处理函数中调用wait函数即可。<br>下面的demo我们可以体会下SIGCHLD信号的处理及作用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sigcb</span><span class="params">(<span class="keyword">int</span> signo)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(waitpid(<span class="number">-1</span>,<span class="literal">NULL</span>,<span class="number">0</span>) &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    signal(SIGCHLD,sigcb);</span><br><span class="line">    <span class="keyword">pid_t</span> pid = fork();</span><br><span class="line">    <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123;</span><br><span class="line">        sleep(<span class="number">5</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"-------------\n"</span>);</span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/01/信号/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-关联式容器（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1110,92 +1232,6 @@
 
 
   
-    <article id="post-Linux环境变量及Shell编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/10/Linux环境变量及Shell编程/">Linux环境变量及Shell编程</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/10/Linux环境变量及Shell编程/" class="archive-article-date">
-  	<time datetime="2019-09-10T14:23:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：1.1k字 | 预计阅读时长：4分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一-环境变量："><a href="#一-环境变量：" class="headerlink" title="一.环境变量："></a>一.环境变量：</h2><ul>
-<li><p><strong><em>环境变量是什么</em></strong></p>
-<pre><code>环境变量一般是指在操作系统中用来指定操作系统运行环境的一些参数，在系统中具有全局特性。</code></pre><ul>
-<li><p><strong><em>常见环境变量</em></strong></p>
-<p>PATH<em>:指定命令的搜索路径<br>HOME</em>：指定用户的主工作目录<br>HISTSIZE<em>：指保存历史命令的条数<br>SHELL</em>：shell的全路径名<br>echo $NAME   //NAME: 环境变量名称</p>
-</li>
-</ul>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/10/Linux环境变量及Shell编程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1297,11 +1333,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">

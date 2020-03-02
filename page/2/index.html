@@ -60,9 +60,9 @@
 			</ul>
 		</nav>
 		<nav>
-		总文章数: 24
+		总文章数: 25
 		</nav>
-		总字数: <span class="post-count">24.6k</span>
+		总字数: <span class="post-count">25.6k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -151,6 +151,111 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-socket接口介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/11/socket接口介绍/">socket接口介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/11/socket接口介绍/" class="archive-article-date">
+  	<time datetime="2019-10-11T15:40:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：381字 | 预计阅读时长：1分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-socket常见的API"><a href="#1-socket常见的API" class="headerlink" title="1. socket常见的API"></a>1. socket常见的API</h1><h2 id="1-1socket的创建"><a href="#1-1socket的创建" class="headerlink" title="1.1socket的创建"></a>1.1socket的创建</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">(<span class="keyword">int</span> domain, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span>;</span><br><span class="line">dmain --- 指定底层协议（AF_INET）</span><br><span class="line">type  --- 套接字类型（STREAM/DGRAM）</span><br><span class="line">protocol --- 指定具体协议（Tcp <span class="number">-6</span>，Tcp <span class="number">-17</span>，<span class="number">0</span> -默认协议）</span><br><span class="line">返回值 --- 文件描述符--- 套接字操作句柄</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2绑定地址"><a href="#1-2绑定地址" class="headerlink" title="1.2绑定地址"></a>1.2绑定地址</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bind</span><span class="params">(<span class="keyword">int</span> socket, <span class="keyword">const</span> struct sockaddr *address,</span></span></span><br><span class="line"><span class="function"><span class="params">                            <span class="keyword">socklen_t</span> address_len)</span></span>;</span><br><span class="line">socket --- socket描述符</span><br><span class="line">address --- IP地址</span><br><span class="line">address_len --- 地址长度</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-监听"><a href="#1-3-监听" class="headerlink" title="1.3 监听"></a>1.3 监听</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">listen</span><span class="params">(<span class="keyword">int</span> sockfd, <span class="keyword">int</span> backlog)</span></span>;</span><br><span class="line"><span class="comment">//backlog</span></span><br><span class="line">最大连接请求队列，一般情况下这个队列长度为<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-接受请求"><a href="#1-4-接受请求" class="headerlink" title="1.4 接受请求"></a>1.4 接受请求</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">accept</span><span class="params">(<span class="keyword">int</span> sockfd, struct sockaddr *addr, <span class="keyword">socklen_t</span> *addrlen)</span></span>;=</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-建立连接"><a href="#1-5-建立连接" class="headerlink" title="1.5 建立连接"></a>1.5 建立连接</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> sockfd, <span class="keyword">const</span> struct sockaddr *addr,<span class="keyword">socklen_t</span> addrlen)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-sockaddr底层结构"><a href="#2-sockaddr底层结构" class="headerlink" title="2.sockaddr底层结构"></a>2.sockaddr底层结构</h1><p>sockaddr地址分为16字节的地址类型，一般常用的时AF_INET（ipv4地址），和14字节数据类型。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span> &#123;</span></span><br><span class="line"><span class="keyword">unsigned</span>  <span class="keyword">short</span>  sa_family;     <span class="comment">/* address family and length/</span></span><br><span class="line"><span class="comment">char  sa_data[14];                 /* address data*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ipv4地址常用sockaddr_in结构体表示，我们来看sockaddr_in结构体信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">sockaddr_in（在netinet/in.h中定义）：</span><br><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">sockaddr_in</span> &#123;</span></span><br><span class="line"><span class="keyword">short</span>  <span class="keyword">int</span>  sin_family;                    </span><br><span class="line"><span class="keyword">unsigned</span>  <span class="keyword">short</span>  <span class="keyword">int</span>  sin_port;      </span><br><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">in_addr</span>  <span class="title">sin_addr</span>;</span>              </span><br><span class="line"><span class="keyword">unsigned</span>  <span class="keyword">char</span>  sin_zero[<span class="number">8</span>];         <span class="comment">/* Same size as struct sockaddr */</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">in_addr</span> &#123;</span></span><br><span class="line"><span class="keyword">unsigned</span>  <span class="keyword">long</span>  s_addr;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> &#123;</span></span><br><span class="line"><span class="keyword">union</span> &#123;</span><br><span class="line">            <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">                        <span class="keyword">unsigned</span> <span class="keyword">char</span> s_b1,</span><br><span class="line">                        s_b2,</span><br><span class="line">                        s_b3,</span><br><span class="line">                        s_b4;</span><br><span class="line">                        &#125; S_un_b;</span><br><span class="line">           <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">                        <span class="keyword">unsigned</span> <span class="keyword">short</span> s_w1,</span><br><span class="line">                        s_w2;</span><br><span class="line">                        &#125; S_un_w;</span><br><span class="line">            <span class="keyword">unsigned</span> <span class="keyword">long</span> S_addr;</span><br><span class="line">          &#125; S_un;</span><br><span class="line">&#125; IN_ADDR;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-地址转换函数"><a href="#3-地址转换函数" class="headerlink" title="3. 地址转换函数"></a>3. 地址转换函数</h1><h1 id="3-1字符串转in-addr"><a href="#3-1字符串转in-addr" class="headerlink" title="3.1字符串转in_addr"></a>3.1字符串转in_addr</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inet_aton</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *cp, struct in_addr *inp)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-2-in-addr转字符串"><a href="#3-2-in-addr转字符串" class="headerlink" title="3.2 in_addr转字符串"></a>3.2 in_addr转字符串</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">inet_ntoa</span><span class="params">(struct in_addr in)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面的两个函数都用到了结构体 in_addr，我们来看下这个结构体的信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint32_t</span> <span class="keyword">in_addr_t</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span>&#123;</span></span><br><span class="line">	in_addr s_addr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>in_addr用来表示一个IPv4的IP地址. 其实就是一个32位的整数。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">socket</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/11/socket接口介绍/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Linux环境变量及Shell编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -892,87 +997,6 @@
 
 
   
-    <article id="post-C-类与对象-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/C-类与对象-一/">c++类与对象(一)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/28/C-类与对象-一/" class="archive-article-date">
-  	<time datetime="2019-08-28T09:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：827字 | 预计阅读时长：3分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一-类的定义"><a href="#一-类的定义" class="headerlink" title="一.类的定义"></a>一.类的定义</h2><ul>
-<li>定义和声明全在类内</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">showInfo</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">     <span class="keyword">int</span> _day;</span><br><span class="line">     <span class="keyword">int</span> _month;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/28/C-类与对象-一/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1074,11 +1098,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>list的实现及使用 | </title>
+  <title>线程初始 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.List的介绍及使用接口1.1 List是什么   List是可以在常数范围内在任意位置进行插入和删除的序列式容器，并且该容器可以前后双向迭代，List的底层是双向链表结构。 1.2 iterator的使用   如下demo，我们分别用正向迭代器和反向迭代器访问List元素">
-<meta name="keywords" content="C++,STL">
+  <meta name="description" content="1.Linux下线程的概念1.1 什么是线程 一个程序里的一个执行路线叫做线程 线程是一个更轻量级的进程 线程在进程内部运行，本质在进程地址空间内运行1.2 线程与进程的区别 进程是资源分配的基本单位 线程是调度的基本单位    线程共享进程数据，也有自己的一部分数据： 线程ID、寄存器、栈、errno、信号屏蔽字、调度优先级。   2. Linux线程控制2.1 创建线程1234567int p">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="list的实现及使用">
-<meta property="og:url" content="http://yoursite.com/2019/10/16/list的实现及使用/index.html">
+<meta property="og:title" content="线程初始">
+<meta property="og:url" content="http://yoursite.com/2020/03/02/线程初始/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="1.List的介绍及使用接口1.1 List是什么   List是可以在常数范围内在任意位置进行插入和删除的序列式容器，并且该容器可以前后双向迭代，List的底层是双向链表结构。 1.2 iterator的使用   如下demo，我们分别用正向迭代器和反向迭代器访问List元素">
+<meta property="og:description" content="1.Linux下线程的概念1.1 什么是线程 一个程序里的一个执行路线叫做线程 线程是一个更轻量级的进程 线程在进程内部运行，本质在进程地址空间内运行1.2 线程与进程的区别 进程是资源分配的基本单位 线程是调度的基本单位    线程共享进程数据，也有自己的一部分数据： 线程ID、寄存器、栈、errno、信号屏蔽字、调度优先级。   2. Linux线程控制2.1 创建线程1234567int p">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20191006235533415.png">
-<meta property="og:updated_time" content="2019-10-16T15:38:38.000Z">
+<meta property="og:updated_time" content="2020-03-02T13:19:56.138Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="list的实现及使用">
-<meta name="twitter:description" content="1.List的介绍及使用接口1.1 List是什么   List是可以在常数范围内在任意位置进行插入和删除的序列式容器，并且该容器可以前后双向迭代，List的底层是双向链表结构。 1.2 iterator的使用   如下demo，我们分别用正向迭代器和反向迭代器访问List元素">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191006235533415.png">
+<meta name="twitter:title" content="线程初始">
+<meta name="twitter:description" content="1.Linux下线程的概念1.1 什么是线程 一个程序里的一个执行路线叫做线程 线程是一个更轻量级的进程 线程在进程内部运行，本质在进程地址空间内运行1.2 线程与进程的区别 进程是资源分配的基本单位 线程是调度的基本单位    线程共享进程数据，也有自己的一部分数据： 线程ID、寄存器、栈、errno、信号屏蔽字、调度优先级。   2. Linux线程控制2.1 创建线程1234567int p">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -157,69 +155,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-list的实现及使用" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-线程初始" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      list的实现及使用
+      线程初始
     </h1>
   
 
         
-        <a href="/2019/10/16/list的实现及使用/" class="archive-article-date">
-  	<time datetime="2019-10-16T15:35:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
+        <a href="/2020/03/02/线程初始/" class="archive-article-date">
+  	<time datetime="2020-03-02T13:19:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-02</time>
 </a>
         
       </header>
 
       
       <div align="center" class="post-count">
-      字数：959字 | 预计阅读时长：4分钟
+      字数：1k字 | 预计阅读时长：4分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-List的介绍及使用接口"><a href="#1-List的介绍及使用接口" class="headerlink" title="1.List的介绍及使用接口"></a>1.List的介绍及使用接口</h1><h2 id="1-1-List是什么"><a href="#1-1-List是什么" class="headerlink" title="1.1 List是什么"></a>1.1 List是什么</h2><p>   List是可以在常数范围内在任意位置进行插入和删除的序列式容器，并且该容器可以前后双向迭代，List的底层是双向链表结构。</p>
-<h2 id="1-2-iterator的使用"><a href="#1-2-iterator的使用" class="headerlink" title="1.2 iterator的使用"></a>1.2 iterator的使用</h2><p>   如下demo，我们分别用正向迭代器和反向迭代器访问List元素</p>
-<a id="more"></a>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">array</span>[] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span> &#125;;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;l1(<span class="built_in">array</span>, <span class="built_in">array</span> + <span class="keyword">sizeof</span>(<span class="built_in">array</span>) / <span class="keyword">sizeof</span>(<span class="built_in">array</span>[<span class="number">0</span>]));</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it = l1.begin();</span><br><span class="line">	<span class="comment">//正向1234</span></span><br><span class="line">	<span class="keyword">while</span> (it != l1.end())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">		it++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//逆向4321</span></span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::reverse_iterator it2 = l1.rbegin();</span><br><span class="line">	<span class="keyword">while</span> (it2 != l1.rend())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *it2 &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">		it2++;</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="1-2-List的插入与删除"><a href="#1-2-List的插入与删除" class="headerlink" title="1.2 List的插入与删除"></a>1.2 List的插入与删除</h2><h3 id="1-2-1插入接口"><a href="#1-2-1插入接口" class="headerlink" title="1.2.1插入接口"></a>1.2.1插入接口</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">insert</span> <span class="params">(iterator position, <span class="keyword">const</span> value_type&amp; val)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>注意list的插入要先拿到迭代器的位置<br>另外它重载两种接口，一是在迭代器位置插入n个val，一是在迭代器位置<br>插入一个start到end区间内所有元素</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span> <span class="params">(iterator position, size_type n, <span class="keyword">const</span> value_type&amp; val)</span></span>;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">InputIterator</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">insert</span> (<span class="title">iterator</span> <span class="title">position</span>, <span class="title">InputIterator</span> <span class="title">first</span>, </span></span><br><span class="line"><span class="class">                                 <span class="title">InputIterator</span> <span class="title">last</span>);</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; lt(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it = lt.begin();</span><br><span class="line">	lt.insert(it, <span class="number">2</span>);  <span class="comment">//2,1</span></span><br><span class="line">	lt.insert(it, <span class="number">2</span>, <span class="number">100</span>); <span class="comment">//2,100,100,1</span></span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; lt2(<span class="number">3</span>, <span class="number">200</span>);</span><br><span class="line">	lt.insert(it, lt2.begin(), lt2.end());  <span class="comment">//2,100,100,200,200,1;</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2-2-删除接口"><a href="#1-2-2-删除接口" class="headerlink" title="1.2.2 删除接口"></a>1.2.2 删除接口</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">erase</span> <span class="params">(iterator position)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>list的删除也是通过迭代器来实现，并返回一个迭代器位置，另外重载了一个接口，<br>可以实现范围删除。<br><strong>要注意的是这里返回的迭代器是被删元素的下一个元素，如果最后一个元素也被删了，那么它就是容器的结尾</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">erase</span> <span class="params">(iterator first, iterator last)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lt.insert(it, lt2.begin(), lt2.end());  <span class="comment">//2,100,100,200,200,1;</span></span><br><span class="line">it = lt.erase(it);  <span class="comment">//2,100,100,200,200</span></span><br><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it2 = lt.begin(); </span><br><span class="line">it2++;</span><br><span class="line">lt.erase(it2, it);   <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="1-3list迭代器失效问题"><a href="#1-3list迭代器失效问题" class="headerlink" title="1.3list迭代器失效问题"></a>1.3list迭代器失效问题</h2><p>list在删除元素时，会出现问题<br><img src="https://img-blog.csdnimg.cn/20191006235533415.png" alt="在这里插入图片描述"><br>例如我们删除了中间位置节点，++迭代器时，就会崩溃，因为对于双向链表找到下个节点，需要有前一个节点<br>解决办法：</p>
-<ul>
-<li>1.采用上面的方法，接受erase的返回值</li>
-<li>2.自增iterator</li>
+        <h1 id="1-Linux下线程的概念"><a href="#1-Linux下线程的概念" class="headerlink" title="1.Linux下线程的概念"></a>1.Linux下线程的概念</h1><h2 id="1-1-什么是线程"><a href="#1-1-什么是线程" class="headerlink" title="1.1 什么是线程"></a>1.1 什么是线程</h2><ul>
+<li>一个程序里的一个执行路线叫做线程</li>
+<li>线程是一个更轻量级的进程</li>
+<li>线程在进程内部运行，本质在进程地址空间内运行<h2 id="1-2-线程与进程的区别"><a href="#1-2-线程与进程的区别" class="headerlink" title="1.2 线程与进程的区别"></a>1.2 线程与进程的区别</h2></li>
+<li>进程是资源分配的基本单位</li>
+<li>线程是调度的基本单位</li>
 </ul>
-<h1 id="2-List的模拟实现"><a href="#2-List的模拟实现" class="headerlink" title="2.List的模拟实现"></a>2.List的模拟实现</h1><h2 id="2-1List的底层原理"><a href="#2-1List的底层原理" class="headerlink" title="2.1List的底层原理"></a>2.1List的底层原理</h2><p>List的底层实际上是一个双向带头节点链表，所有它的节点就包括指向前后的指针，以及节点的值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>&#123;</span></span><br><span class="line">	ListNode(<span class="keyword">const</span> T&amp;val = T())</span><br><span class="line">		:_prev(<span class="literal">nullptr</span>)</span><br><span class="line">	    , _next(<span class="literal">nullptr</span>)</span><br><span class="line">		, _val(val)</span><br><span class="line">	&#123;&#125;</span><br><span class="line">	ListNode&lt;T&gt;*_prev;</span><br><span class="line">	ListNode&lt;T&gt;*_next;</span><br><span class="line">	T _val;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>线程共享进程数据，也有自己的一部分数据： 线程ID、寄存器、栈、errno、信号屏蔽字、调度优先级。</li>
+</ul>
+<hr>
+<h1 id="2-Linux线程控制"><a href="#2-Linux线程控制" class="headerlink" title="2. Linux线程控制"></a>2. Linux线程控制</h1><h2 id="2-1-创建线程"><a href="#2-1-创建线程" class="headerlink" title="2.1 创建线程"></a>2.1 创建线程</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_create</span><span class="params">(<span class="keyword">pthread_t</span> *thread, <span class="keyword">const</span> <span class="keyword">pthread_attr_t</span> *attr, <span class="keyword">void</span> * </span></span></span><br><span class="line"><span class="function"><span class="params">                                 (*start_routine)(<span class="keyword">void</span>*), <span class="keyword">void</span> *arg)</span></span>;</span><br><span class="line"> 参数:thread --- 返回线程ID   </span><br><span class="line">     attr --- 设置线程的属性，attr为<span class="literal">NULL</span>表示使用默认属性  </span><br><span class="line">     start_routine --- 是个函数地址，线程启动后要执行的函数 </span><br><span class="line">     arg --- 传给线程启动函数的参数 </span><br><span class="line">     返回值：成功返回<span class="number">0</span>；失败返回错误码</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-2构造函数"><a href="#2-2构造函数" class="headerlink" title="2.2构造函数"></a>2.2构造函数</h2><p>头的前后都指向自己</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List()</span><br><span class="line">		:_head(<span class="keyword">new</span> Node)</span><br><span class="line">	&#123;</span><br><span class="line">		_head-&gt;_next = _head;</span><br><span class="line">		_head-&gt;_prev = _head;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>来看以下demo体会pthread_create的使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">thr_start</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="keyword">pthread_t</span> tid = pthread_self();</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">"---odniary-----%s-%lu\n"</span>,(<span class="keyword">char</span>*)arg,tid);</span><br><span class="line">     sleep(<span class="number">1</span>);</span><br><span class="line">   &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ret;</span><br><span class="line">  <span class="keyword">pthread_t</span> tid;</span><br><span class="line">  <span class="keyword">pthread_t</span> mtid = pthread_self();    <span class="comment">//pthread_self()   --- 可以获取线程自身ID</span></span><br><span class="line">  ret = pthread_create(&amp;tid,<span class="literal">NULL</span>,thr_start,(<span class="keyword">void</span>*)<span class="string">"hello"</span>);</span><br><span class="line">  <span class="keyword">if</span>(ret != <span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"thread create error\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"--------main-----------mtid:%lu----ctid:%lu\n"</span>,mtid,tid);</span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-3删除与插入"><a href="#2-3删除与插入" class="headerlink" title="2.3删除与插入"></a>2.3删除与插入</h2><h3 id="2-3-1-插入"><a href="#2-3-1-插入" class="headerlink" title="2.3.1 插入"></a>2.3.1 插入</h3><p>构造新节点，更新新节点的指针指向，以及前后节点的指针指向</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(iterator pos, <span class="keyword">const</span> T&amp;val)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Node* newNode = <span class="keyword">new</span> Node(val);</span><br><span class="line">		Node* cur = pos._node;</span><br><span class="line">		Node* prev = cur-&gt;_prev;</span><br><span class="line">		prev-&gt;_next = newNode;</span><br><span class="line">		newNode-&gt;_prev = prev;</span><br><span class="line">		cur-&gt;_prev = newNode;</span><br><span class="line">		newNode-&gt;_next = cur;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>再来回顾上述demo：pthread_create函数会产生一个线程ID，存放在第一个参数指向的地址中，pthread_ create函数第一个参数指向一个虚拟内存单元，该内存单元的地址即为新创建线程的线程ID， 属于NPTL线程库的范畴。线程库的后续操作，就是根据该线程ID来操作线程的。 在上面的demo里我们就是用了NPTL线程库提供的pthread_self()，获取线程ID。</p>
+<h2 id="2-2-终止线程"><a href="#2-2-终止线程" class="headerlink" title="2.2 终止线程"></a>2.2 终止线程</h2><p>如果想终止某个线程而不是整个进程，可以有以下三个方法:</p>
+<ol>
+<li>从线程函数return。但这种方法对主线程不适用,从main函数return相当于调用exit。 </li>
+<li>线程可以调用pthread_ exit终止自己。</li>
+<li>一个线程可以调用pthread_ cancel终止同一进程中的另一个线程。<h3 id="2-2-1-pthread-eixt函数"><a href="#2-2-1-pthread-eixt函数" class="headerlink" title="2.2.1 pthread_eixt函数"></a>2.2.1 pthread_eixt函数</h3></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pthread_exit</span><span class="params">(<span class="keyword">void</span> *value_ptr)</span></span>; </span><br><span class="line">参数    value_ptr:value_ptr不要指向一个局部变量。</span><br><span class="line">返回值：无返回值，跟进程一样，线程结束的时候无法返回到它的调用者（自身</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-3-2-删除"><a href="#2-3-2-删除" class="headerlink" title="2.3.2 删除"></a>2.3.2 删除</h3><p>通过迭代器找到删除位置，保存前后指针指向，删除这个节点，更新指针指向</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">Erase</span><span class="params">(iterator pos)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (pos != end())</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			Node* cur = pos._node;</span><br><span class="line">			Node* prev = cur-&gt;_prev;</span><br><span class="line">			Node* next = cur-&gt;_next;</span><br><span class="line">			<span class="keyword">delete</span> cur;</span><br><span class="line">			cur = <span class="literal">nullptr</span>;</span><br><span class="line">			prev-&gt;_next = next;</span><br><span class="line">			next-&gt;_prev = prev;</span><br><span class="line">			pos = iterator(next);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> pos;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2-pthread-cancel函数"><a href="#2-2-2-pthread-cancel函数" class="headerlink" title="2.2.2 pthread_cancel函数"></a>2.2.2 pthread_cancel函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cancel</span><span class="params">(<span class="keyword">pthread_t</span> thread)</span></span>; </span><br><span class="line">参数    thread:线程ID </span><br><span class="line">返回值：成功返回<span class="number">0</span>；失败返回错误码</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-3迭代器的实现"><a href="#2-3迭代器的实现" class="headerlink" title="2.3迭代器的实现"></a>2.3迭代器的实现</h2><p>list的迭代器需要封装一个类来实现，原生指针无法实现，所以它必须封装一个指针所有的功能。`</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">class</span> <span class="title">Ptr</span>,<span class="title">class</span> <span class="title">Ref</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">ListIterator</span> &#123;</span></span><br><span class="line">	<span class="keyword">typedef</span> ListNode&lt;T&gt; Node;</span><br><span class="line">	<span class="keyword">typedef</span> ListIterator&lt;T, Ptr, Ref&gt; Self;</span><br><span class="line">	Node* _node;</span><br><span class="line">	ListIterator(Node* p = <span class="literal">nullptr</span>)</span><br><span class="line">		:_node(p)</span><br><span class="line">	&#123;&#125;</span><br><span class="line">	Ref <span class="keyword">operator</span>*()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> _node-&gt;_val;</span><br><span class="line">	&#125;</span><br><span class="line">	Ptr <span class="keyword">operator</span>-&gt;() </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> &amp;_node-&gt;_val;</span><br><span class="line">	&#125;</span><br><span class="line">	Self&amp; <span class="keyword">operator</span>++()</span><br><span class="line">	&#123;</span><br><span class="line">		_node = _node-&gt;_next;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	 &#125;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span>!=(<span class="keyword">const</span> Self&amp; lt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> _node != lt._node;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> Self&amp; lt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> _node == lt._node;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-线程等待"><a href="#2-3-线程等待" class="headerlink" title="2.3 线程等待"></a>2.3 线程等待</h2><p>为什么需要线程等待？</p>
+<ul>
+<li>已经退出的线程，其空间没有被释放，仍然在进程的地址空间内。</li>
+<li>创建新的线程不会复用刚才退出线程的地址空间。<br>下面的函数就承担了这一作用，调用后，会等待线程结束</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_join</span><span class="params">(<span class="keyword">pthread_t</span> thread, <span class="keyword">void</span> **value_ptr)</span></span>; </span><br><span class="line">参数:thread  --- 线程ID   </span><br><span class="line">     value_ptr --- 它指向一个指针，后者指向线程的返回值 返回值：成功返回<span class="number">0</span>；失败返回错误码</span><br></pre></td></tr></table></figure>
+
+<p>调用该函数的线程将挂起等待,直到id为thread的线程终止。thread线程以不同的方法终止,通过pthread_join得到 的终止状态是不同的。</p>
+<h3 id="2-4-线程分离"><a href="#2-4-线程分离" class="headerlink" title="2.4 线程分离"></a>2.4 线程分离</h3><p>为什么需要线程分离？<br>默认情况下，新创建的线程是joinable的，线程退出后，需要对其进行pthread_join操作，否则无法释 放资源，从而造成系统泄漏。 如果不关心线程的返回值，join是一种负担，这个时候，我们可以告诉系统，当线程退出时，自动释放线程资源。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_detach</span><span class="params">(<span class="keyword">pthread_t</span> thread)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>来看以下demo，体会detach的使用。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">thread_run</span><span class="params">(<span class="keyword">void</span> *arg)</span></span>&#123;</span><br><span class="line">    pthread_detach(pthread_self());</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,(<span class="keyword">char</span>*)arg);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">pthread_t</span> tid;</span><br><span class="line">    <span class="keyword">if</span>(pthread_create(&amp;tid,<span class="literal">NULL</span>,thread_run,<span class="string">"thread_run ..."</span>) != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"create thread error\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(pthread_join(tid,<span class="literal">NULL</span>) == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"pthread wait success\n"</span>);</span><br><span class="line">        ret = <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"pthread wait failed\n"</span>);</span><br><span class="line">        ret = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -260,11 +260,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -320,7 +316,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/16/list的实现及使用/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/02/线程初始/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -334,18 +330,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/28/进程间通信/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          进程间通信
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/11/socket接口介绍/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">socket接口介绍</div>
+    <a href="/2020/03/01/信号/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">“信号</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -372,7 +359,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-List的介绍及使用接口"><span class="toc-number">1.</span> <span class="toc-text">1.List的介绍及使用接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-List是什么"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 List是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-iterator的使用"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 iterator的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-List的插入与删除"><span class="toc-number">1.3.</span> <span class="toc-text">1.2 List的插入与删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1插入接口"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.2.1插入接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-删除接口"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.2.2 删除接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3list迭代器失效问题"><span class="toc-number">1.4.</span> <span class="toc-text">1.3list迭代器失效问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-List的模拟实现"><span class="toc-number">2.</span> <span class="toc-text">2.List的模拟实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1List的底层原理"><span class="toc-number">2.1.</span> <span class="toc-text">2.1List的底层原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2构造函数"><span class="toc-number">2.2.</span> <span class="toc-text">2.2构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3删除与插入"><span class="toc-number">2.3.</span> <span class="toc-text">2.3删除与插入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-插入"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1 插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-删除"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 删除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3迭代器的实现"><span class="toc-number">2.4.</span> <span class="toc-text">2.3迭代器的实现</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Linux下线程的概念"><span class="toc-number">1.</span> <span class="toc-text">1.Linux下线程的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-什么是线程"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 什么是线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-线程与进程的区别"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 线程与进程的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Linux线程控制"><span class="toc-number">2.</span> <span class="toc-text">2. Linux线程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-创建线程"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 创建线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-终止线程"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 终止线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-pthread-eixt函数"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1 pthread_eixt函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-pthread-cancel函数"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2 pthread_cancel函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-线程等待"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 线程等待</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-线程分离"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.4 线程分离</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -386,7 +373,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="list的实现及使用" data-title="list的实现及使用" data-url="http://yoursite.com/2019/10/16/list的实现及使用/"></div>
+	<div class="ds-thread" data-thread-key="线程初始" data-title="线程初始" data-url="http://yoursite.com/2020/03/02/线程初始/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -408,7 +395,7 @@
   
 
   
-  <div id="SOHUCS" sid="list的实现及使用" ></div> 
+  <div id="SOHUCS" sid="线程初始" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

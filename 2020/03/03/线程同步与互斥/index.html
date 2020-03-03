@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title></title>
+  <title>线程同步与互斥 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+  <meta name="description" content="1. 与互斥相关的术语 临界资源：多线程执行流共享的资源就叫做临界资源 临界区：每个线程内部，访问临界资源的代码，就叫做临界区  互斥：任何时刻，互斥保证有且只有一个执行流进入临界区，访问临界资源，通常对临界资源起保护作用  原子性：不会被任何调度机制打断的操作，该操作只有两态，要么完成，要么未完成（即PV操作）。  2. mutex互斥量2.1 为什么需要互斥量？当多个线程同时共享一个变量时，会">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程同步与互斥">
+<meta property="og:url" content="http://yoursite.com/2020/03/03/线程同步与互斥/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="1. 与互斥相关的术语 临界资源：多线程执行流共享的资源就叫做临界资源 临界区：每个线程内部，访问临界资源的代码，就叫做临界区  互斥：任何时刻，互斥保证有且只有一个执行流进入临界区，访问临界资源，通常对临界资源起保护作用  原子性：不会被任何调度机制打断的操作，该操作只有两态，要么完成，要么未完成（即PV操作）。  2. mutex互斥量2.1 为什么需要互斥量？当多个线程同时共享一个变量时，会">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-03T13:55:57.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="线程同步与互斥">
+<meta name="twitter:description" content="1. 与互斥相关的术语 临界资源：多线程执行流共享的资源就叫做临界资源 临界区：每个线程内部，访问临界资源的代码，就叫做临界区  互斥：任何时刻，互斥保证有且只有一个执行流进入临界区，访问临界资源，通常对临界资源起保护作用  原子性：不会被任何调度机制打断的操作，该操作只有两态，要么完成，要么未完成（即PV操作）。  2. mutex互斥量2.1 为什么需要互斥量？当多个线程同时共享一个变量时，会">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -150,22 +155,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Linux下常见命令以及对权限的理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-线程同步与互斥" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/Linux下常见命令以及对权限的理解/">Linux下常见命令以及对权限的理解</a>
+    <h1 class="article-title" itemprop="name">
+      线程同步与互斥
     </h1>
   
 
         
-        <a href="/2019/08/29/Linux下常见命令以及对权限的理解/" class="archive-article-date">
-  	<time datetime="2019-08-29T13:49:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
+        <a href="/2020/03/03/线程同步与互斥/" class="archive-article-date">
+  	<time datetime="2020-03-03T13:55:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
 </a>
         
       </header>
@@ -176,93 +179,90 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一-对目录的操作命令："><a href="#一-对目录的操作命令：" class="headerlink" title="一.对目录的操作命令："></a>一.对目录的操作命令：</h2><pre><code>1. ls命令：ls[选项][目录或文件]
-   功能：对于目录，列出该目录下的所有子目录及文件。对于文件，
-   列出文件名以及其他信息。</code></pre><p>  eg：Linux下输入命令行ls -i: 列出文件的inode节点信息。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/29/Linux下常见命令以及对权限的理解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-C-类与对象-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/C-类与对象-一/">c++类与对象(一)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/28/C-类与对象-一/" class="archive-article-date">
-  	<time datetime="2019-08-28T09:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：827字 | 预计阅读时长：3分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一-类的定义"><a href="#一-类的定义" class="headerlink" title="一.类的定义"></a>一.类的定义</h2><ul>
-<li>定义和声明全在类内</li>
+        <h1 id="1-与互斥相关的术语"><a href="#1-与互斥相关的术语" class="headerlink" title="1. 与互斥相关的术语"></a>1. 与互斥相关的术语</h1><ul>
+<li>临界资源：多线程执行流共享的资源就叫做临界资源</li>
+<li>临界区：每个线程内部，访问临界资源的代码，就叫做临界区 </li>
+<li>互斥：任何时刻，互斥保证有且只有一个执行流进入临界区，访问临界资源，通常对临界资源起保护作用 </li>
+<li>原子性：不会被任何调度机制打断的操作，该操作只有两态，要么完成，要么未完成（即PV操作）。</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">showInfo</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">     <span class="keyword">int</span> _day;</span><br><span class="line">     <span class="keyword">int</span> _month;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-        
+<h1 id="2-mutex互斥量"><a href="#2-mutex互斥量" class="headerlink" title="2. mutex互斥量"></a>2. mutex互斥量</h1><h2 id="2-1-为什么需要互斥量？"><a href="#2-1-为什么需要互斥量？" class="headerlink" title="2.1 为什么需要互斥量？"></a>2.1 为什么需要互斥量？</h2><p>当多个线程同时共享一个变量时，会出现前者以及修改，后者还是拿到原来数据的情况，所以我们需要一把锁，去管理这个资源，使用时，加锁，用完后，解锁。这个锁我们称之为互斥量。</p>
+<h2 id="2-2-Linux下互斥量的接口"><a href="#2-2-Linux下互斥量的接口" class="headerlink" title="2.2 Linux下互斥量的接口"></a>2.2 Linux下互斥量的接口</h2><h3 id="2-2-1-初始化互斥量"><a href="#2-2-1-初始化互斥量" class="headerlink" title="2.2.1 初始化互斥量"></a>2.2.1 初始化互斥量</h3><ol>
+<li>静态分配</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pthread_mutex_t</span> mutex = PTHREAD_MUTEX_INITIALIZE</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>动态分配</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_init</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *<span class="keyword">restrict</span> mutex,</span></span></span><br><span class="line"><span class="function"><span class="params">									 <span class="keyword">const</span> <span class="keyword">pthread_mutexattr_t</span> *<span class="keyword">restrict</span> attr)</span></span>;   </span><br><span class="line"> 参数：  mutex --- 要初始化的互斥量        attr：<span class="literal">NULL</span></span><br><span class="line"> 返回值： 成功返回<span class="number">0</span>，失败返回错误编码</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-2-销毁互斥量"><a href="#2-2-2-销毁互斥量" class="headerlink" title="2.2.2 销毁互斥量"></a>2.2.2 销毁互斥量</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int pthread_mutex_destroy(pthread_mutex_t *mutex)；</span><br><span class="line">参数： mutex --- 要销毁的互斥量    </span><br><span class="line">返回值：成功返回<span class="number">0</span>，失败返回错误编码</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ol>
+<li>使用 PTHREAD_ MUTEX_ INITIALIZER 初始化的互斥量不需要销毁。 </li>
+<li>不要销毁一个已经加锁的互斥量 。</li>
+<li>已经销毁的互斥量，要确保后面不会有线程再尝试加锁。<h3 id="2-2-3-加锁与解锁"><a href="#2-2-3-加锁与解锁" class="headerlink" title="2.2.3 加锁与解锁"></a>2.2.3 加锁与解锁</h3></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_lock</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *mutex)</span></span>;   <span class="comment">//加锁</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_unlock</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *mutex)</span></span>;   <span class="comment">//解锁</span></span><br><span class="line">返回值:成功返回<span class="number">0</span>,失败返回错误号</span><br></pre></td></tr></table></figure>
+
+<p>调用pthread_lock()加锁时，可能会出现一些问题：</p>
+<ul>
+<li>互斥量处于未锁状态，该函数会将互斥量锁定，同时返回成功</li>
+<li>发起函数调用时，其他线程已经锁定互斥量，或者存在其他线程同时申请互斥量，但没有竞争到互斥 量，那么pthread_ lock调用会陷入阻塞(执行流被挂起)，等待互斥量解锁。 <h1 id="3-线程互斥"><a href="#3-线程互斥" class="headerlink" title="3 线程互斥"></a>3 线程互斥</h1>以下demo，我们模拟一个售票过程，体会一下线程互斥：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> ticket = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">pthread_mutex_t</span> mutex;</span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">ticket_scalper</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> id = (<span class="keyword">int</span>*)arg;</span><br><span class="line">   <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="comment">//互斥锁保护的是临界资源，加锁放在临界操作之前</span></span><br><span class="line">     <span class="comment">//阻塞加锁----无法加锁挂起等待</span></span><br><span class="line">     <span class="comment">//非阻塞加锁 -- 无法加锁则立即报错返回</span></span><br><span class="line">     pthread_mutex_lock(&amp;mutex);</span><br><span class="line">      <span class="keyword">if</span>(ticket &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"scalper:%d --- get ticket:%d\n"</span>,id,ticket);</span><br><span class="line">        ticket--;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">      pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">        pthread_exit(<span class="literal">NULL</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">   &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i,ret;</span><br><span class="line">  <span class="keyword">pthread_t</span> tid[<span class="number">4</span>];</span><br><span class="line">  pthread_mutex_init(&amp;mutex,<span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line"> &#123;</span><br><span class="line">      ret = pthread_create(&amp;tid[i],<span class="literal">NULL</span>,ticket_scalper,(<span class="keyword">void</span>*)i);</span><br><span class="line">      <span class="keyword">if</span>(ret != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"create falied!!\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line"> &#125;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    pthread_join(tid[i],<span class="literal">NULL</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  pthread_mutex_destroy(&amp;mutex);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-cond条件变量"><a href="#4-cond条件变量" class="headerlink" title="4.cond条件变量"></a>4.cond条件变量</h1><h2 id="4-1-什么是条件变量？"><a href="#4-1-什么是条件变量？" class="headerlink" title="4.1 什么是条件变量？"></a>4.1 什么是条件变量？</h2><p>条件变量是利用线程间共享的全局变量进行同步的一种机制。当一个线程互斥地访问某个变量时，它可能发现在其它线程改变状态之前，它什么也做不了。 例如一个线程访问队列时，发现队列为空，它只能等待，只到其它线程将一个节点添加到队列中。这种情况就需要用到条件变量。、</p>
+<h2 id="4-2-Linux下条件变量的接口"><a href="#4-2-Linux下条件变量的接口" class="headerlink" title="4.2 Linux下条件变量的接口"></a>4.2 Linux下条件变量的接口</h2><h3 id="4-2-1-初始化-销毁"><a href="#4-2-1-初始化-销毁" class="headerlink" title="4.2.1 初始化/销毁"></a>4.2.1 初始化/销毁</h3><p>初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_init</span><span class="params">(<span class="keyword">pthread_cond_t</span> *<span class="keyword">restrict</span> cond,</span></span></span><br><span class="line"><span class="function"><span class="params">									<span class="keyword">const</span> <span class="keyword">pthread_condattr_t</span> *<span class="keyword">restrict</span> attr)</span></span>;</span><br><span class="line">参数：    cond --- 要初始化的条件变量    attr --- <span class="literal">NULL</span></span><br><span class="line">返回值： 成功返回<span class="number">0</span>，失败返回错误编码</span><br></pre></td></tr></table></figure>
+
+<p>销毁</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_destroy</span><span class="params">(<span class="keyword">pthread_cond_t</span> *cond)</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-2-等待条件-唤醒等待"><a href="#4-2-2-等待条件-唤醒等待" class="headerlink" title="4.2.2 等待条件/唤醒等待"></a>4.2.2 等待条件/唤醒等待</h3><p>等待条件满足</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_wait</span><span class="params">(<span class="keyword">pthread_cond_t</span> *<span class="keyword">restrict</span> cond,</span></span></span><br><span class="line"><span class="function"><span class="params">                               <span class="keyword">pthread_mutex_t</span> *<span class="keyword">restrict</span> mutex)</span></span>;  </span><br><span class="line">  参数：       cond --- 要在这个条件变量上等待        mutex --- 互斥量</span><br></pre></td></tr></table></figure>
+
+<p>唤醒等待</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_broadcast</span><span class="params">(<span class="keyword">pthread_cond_t</span> *cond)</span></span>;  <span class="comment">//唤醒全部 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_signal</span><span class="params">(<span class="keyword">pthread_cond_t</span> *cond)</span></span>;		<span class="comment">//唤醒单个线程</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="5-线程同步"><a href="#5-线程同步" class="headerlink" title="5. 线程同步"></a>5. 线程同步</h1><h2 id="5-1-同步与静态条件"><a href="#5-1-同步与静态条件" class="headerlink" title="5.1 同步与静态条件"></a>5.1 同步与静态条件</h2><ul>
+<li>同步：在保证数据安全的前提下，让线程能够按照某种特定的顺序访问临界资源，从而有效避免饥饿问题，叫做同步。 </li>
+<li>竞态条件：因为时序问题，而导致程序异常，我们称之为竞态条件。</li>
+</ul>
+<p>来看以下demo，来体会线程同步：<br>我们模拟了厨师做面，客户吃面的过程<br>对于客户：没面时等待，有面时吃面，并唤醒厨师进程。<br>对于厨师：有面时等待，没面时做面，并唤醒客户进程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> noodles = <span class="number">0</span>; <span class="comment">//默认没有noddles</span></span><br><span class="line"><span class="keyword">pthread_cond_t</span> cond_foodie;</span><br><span class="line"><span class="keyword">pthread_cond_t</span> cond_chef;</span><br><span class="line"><span class="keyword">pthread_mutex_t</span> mutex;</span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">thr_chef</span><span class="params">(<span class="keyword">void</span>* arg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="comment">//没有面则做面，有面没人吃则等待</span></span><br><span class="line">    <span class="keyword">while</span>(noodles == <span class="number">1</span>)&#123;</span><br><span class="line">      pthread_cond_wait(&amp;cond_chef,&amp;mutex);</span><br><span class="line">    pthread_mutex_lock(&amp;mutex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"master made a bow of noodles\n"</span>);</span><br><span class="line">    noodles = <span class="number">1</span>;</span><br><span class="line">    pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">    pthread_cond_signal(&amp;cond_foodie);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">thr_foodie</span><span class="params">(<span class="keyword">void</span>* arg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="comment">//有面吃面，没面则等待</span></span><br><span class="line">    <span class="keyword">while</span>(noodles == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      pthread_cond_wait(&amp;cond_foodie,&amp;mutex);</span><br><span class="line">    pthread_mutex_lock(&amp;mutex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"have eat\n"</span>);</span><br><span class="line">    noodles = <span class="number">0</span>;</span><br><span class="line">    pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">    pthread_cond_signal(&amp;cond_chef);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ret,i;</span><br><span class="line">  <span class="keyword">pthread_t</span> ctid[<span class="number">4</span>],etid[<span class="number">4</span>];</span><br><span class="line">  pthread_cond_init(&amp;cond_foodie,<span class="literal">NULL</span>);</span><br><span class="line">  pthread_cond_init(&amp;cond_chef,<span class="literal">NULL</span>);</span><br><span class="line">  pthread_mutex_init(&amp;mutex,<span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">  ret = pthread_create(&amp;ctid[i],<span class="literal">NULL</span>,thr_chef,<span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">if</span>(ret != <span class="number">0</span>)&#123;</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">"create error\n"</span>);</span><br><span class="line">     <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">  ret = pthread_create(&amp;etid[i],<span class="literal">NULL</span>,thr_foodie,<span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">if</span>(ret != <span class="number">0</span>)&#123;</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">"create error\n"</span>);</span><br><span class="line">     <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line"></span><br><span class="line">  pthread_join(ctid[i],<span class="literal">NULL</span>);</span><br><span class="line">  pthread_join(etid[i],<span class="literal">NULL</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pthread_cond_destroy(&amp;cond_foodie);</span><br><span class="line">  pthread_cond_destroy(&amp;cond_chef);</span><br><span class="line">  pthread_mutex_destroy(&amp;mutex);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的demo里，我们可以看到条件变量的使用其实都是配合mutex同时使用。<br><strong>为什么pthread_cond_wait需要互斥量？</strong><br>如果多个线程同时唤醒一个wait，那么必然会出现race condition(竞态条件)，所以没有互斥锁就无法保证安全的访问共享数据。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/aplipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -282,183 +282,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/28/C-类与对象-一/">展开全文 >></a>
-        </p>
-      
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-动态规划-三-更为隐蔽的状态推断" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/">动态规划(三): 更为隐蔽的状态推断</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:19:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：945字 | 预计阅读时长：5分钟
+      </div>
+    </span>
+  </div>
 </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前面我们探讨了dp问题的一些常见情况：<br><a href="https://blog.csdn.net/weixin_42549259/article/details/97263715" target="_blank" rel="noopener">动态规划(一): 从Fibonacci数列谈起</a><br><a href="https://blog.csdn.net/weixin_42549259/article/details/97506216" target="_blank" rel="noopener">动态规划(二):     更为复杂的状态方程</a><br>但是DP问题很多时候初始值，状态，状态方程是非常隐蔽的，我们来看以下几道题：</p>
-<p><strong>A.回文串分割</strong></p>
-<p>题目难度：Hard</p>
-<p>题目来源：<a href="https://www.nowcoder.com/practice/1025ffc2939547e39e8a38a955de1dd3?tpId" target="_blank" rel="noopener">牛客网</a></p>
-        
-      
 
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/03/线程同步与互斥/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-动态规划-二-更为复杂的状态方程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/25/动态规划-二-更为复杂的状态方程/">动态规划(二): 更为复杂的状态方程</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/25/动态规划-二-更为复杂的状态方程/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：1.1k字 | 预计阅读时长：5分钟
 </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在前面我们谈到了一些简单的用动态规划解决的问题：<br><a href="https://blog.csdn.net/weixin_42549259/article/details/97263715" target="_blank" rel="noopener">动态规划(一)：从Fibonacci数列谈起</a><br>但是，在DP问题里，我们很多时候对于状态方程的递推，往往更加复杂，我们看以下几道题：</p>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/25/动态规划-二-更为复杂的状态方程/">展开全文 >></a>
-        </p>
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/02/线程初始/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">线程初始</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -473,181 +365,62 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-与互斥相关的术语"><span class="toc-number">1.</span> <span class="toc-text">1. 与互斥相关的术语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-mutex互斥量"><span class="toc-number">2.</span> <span class="toc-text">2. mutex互斥量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-为什么需要互斥量？"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 为什么需要互斥量？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Linux下互斥量的接口"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Linux下互斥量的接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-初始化互斥量"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1 初始化互斥量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-销毁互斥量"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2 销毁互斥量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-加锁与解锁"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.2.3 加锁与解锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-线程互斥"><span class="toc-number">3.</span> <span class="toc-text">3 线程互斥</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-cond条件变量"><span class="toc-number">4.</span> <span class="toc-text">4.cond条件变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-什么是条件变量？"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 什么是条件变量？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Linux下条件变量的接口"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 Linux下条件变量的接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-初始化-销毁"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 初始化/销毁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-等待条件-唤醒等待"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2 等待条件/唤醒等待</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-线程同步"><span class="toc-number">5.</span> <span class="toc-text">5. 线程同步</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-同步与静态条件"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 同步与静态条件</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-动态规划-一-：从Fbionacci数列谈起" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/">动态规划(一)：从Fbionacci数列谈起</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/" class="archive-article-date">
-  	<time datetime="2019-08-25T06:36:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：958字 | 预计阅读时长：3分钟
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="线程同步与互斥" data-title="线程同步与互斥" data-url="http://yoursite.com/2020/03/03/线程同步与互斥/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
 </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一-什么是动态规划"><a href="#一-什么是动态规划" class="headerlink" title="一.什么是动态规划"></a>一.什么是动态规划</h2><pre><code>动态规划其实是一种分治算法思想的延申，在将大问题化解为小问题的分治过程中，
-保存对这些小问题已经处理好的结果，并供后面处理更大规模的问题时直接使用这些结果。    </code></pre>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-C-入门语法篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/23/C-入门语法篇/">C++入门语法篇</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/23/C-入门语法篇/" class="archive-article-date">
-  	<time datetime="2019-08-23T02:54:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：763字 | 预计阅读时长：3分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-引用"><a href="#1-引用" class="headerlink" title="1.引用"></a>1.引用</h2><ul>
-<li><p>引用不是重新定义一个变量，而是为变量取了一个别名，且不重新开辟空间，与引用的实体共享一块空间。</p>
-</li>
-<li><p>引用的特性：定义时必须初始化，一个变量可以有多个引用，但是一个引用只能引用一个实体。<code>//int &amp;ra 就会编译出错(未初始化)</code></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/23/C-入门语法篇/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
 
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+
+  
+  <div id="SOHUCS" sid="线程同步与互斥" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
+  
+
+  
+
   
 
 
@@ -670,8 +443,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

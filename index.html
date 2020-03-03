@@ -206,8 +206,9 @@
 <p>调用pthread_lock()加锁时，可能会出现一些问题：</p>
 <ul>
 <li>互斥量处于未锁状态，该函数会将互斥量锁定，同时返回成功</li>
-<li>发起函数调用时，其他线程已经锁定互斥量，或者存在其他线程同时申请互斥量，但没有竞争到互斥 量，那么pthread_ lock调用会陷入阻塞(执行流被挂起)，等待互斥量解锁。 <h1 id="3-线程互斥"><a href="#3-线程互斥" class="headerlink" title="3 线程互斥"></a>3 线程互斥</h1>以下demo，我们模拟一个售票过程，体会一下线程互斥：</li>
+<li>发起函数调用时，其他线程已经锁定互斥量，或者存在其他线程同时申请互斥量，但没有竞争到互斥 量，那么pthread_ lock调用会陷入阻塞(执行流被挂起)，等待互斥量解锁。 </li>
 </ul>
+<h1 id="3-线程互斥"><a href="#3-线程互斥" class="headerlink" title="3 线程互斥"></a>3 线程互斥</h1><p>以下demo，我们模拟一个售票过程，体会一下线程互斥：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> ticket = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">pthread_mutex_t</span> mutex;</span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">ticket_scalper</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> id = (<span class="keyword">int</span>*)arg;</span><br><span class="line">   <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="comment">//互斥锁保护的是临界资源，加锁放在临界操作之前</span></span><br><span class="line">     <span class="comment">//阻塞加锁----无法加锁挂起等待</span></span><br><span class="line">     <span class="comment">//非阻塞加锁 -- 无法加锁则立即报错返回</span></span><br><span class="line">     pthread_mutex_lock(&amp;mutex);</span><br><span class="line">      <span class="keyword">if</span>(ticket &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"scalper:%d --- get ticket:%d\n"</span>,id,ticket);</span><br><span class="line">        ticket--;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">      pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">        pthread_exit(<span class="literal">NULL</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">   &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i,ret;</span><br><span class="line">  <span class="keyword">pthread_t</span> tid[<span class="number">4</span>];</span><br><span class="line">  pthread_mutex_init(&amp;mutex,<span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line"> &#123;</span><br><span class="line">      ret = pthread_create(&amp;tid[i],<span class="literal">NULL</span>,ticket_scalper,(<span class="keyword">void</span>*)i);</span><br><span class="line">      <span class="keyword">if</span>(ret != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"create falied!!\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line"> &#125;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    pthread_join(tid[i],<span class="literal">NULL</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  pthread_mutex_destroy(&amp;mutex);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="4-cond条件变量"><a href="#4-cond条件变量" class="headerlink" title="4.cond条件变量"></a>4.cond条件变量</h1><h2 id="4-1-什么是条件变量？"><a href="#4-1-什么是条件变量？" class="headerlink" title="4.1 什么是条件变量？"></a>4.1 什么是条件变量？</h2><p>条件变量是利用线程间共享的全局变量进行同步的一种机制。当一个线程互斥地访问某个变量时，它可能发现在其它线程改变状态之前，它什么也做不了。 例如一个线程访问队列时，发现队列为空，它只能等待，只到其它线程将一个节点添加到队列中。这种情况就需要用到条件变量。、</p>
@@ -244,7 +245,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -1392,15 +1393,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">STL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">

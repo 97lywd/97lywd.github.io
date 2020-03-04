@@ -16,7 +16,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="1. socket常见的API1.1socket的创建12345int socket(int domain, int type, int protocol);dmain --- 指定底层协议（AF_INET）type  --- 套接字类型（STREAM/DGRAM）protocol --- 指定具体协议（Tcp -6，Tcp -17，0 -默认协议）返回值 --- 文件描述符--- 套接字操作句柄">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-23T10:55:49.612Z">
+<meta property="og:updated_time" content="2020-03-04T13:29:34.089Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="socket接口介绍">
 <meta name="twitter:description" content="1. socket常见的API1.1socket的创建12345int socket(int domain, int type, int protocol);dmain --- 指定底层协议（AF_INET）type  --- 套接字类型（STREAM/DGRAM）protocol --- 指定具体协议（Tcp -6，Tcp -17，0 -默认协议）返回值 --- 文件描述符--- 套接字操作句柄">
@@ -67,7 +67,7 @@
 		<nav>
 		总文章数: 27
 		</nav>
-		总字数: <span class="post-count">27.1k</span>
+		总字数: <span class="post-count">28.6k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -180,6 +180,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-socket常见的API"><a href="#1-socket常见的API" class="headerlink" title="1. socket常见的API"></a>1. socket常见的API</h1><h2 id="1-1socket的创建"><a href="#1-1socket的创建" class="headerlink" title="1.1socket的创建"></a>1.1socket的创建</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">(<span class="keyword">int</span> domain, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span>;</span><br><span class="line">dmain --- 指定底层协议（AF_INET）</span><br><span class="line">type  --- 套接字类型（STREAM/DGRAM）</span><br><span class="line">protocol --- 指定具体协议（Tcp <span class="number">-6</span>，Tcp <span class="number">-17</span>，<span class="number">0</span> -默认协议）</span><br><span class="line">返回值 --- 文件描述符--- 套接字操作句柄</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <h2 id="1-2绑定地址"><a href="#1-2绑定地址" class="headerlink" title="1.2绑定地址"></a>1.2绑定地址</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bind</span><span class="params">(<span class="keyword">int</span> socket, <span class="keyword">const</span> struct sockaddr *address,</span></span></span><br><span class="line"><span class="function"><span class="params">                            <span class="keyword">socklen_t</span> address_len)</span></span>;</span><br><span class="line">socket --- socket描述符</span><br><span class="line">address --- IP地址</span><br><span class="line">address_len --- 地址长度</span><br></pre></td></tr></table></figure>
 
@@ -500,11 +502,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">

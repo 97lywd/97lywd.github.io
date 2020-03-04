@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>进程间通信 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。2.进程通信的">
+  <meta name="description" content="1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。">
 <meta name="keywords" content="Linux,进程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="进程间通信">
 <meta property="og:url" content="http://yoursite.com/2019/12/28/进程间通信/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。2.进程通信的">
+<meta property="og:description" content="1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2020021517293062.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200215173006197.png">
-<meta property="og:updated_time" content="2020-02-21T12:29:29.190Z">
+<meta property="og:updated_time" content="2020-03-04T13:29:41.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进程间通信">
-<meta name="twitter:description" content="1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。2.进程通信的">
+<meta name="twitter:description" content="1. 什么需要进程间通信？ 数据传输：一个进程需要将它的数据发送给另一个进程  资源共享：多个进程之间共享同样的资源。  通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。  进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020021517293062.png">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
@@ -70,7 +70,7 @@
 		<nav>
 		总文章数: 27
 		</nav>
-		总字数: <span class="post-count">27.1k</span>
+		总字数: <span class="post-count">28.6k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -186,7 +186,11 @@
 <li>数据传输：一个进程需要将它的数据发送给另一个进程 </li>
 <li>资源共享：多个进程之间共享同样的资源。 </li>
 <li>通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。 </li>
-<li>进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。<h1 id="2-进程通信的分类"><a href="#2-进程通信的分类" class="headerlink" title="2.进程通信的分类"></a>2.进程通信的分类</h1><h2 id="2-1-管道"><a href="#2-1-管道" class="headerlink" title="2.1 管道"></a>2.1 管道</h2></li>
+<li>进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。</li>
+</ul>
+<a id="more"></a>
+
+<h1 id="2-进程通信的分类"><a href="#2-进程通信的分类" class="headerlink" title="2.进程通信的分类"></a>2.进程通信的分类</h1><h2 id="2-1-管道"><a href="#2-1-管道" class="headerlink" title="2.1 管道"></a>2.1 管道</h2><ul>
 <li>我们把从一个进程连接到另一个进程的一个数据流称为一个“管道”<h3 id="2-1-1-匿名管道"><a href="#2-1-1-匿名管道" class="headerlink" title="2.1.1 匿名管道"></a>2.1.1 匿名管道</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br></pre></td></tr></table></figure>
 
 </li>
@@ -540,11 +544,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">

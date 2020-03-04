@@ -60,7 +60,7 @@
 			</ul>
 		</nav>
 		<nav>
-		总文章数: 26
+		总文章数: 27
 		</nav>
 		总字数: <span class="post-count">27.1k</span>
 		<nav class="header-smart-menu">
@@ -151,6 +151,148 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-进程间通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/28/进程间通信/">进程间通信</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/28/进程间通信/" class="archive-article-date">
+  	<time datetime="2019-12-28T15:38:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-28</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：1.5k字 | 预计阅读时长：6分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-什么需要进程间通信？"><a href="#1-什么需要进程间通信？" class="headerlink" title="1. 什么需要进程间通信？"></a>1. 什么需要进程间通信？</h1><ul>
+<li>数据传输：一个进程需要将它的数据发送给另一个进程 </li>
+<li>资源共享：多个进程之间共享同样的资源。 </li>
+<li>通知事件：一个进程需要向另一个或一组进程发送消息，通知它（它们）发生了某种事件（如进程终止 时要通知父进程）。 </li>
+<li>进程控制：有些进程希望完全控制另一个进程的执行（如Debug进程），此时控制进程希望能够拦截另 一个进程的所有陷入和异常，并能够及时知道它的状态改变。<h1 id="2-进程通信的分类"><a href="#2-进程通信的分类" class="headerlink" title="2.进程通信的分类"></a>2.进程通信的分类</h1><h2 id="2-1-管道"><a href="#2-1-管道" class="headerlink" title="2.1 管道"></a>2.1 管道</h2></li>
+<li>我们把从一个进程连接到另一个进程的一个数据流称为一个“管道”<h3 id="2-1-1-匿名管道"><a href="#2-1-1-匿名管道" class="headerlink" title="2.1.1 匿名管道"></a>2.1.1 匿名管道</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建管道</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pipe</span><span class="params">(<span class="keyword">int</span> fd[<span class="number">2</span>])</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>fd:文件描述符数组，其中fd[0]表示读端，fd[1]表示写端<br>返回值：成功返回0，失败返回错误代码。<br>如下demo我们可以体会下匿名管道的操作特性</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pipefd[<span class="number">2</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> ret = pipe(pipefd);</span><br><span class="line">    <span class="keyword">int</span> pid = fork();</span><br><span class="line">    <span class="keyword">if</span>(ret &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"pipe error"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(pid &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"fork error"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">char</span> buff[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> ret = read(pipefd[<span class="number">0</span>],buff,<span class="number">1023</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"buff:[%s] - [%d]\n"</span>,buff,ret);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">char</span> *ptr = <span class="string">"hello friend ~~"</span>;</span><br><span class="line">        write(pipefd[<span class="number">1</span>],ptr,<span class="built_in">strlen</span>(ptr));</span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"-----------%d\n"</span>,getpid());</span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们看到父进程通过管道写端将信息传给子进程，子进程通过读端拿到消息，那么管道的读写规则是什么样的呢？</p>
+<p><strong>管道读写规则：</strong></p>
+<ul>
+<li>当没有数据可读时<br>O_NONBLOCK disable：read调用阻塞，即进程暂停执行，一直等到有数据来到为止。<br>O_NONBLOCK enable：read调用返回-1，errno值为EAGAIN。</li>
+<li>当管道满时<br>O_NONBLOCK disable： write调用阻塞，直到有进程读走数据。<br>O_NONBLOCK enable：调用返回-1，errno值为EAGAIN。</li>
+<li>如果所有管道写端对应的文件描述符被关闭，则read返回0 </li>
+<li>如果所有管道读端对应的文件描述符被关闭，则write操作会产生信号SIGPIPE,进而可能导致write进程 退出 </li>
+</ul>
+<h3 id="2-1-2-命名管道"><a href="#2-1-2-命名管道" class="headerlink" title="2.1.2 命名管道"></a>2.1.2 命名管道</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//创建命名管道</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mkfifo</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename,<span class="keyword">mode_t</span> mode)</span></span>;</span><br><span class="line">    <span class="comment">//filename文件名，mode对该文件的权限</span></span><br></pre></td></tr></table></figure>
+
+<p>我们通过命名管道实现一个简单的通信来体会命名管道的操作特性</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//write</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/sdt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *file = <span class="string">"./test.txt"</span>;</span><br><span class="line">    <span class="keyword">int</span> ret = mkfifo(file,<span class="number">0664</span>);</span><br><span class="line">    <span class="keyword">if</span>(ret &lt; <span class="number">0</span> &amp;&amp; errno != EEXIST)&#123;</span><br><span class="line">        </span><br><span class="line">        perror(<span class="string">"mkfifo error"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> fd = open(file,O_WRONLY);</span><br><span class="line">    <span class="keyword">if</span>(fd &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"open error"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span> buff[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        buff[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        fflush(<span class="built_in">stdout</span>);</span><br><span class="line">        <span class="keyword">ssize_t</span> s = read(<span class="number">0</span>,buff,<span class="keyword">sizeof</span>(buff) - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(s &gt; <span class="number">0</span>)&#123;</span><br><span class="line">           buff[s] = <span class="number">0</span>;</span><br><span class="line">           write(fd,buff,<span class="built_in">strlen</span>(buff));</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(s &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">            perror(<span class="string">"read error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    close(fd);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>读端：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    umask(<span class="number">0</span>); </span><br><span class="line">    <span class="keyword">char</span> *file = <span class="string">"./test.txt"</span>;</span><br><span class="line">    <span class="keyword">if</span>(mkfifo(file,<span class="number">0664</span>) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"mkfifo error"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> fd = open(file,O_RDONLY);</span><br><span class="line">    <span class="keyword">if</span>(fd &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"open fifo"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span> buff[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        buff[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"-----\n"</span>);</span><br><span class="line">        <span class="keyword">ssize_t</span> s = read(fd,buff,<span class="keyword">sizeof</span>(buff) - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(s &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            buff[s - <span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"it say--- %s\n"</span>,buff);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(s == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"exit\n"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            perror(<span class="string">"read error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    close(fd);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>来看效果：<br><img src="https://img-blog.csdnimg.cn/2020021517293062.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200215173006197.png" alt="在这里插入图片描述"></p>
+<p>通过上面的demo演示我们其实可以看出匿名管道与命名管道的区别</p>
+<ul>
+<li>匿名管道直接用pipe创建打开</li>
+<li>命名管道用mkfifo创建后，还必须用open打开</li>
+<li>匿名管道使用进程有“血缘关系”，而命名管道不必。</li>
+</ul>
+<h2 id="2-2-共享内存"><a href="#2-2-共享内存" class="headerlink" title="2.2 共享内存"></a>2.2 共享内存</h2><p>共享内存区是最快的IPC形式。<br>共享内存相关内存函数：<br>1.创建</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">shmget</span><span class="params">(<span class="keyword">key_t</span> key, <span class="keyword">size_t</span> size, <span class="keyword">int</span> shmflg)</span></span>;</span><br><span class="line">参数:key --- 这个内存段名字</span><br><span class="line">    size --- 共享内存的大小</span><br><span class="line">    shmflg --- 对于内存的操作权限</span><br><span class="line">返回值： ：成功返回一个非负整数，即该共享内存段的标识码；失败返回<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>连接</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">将共享内存段连接到进程地址空间</span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">shmat</span><span class="params">(<span class="keyword">int</span> shmid, <span class="keyword">const</span> <span class="keyword">void</span> *shmaddr, <span class="keyword">int</span> shmflg)</span></span>;</span><br><span class="line">参数：shmid --- 共享内存标识   </span><br><span class="line"> 	shmaddr --- 指定连接的地址    </span><br><span class="line"> 	shmflg --- 它的两个可能取值是SHM_RND和SHM_RDONLY </span><br><span class="line">返回值：成功返回一个指针，指向共享内存第一个节，失败返回<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>脱离</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将共享内存段与当前进程脱离</span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">shmdt</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *shmaddr)</span></span>; </span><br><span class="line"> 参数：shmaddr --- 由shmat所返回的指针 </span><br><span class="line"> 返回值：成功返回<span class="number">0</span>；失败返回<span class="number">-1</span> </span><br><span class="line"> 注意：将共享内存段与当前进程脱离不等于删除共享内存段</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>控制</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用于控制共享内存</span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">shmctl</span><span class="params">(<span class="keyword">int</span> shmid, <span class="keyword">int</span> cmd, struct shmid_ds *buf)</span></span>;</span><br><span class="line"> 参数：shmid --- 由shmget返回的共享内存标识码  </span><br><span class="line">      cmd --- 将要采取的动作（有三个可取值）</span><br><span class="line">      buf --- 指向一个保存着共享内存的模式状态和访问权限的数据结构</span><br><span class="line"> 返回值：成功返回<span class="number">0</span>,失败返回<span class="number">-1</span>。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="2-3-消息队列"><a href="#2-3-消息队列" class="headerlink" title="2.3 消息队列"></a>2.3 消息队列</h1><ul>
+<li>消息队列提供了一个从一个进程向另外一个进程发送一块数据的方法 </li>
+<li>每个数据块都被认为是有一个类型，接收者进程接收的数据块可以有不同的类型值</li>
+<li>PC资源必须删除，否则不会自动清除，除非重启，所以system V IPC资源的生命周期随内核</li>
+</ul>
+<h1 id="2-4-信号量"><a href="#2-4-信号量" class="headerlink" title="2.4 信号量"></a>2.4 信号量</h1><p>内核中的计数器：<br>若技术 &gt; 0则表示有资源，可以获取； &lt;= 0表示没有资源，则进入等待状态。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">进程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/28/进程间通信/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-list的实现及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -916,90 +1058,6 @@
 
 
   
-    <article id="post-C-类与对象-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/31/C-类与对象-二/">C++类与对象(二)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/31/C-类与对象-二/" class="archive-article-date">
-  	<time datetime="2019-08-31T07:58:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：996字 | 预计阅读时长：4分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-构造函数"><a href="#1-构造函数" class="headerlink" title="1.构造函数"></a>1.构造函数</h2><ul>
-<li>名字与类名相同，创建类类型时编译器自动调用</li>
-<li>无返回值</li>
-<li>可以重载</li>
-<li>本质不是开辟空间创建对象，而是初始化对象</li>
-<li>如果未定义构造函数，编译器会自动生成默认的构造函数</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/31/C-类与对象-二/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1101,11 +1159,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">

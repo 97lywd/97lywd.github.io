@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>多态 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.多态的条件 调用函数的对象必须是指针或者引用 被调用函数必须是虚函数，且完成了虚函数  那么什么是虚函数?虚函数：在类的成员函数前面加上virtual关键字虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。  虚函数重写的例外：协变重写的虚函数返回值可以不同，但是必须分别是基类指针和派生类指针或者引用。 虚函数的作用">
+  <meta name="description" content="1.多态的条件 调用函数的对象必须是指针或者引用 被调用函数必须是虚函数，且完成了虚函数  那么什么是虚函数?虚函数：在类的成员函数前面加上virtual关键字虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多态">
 <meta property="og:url" content="http://yoursite.com/2020/02/21/多态/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="1.多态的条件 调用函数的对象必须是指针或者引用 被调用函数必须是虚函数，且完成了虚函数  那么什么是虚函数?虚函数：在类的成员函数前面加上virtual关键字虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。  虚函数重写的例外：协变重写的虚函数返回值可以不同，但是必须分别是基类指针和派生类指针或者引用。 虚函数的作用">
+<meta property="og:description" content="1.多态的条件 调用函数的对象必须是指针或者引用 被调用函数必须是虚函数，且完成了虚函数  那么什么是虚函数?虚函数：在类的成员函数前面加上virtual关键字虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200204165827743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-02-21T12:24:27.448Z">
+<meta property="og:updated_time" content="2020-03-04T13:21:27.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多态">
-<meta name="twitter:description" content="1.多态的条件 调用函数的对象必须是指针或者引用 被调用函数必须是虚函数，且完成了虚函数  那么什么是虚函数?虚函数：在类的成员函数前面加上virtual关键字虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。  虚函数重写的例外：协变重写的虚函数返回值可以不同，但是必须分别是基类指针和派生类指针或者引用。 虚函数的作用">
+<meta name="twitter:description" content="1.多态的条件 调用函数的对象必须是指针或者引用 被调用函数必须是虚函数，且完成了虚函数  那么什么是虚函数?虚函数：在类的成员函数前面加上virtual关键字虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200204165827743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
@@ -67,7 +67,7 @@
 			</ul>
 		</nav>
 		<nav>
-		总文章数: 26
+		总文章数: 27
 		</nav>
 		总字数: <span class="post-count">27.1k</span>
 		<nav class="header-smart-menu">
@@ -186,6 +186,8 @@
 <li>被调用函数必须是虚函数，且完成了虚函数</li>
 </ul>
 <p><strong>那么什么是虚函数?</strong><br>虚函数：在类的成员函数前面加上virtual关键字<br>虚函数的重写：派生类中有一个跟基类函数名、参数、返回值都相同的虚函数，我们就称派生类虚函数重写了基类的虚函数，也叫虚函数的覆盖。</p>
+<a id="more"></a>
+
 <ul>
 <li>虚函数重写的例外：协变<br>重写的虚函数返回值可以不同，但是必须分别是基类指针和派生类指针或者引用。</li>
 <li>虚函数的作用：使用基类指针调用任一派生类对象时，基类指针调用其虚成员函数，则会调用其真正的指向的成员函数。如果没有虚函数，则基类指针不管调用哪个派生类对象，调用时都会调用基类中定义的那个函数。</li>
@@ -513,11 +515,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">

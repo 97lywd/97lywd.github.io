@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | </title>
+  <title>读写锁与自旋锁 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/2/index.html">
+  <meta name="description" content="1.读写锁在多线程中，修改公共数据的机会比较少，相比改写，读取数据的机会更大，如果单纯的加锁会大大降低程序效率，所以我们需要读写锁，读写锁的特点是“写独占，读共享，读锁优先级高。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读写锁与自旋锁">
+<meta property="og:url" content="http://yoursite.com/2020/03/05/读写锁与自旋锁/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="1.读写锁在多线程中，修改公共数据的机会比较少，相比改写，读取数据的机会更大，如果单纯的加锁会大大降低程序效率，所以我们需要读写锁，读写锁的特点是“写独占，读共享，读锁优先级高。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-05T13:23:00.683Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="读写锁与自旋锁">
+<meta name="twitter:description" content="1.读写锁在多线程中，修改公共数据的机会比较少，相比改写，读取数据的机会更大，如果单纯的加锁会大大降低程序效率，所以我们需要读写锁，读写锁的特点是“写独占，读共享，读锁优先级高。">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -150,74 +155,93 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-读写锁与自旋锁" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/31/C-类与对象-二/" class="archive-article-date">
-  	<time datetime="2019-08-31T07:58:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/31/C-类与对象-二/">C++类与对象(二)</a>
+    <h1 class="article-title" itemprop="name">
+      读写锁与自旋锁
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/29/Linux下常见命令以及对权限的理解/" class="archive-article-date">
-  	<time datetime="2019-08-29T13:49:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
+        
+        <a href="/2020/03/05/读写锁与自旋锁/" class="archive-article-date">
+  	<time datetime="2020-03-05T13:21:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/29/Linux下常见命令以及对权限的理解/">Linux下常见命令以及对权限的理解</a>
-    </h1>
-  
+        
+      </header>
 
-        <div class="article-info info-on-right">
-          
+      
+      <div align="center" class="post-count">
+      字数：773字 | 预计阅读时长：3分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-读写锁"><a href="#1-读写锁" class="headerlink" title="1.读写锁"></a>1.读写锁</h1><p>在多线程中，修改公共数据的机会比较少，相比改写，读取数据的机会更大，如果单纯的加锁<br>会大大降低程序效率，所以我们需要读写锁，读写锁的特点是“写独占，读共享，读锁优先级高。</p>
+<a id="more"></a>
+
+<h2 id="1-1-Linux下读写锁的接口"><a href="#1-1-Linux下读写锁的接口" class="headerlink" title="1.1 Linux下读写锁的接口"></a>1.1 Linux下读写锁的接口</h2><h3 id="1-1-1-设置读写优先"><a href="#1-1-1-设置读写优先" class="headerlink" title="1.1.1 设置读写优先"></a>1.1.1 设置读写优先</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_rwlockattr_setkind_np</span><span class="params">(<span class="keyword">pthread_rwlockattr_t</span> *attr, <span class="keyword">int</span> pref)</span></span>; </span><br><span class="line"><span class="comment">/* pref 共有 3 种选择 </span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">PTHREAD_RWLOCK_PREFER_READER_NP (默认设置) 读者优先，可能会导致写者饥饿情况 </span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">PTHREAD_RWLOCK_PREFER_WRITER_NP 写者优先，目前有 BUG，导致表现行为和   </span></span><br><span class="line"><span class="comment">PTHREAD_RWLOCK_PREFER_READER_NP 一致 </span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP 写者优先，但写者不能递归加锁 */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-2-初始化-销毁"><a href="#1-1-2-初始化-销毁" class="headerlink" title="1.1.2 初始化/销毁"></a>1.1.2 初始化/销毁</h3><p>初始化：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_rwlock_init</span><span class="params">(<span class="keyword">pthread_rwlock_t</span> *<span class="keyword">restrict</span> rwlock,</span></span></span><br><span class="line"><span class="function"><span class="params">									<span class="keyword">const</span> <span class="keyword">pthread_rwlockattr_t</span> *<span class="keyword">restrict</span> attr)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>销毁：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_rwlock_destroy</span><span class="params">(<span class="keyword">pthread_rwlock_t</span> *rwlock)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-3-加锁-解锁"><a href="#1-1-3-加锁-解锁" class="headerlink" title="1.1.3 加锁/解锁"></a>1.1.3 加锁/解锁</h3><p>加锁：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_rwlock_rdlock</span><span class="params">(<span class="keyword">pthread_rwlock_t</span> *rwlock)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_rwlock_wrlock</span><span class="params">(<span class="keyword">pthread_rwlock_t</span> *rwlock)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>解锁：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_rwlock_unlock</span><span class="params">(<span class="keyword">pthread_rwlock_t</span> *rwlock)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>用以下demo来体会读写锁的使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">volatile</span> <span class="keyword">int</span> ticket = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">pthread_rwlock_t</span> rwlock;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">reader</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *id = (<span class="keyword">char</span>*)arg;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        pthread_rwlock_rdlock(&amp;rwlock);</span><br><span class="line">        <span class="keyword">if</span>(ticket &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">            pthread_rwlock_unlock(&amp;rwlock);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; id &lt;&lt; <span class="string">"-----"</span> &lt;&lt; ticket &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        pthread_rwlock_unlock(&amp;rwlock);</span><br><span class="line">        usleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">writer</span><span class="params">(<span class="keyword">void</span> *arg)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *id = (<span class="keyword">char</span>*)arg;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        pthread_rwlock_wrlock(&amp;rwlock);</span><br><span class="line">        <span class="keyword">if</span>(ticket &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">            pthread_rwlock_unlock(&amp;rwlock);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; id &lt;&lt; <span class="string">"---"</span> &lt;&lt; --ticket &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        pthread_rwlock_unlock(&amp;rwlock);</span><br><span class="line">        usleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ThreadAttr</span>&#123;</span></span><br><span class="line">    <span class="keyword">pthread_t</span> tid;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> id;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">create_reader_id</span><span class="params">(<span class="built_in">std</span>::<span class="keyword">size_t</span> i)</span></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function"><span class="built_in">ostringstream</span> <span class="title">oss</span><span class="params">(<span class="string">"thread reader"</span>,<span class="built_in">std</span>::ios_base::ate)</span></span>;</span><br><span class="line">    oss &lt;&lt; i;</span><br><span class="line">    <span class="keyword">return</span> oss.str();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">create_writer_id</span><span class="params">(<span class="built_in">std</span>::<span class="keyword">size_t</span> i)</span></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function"><span class="built_in">ostringstream</span> <span class="title">oss</span><span class="params">(<span class="string">"thread writer"</span>,<span class="built_in">std</span>::ios_base::ate)</span></span>;</span><br><span class="line">    oss &lt;&lt; i;</span><br><span class="line">    <span class="keyword">return</span> oss.str();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_readers</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;ThreadAttr&gt; &amp;vec)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">std</span>::<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; vec.size(); ++i)&#123;</span><br><span class="line">        vec[i].id = create_reader_id(i);</span><br><span class="line">        pthread_create(&amp;vec[i].tid,<span class="literal">nullptr</span>,reader,(<span class="keyword">void</span> *)vec[i].id.c_str());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_writer</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;ThreadAttr&gt; &amp;vec)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">std</span>::<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; vec.size(); ++i)&#123;</span><br><span class="line">      vec[i].id = create_writer_id(i);</span><br><span class="line">      pthread_create(&amp;vec[i].tid,<span class="literal">nullptr</span>,reader,(<span class="keyword">void</span> *)vec[i].id.c_str());</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">join_threader</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;ThreadAttr&gt; <span class="keyword">const</span> &amp;vec)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;ThreadAttr&gt;::const_reverse_iterator it = vec.rbegin(); it != vec.rend(); ++it)&#123;</span><br><span class="line">        <span class="keyword">pthread_t</span> <span class="keyword">const</span> &amp;tid = it-&gt;tid;</span><br><span class="line">        pthread_join(tid,<span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_rwlock</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">pthread_rwlockattr_t</span> attr;</span><br><span class="line">    pthread_rwlockattr_init(&amp;attr);</span><br><span class="line">    pthread_rwlockattr_setkind_np(&amp;attr,PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP);</span><br><span class="line">    pthread_rwlock_init(&amp;rwlock,&amp;attr);</span><br><span class="line">    pthread_rwlockattr_destroy(&amp;attr);</span><br><span class="line">    pthread_rwlock_init(&amp;rwlock,<span class="literal">nullptr</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">std</span>::<span class="keyword">size_t</span> reader_nr = <span class="number">1000</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">std</span>::<span class="keyword">size_t</span> writer_nr = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;ThreadAttr&gt; readers(reader_nr);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;ThreadAttr&gt; writers(writer_nr);</span><br><span class="line">    init_rwlock();</span><br><span class="line">    init_readers(readers);</span><br><span class="line">    init_writer(writers);</span><br><span class="line">    join_threader(writers);</span><br><span class="line">    join_threader(readers);</span><br><span class="line">    pthread_rwlock_destroy(&amp;rwlock);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-自旋锁"><a href="#2-自旋锁" class="headerlink" title="2.自旋锁"></a>2.自旋锁</h1><p>自旋锁和互斥锁有一定的相似度，即任何时刻只允许一个持有者进入，但是如果资源被占用，互斥锁会进入休眠状态，而自旋锁会一直循环访问是否释放了锁。</p>
+<h2 id="2-1-Linux下自旋锁的接口"><a href="#2-1-Linux下自旋锁的接口" class="headerlink" title="2.1 Linux下自旋锁的接口"></a>2.1 Linux下自旋锁的接口</h2><h3 id="2-1-1-初始化-销毁"><a href="#2-1-1-初始化-销毁" class="headerlink" title="2.1.1 初始化/销毁"></a>2.1.1 初始化/销毁</h3><p>初始化：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_spin_init</span><span class="params">(<span class="keyword">pthread_spinlock_t</span> *lock, <span class="keyword">int</span> pshared)</span></span>;</span><br><span class="line">pshared：如果设置为PTHREAD_PROCESS_SHARED，那么初始化行为可以被其他进程的线程看见，</span><br><span class="line">		  如果设置为PTHREAD_PROCESS_PRIVATE则只能被同一进程中的线程看见；</span><br><span class="line">		  如果无参数，则默认后者。</span><br></pre></td></tr></table></figure>
+
+<p>销毁：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_spin_destroy</span><span class="params">(<span class="keyword">pthread_spinlock_t</span> *lock)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-2-加锁-解锁"><a href="#2-2-2-加锁-解锁" class="headerlink" title="2.2.2 加锁/解锁"></a>2.2.2 加锁/解锁</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_spin_lock</span><span class="params">(<span class="keyword">pthread_spinlock_t</span> *lock)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_spin_unlock</span><span class="params">(<span class="keyword">pthread_spinlock_t</span> *lock)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/aplipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -229,224 +253,148 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/05/读写锁与自旋锁/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/28/C-类与对象-一/" class="archive-article-date">
-  	<time datetime="2019-08-28T09:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/04/生产者与消费者模型/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">生产者与消费者模型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/28/C-类与对象-一/">c++类与对象(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-读写锁"><span class="toc-number">1.</span> <span class="toc-text">1.读写锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Linux下读写锁的接口"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Linux下读写锁的接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-设置读写优先"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 设置读写优先</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-初始化-销毁"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 初始化/销毁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-加锁-解锁"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3 加锁/解锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-自旋锁"><span class="toc-number">2.</span> <span class="toc-text">2.自旋锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-Linux下自旋锁的接口"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Linux下自旋锁的接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-初始化-销毁"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1 初始化/销毁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-加锁-解锁"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.2.2 加锁/解锁</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:19:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        </div>
-    	 
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="读写锁与自旋锁" data-title="读写锁与自旋锁" data-url="http://yoursite.com/2020/03/05/读写锁与自旋锁/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/25/动态规划-三-更为隐蔽的状态推断/">动态规划(三): 更为隐蔽的状态推断</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/25/动态规划-二-更为复杂的状态方程/" class="archive-article-date">
-  	<time datetime="2019-08-25T07:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/25/动态规划-二-更为复杂的状态方程/">动态规划(二): 更为复杂的状态方程</a>
-    </h1>
+  <div id="SOHUCS" sid="读写锁与自旋锁" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/" class="archive-article-date">
-  	<time datetime="2019-08-25T06:36:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/">动态规划(一)：从Fbionacci数列谈起</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/23/C-入门语法篇/" class="archive-article-date">
-  	<time datetime="2019-08-23T02:54:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/23/C-入门语法篇/">C++入门语法篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -470,8 +418,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

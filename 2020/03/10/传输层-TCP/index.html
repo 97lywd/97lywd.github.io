@@ -6,24 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>???(TCP??) | </title>
+  <title>传输层(TCP??) | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.???????1.1 ????????????????????????????????????????????????? 1.2 ?????????(Port)????????????????????;?TCP/IP???, ? “?IP”, “????”, “??IP”, “?????”, “???” ??????????????(linux?????netstat -n??); 1.2.1">
-<meta name="keywords" content="??">
+  <meta name="description" content="1.传输层相关概念1.1 传输层作用传输层负责端与端间的数据传输，即负责数据能够从发送端传输接收端。通过端口号，确定目的端。 1.2 端口号是什么端口号(Port)标识了一个主机上进行通信的不同的应用程序;在TCP/IP协议中, 用 “源IP”, “源端口号”, “目的IP”, “目的端口号”, “协议号” 这样一个五元组来标识一个通信(linux下可以通过netstat -n查看); 1.2.1">
+<meta name="keywords" content="网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="???(TCP??)">
+<meta property="og:title" content="传输层(TCP??)">
 <meta property="og:url" content="http://yoursite.com/2020/03/10/传输层-TCP/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="1.???????1.1 ????????????????????????????????????????????????? 1.2 ?????????(Port)????????????????????;?TCP/IP???, ? “?IP”, “????”, “??IP”, “?????”, “???” ??????????????(linux?????netstat -n??); 1.2.1">
+<meta property="og:description" content="1.传输层相关概念1.1 传输层作用传输层负责端与端间的数据传输，即负责数据能够从发送端传输接收端。通过端口号，确定目的端。 1.2 端口号是什么端口号(Port)标识了一个主机上进行通信的不同的应用程序;在TCP/IP协议中, 用 “源IP”, “源端口号”, “目的IP”, “目的端口号”, “协议号” 这样一个五元组来标识一个通信(linux下可以通过netstat -n查看); 1.2.1">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200224190209202.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200224191202658.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200225122948749.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200225123018779.png">
-<meta property="og:updated_time" content="2020-03-10T13:08:51.145Z">
+<meta property="og:updated_time" content="2020-03-10T13:24:21.865Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="???(TCP??)">
-<meta name="twitter:description" content="1.???????1.1 ????????????????????????????????????????????????? 1.2 ?????????(Port)????????????????????;?TCP/IP???, ? “?IP”, “????”, “??IP”, “?????”, “???” ??????????????(linux?????netstat -n??); 1.2.1">
+<meta name="twitter:title" content="传输层(TCP??)">
+<meta name="twitter:description" content="1.传输层相关概念1.1 传输层作用传输层负责端与端间的数据传输，即负责数据能够从发送端传输接收端。通过端口号，确定目的端。 1.2 端口号是什么端口号(Port)标识了一个主机上进行通信的不同的应用程序;在TCP/IP协议中, 用 “源IP”, “源端口号”, “目的IP”, “目的端口号”, “协议号” 这样一个五元组来标识一个通信(linux下可以通过netstat -n查看); 1.2.1">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200224190209202.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
@@ -72,7 +72,7 @@
 		<nav>
 		总文章数: 30
 		</nav>
-		总字数: <span class="post-count">31k</span>
+		总字数: <span class="post-count">32.2k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -167,7 +167,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ???(TCP??)
+      传输层(TCP??)
     </h1>
   
 
@@ -180,42 +180,42 @@
 
       
       <div align="center" class="post-count">
-      字数：110字 | 预计阅读时长：1分钟
+      字数：1.3k字 | 预计阅读时长：4分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1"><a href="#1" class="headerlink" title="1.???????"></a>1.???????</h1><h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1 ?????"></a>1.1 ?????</h2><p>????????????????????????????????????????????</p>
-<h2 id="1-2"><a href="#1-2" class="headerlink" title="1.2 ??????"></a>1.2 ??????</h2><p>???(Port)????????????????????;?TCP/IP???, ? “?IP”, “????”, “??IP”, “?????”, “???” ??????????????(linux?????netstat -n??);</p>
-<h3 id="1-2-1"><a href="#1-2-1" class="headerlink" title="1.2.1 ??????"></a>1.2.1 ??????</h3><ul>
-<li>22 - - - ssh???</li>
-<li>21 - - - ftp???</li>
-<li>23 - - - telnet???</li>
-<li>80 - - - http???</li>
-<li>443 - - -https???<br>??????????????</li>
+        <h1 id="1-传输层相关概念"><a href="#1-传输层相关概念" class="headerlink" title="1.传输层相关概念"></a>1.传输层相关概念</h1><h2 id="1-1-传输层作用"><a href="#1-1-传输层作用" class="headerlink" title="1.1 传输层作用"></a>1.1 传输层作用</h2><p>传输层负责端与端间的数据传输，即负责数据能够从发送端传输接收端。通过端口号，确定目的端。</p>
+<h2 id="1-2-端口号是什么"><a href="#1-2-端口号是什么" class="headerlink" title="1.2 端口号是什么"></a>1.2 端口号是什么</h2><p>端口号(Port)标识了一个主机上进行通信的不同的应用程序;在TCP/IP协议中, 用 “源IP”, “源端口号”, “目的IP”, “目的端口号”, “协议号” 这样一个五元组来标识一个通信(linux下可以通过netstat -n查看);</p>
+<h3 id="1-2-1-常见的端口号"><a href="#1-2-1-常见的端口号" class="headerlink" title="1.2.1 常见的端口号"></a>1.2.1 常见的端口号</h3><ul>
+<li>22 - - - ssh服务器</li>
+<li>21 - - - ftp服务器</li>
+<li>23 - - - telnet服务器</li>
+<li>80 - - - http服务器</li>
+<li>443 - - -https服务器<br>用如下命令即可查看这些端口：</li>
 </ul>
 <p><strong>cat /etc/services</strong></p>
-<h1 id="2-TCP"><a href="#2-TCP" class="headerlink" title="2. ??TCP??"></a>2. ??TCP??</h1><p>TCP????????????????????????????????????</p>
-<h2 id="2-1-TCP"><a href="#2-1-TCP" class="headerlink" title="2.1 TCP?????"></a>2.1 TCP?????</h2><h3 id="2-1-1"><a href="#2-1-1" class="headerlink" title="2.1.1 ??????"></a>2.1.1 ??????</h3><p>TCP????????????????????????ACK??????????????????????????????</p>
-<h3 id="2-1-2"><a href="#2-1-2" class="headerlink" title="2.1.2 ??????"></a>2.1.2 ??????</h3><hr>
-<p>???????A???B??????????????????????????B???????????????A????????????B?????????????</p>
-<p>????????ACK?????A??????????B?????????????TCP???????????????????????????TCP???????????????</p>
+<h1 id="2-认识TCP协议"><a href="#2-认识TCP协议" class="headerlink" title="2. 认识TCP协议"></a>2. 认识TCP协议</h1><p>TCP协议是传输层最常用的协议之一，它是面向字节流，可靠的，有连接的传输方式。</p>
+<h2 id="2-1-TCP的可靠机制"><a href="#2-1-TCP的可靠机制" class="headerlink" title="2.1 TCP的可靠机制"></a>2.1 TCP的可靠机制</h2><h3 id="2-1-1-确认应答机制"><a href="#2-1-1-确认应答机制" class="headerlink" title="2.1.1 确认应答机制"></a>2.1.1 确认应答机制</h3><p>TCP协议为每个字节数据都进行了编号，即序列号，每一个ACK都有相应的确认序列号，从而可以告诉发送者，已经收到哪些数据。</p>
+<h3 id="2-1-2-超时重传机制"><a href="#2-1-2-超时重传机制" class="headerlink" title="2.1.2 超时重传机制"></a>2.1.2 超时重传机制</h3><hr>
+<p>举个栗子：主机A向主机B发送了一组数据，但由于网络阻塞原因，数据无法到达主机B。而超时重传机制就是保证了如果A在特定时间间隔内没有收到B的确认回复，就会重新发送。</p>
+<p>但是，也有可能是ACK丢失，所以A收不到确认回复，所以B可能会收到大量重复的数据，TCP协议也保证了通过序列号去重。而前面我们提到的时间间隔，TCP协议会动态的计算最大间隔时间。</p>
 <hr>
-<h3 id="2-1-3"><a href="#2-1-3" class="headerlink" title="2.1.3 ??????"></a>2.1.3 ??????</h3><h4 id="2-1-3-1"><a href="#2-1-3-1" class="headerlink" title="2.1.3.1 ????"></a>2.1.3.1 ????</h4><p><img src="https://img-blog.csdnimg.cn/20200224190209202.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="?????????"></p>
-<p>???????????????????????????????????ACK+ACK??????SYN????ACK???????????????????</p>
-<h4 id="2-1-3-2"><a href="#2-1-3-2" class="headerlink" title="2.1.3.2 ????"></a>2.1.3.2 ????</h4><p><img src="https://img-blog.csdnimg.cn/20200224191202658.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="?????????"></p>
-<p>?????????FIN????????FIN_WAIT_1???????ACK????FIN_WAIT_2????????????FIN????????close???????TIME_WAIT????????MSL?close?<br>??????????CLOSE_WAIT??????????????????????</p>
-<h2 id="2-1-4"><a href="#2-1-4" class="headerlink" title="2.1.4 ??????"></a>2.1.4 ??????</h2><p>?????????????????????????????????????, ???????ACK, ????;?????ACK?, ????????, ???????????; ????; ????????????????, ???? ????? ???????????????; ??? ???????, ????????; ????, ???????????<br>?????????TCP???????<br><strong>?????ACK??????????</strong><br>?????????????ACK?????<br><strong>????????????</strong><br>??????????????????????ack????????????ack????????????????????????????ack???????????????????????????</p>
-<h2 id="2-1-5"><a href="#2-1-5" class="headerlink" title="2.1.5 ??????"></a>2.1.5 ??????</h2><ul>
-<li>?????????????????? TCP ???? “????” ??, ??ACK??????;?</li>
-<li>????????, ???????????</li>
-<li>????????????????, ???????????????????????</li>
-<li>????????????, ???????????;?</li>
-<li>??????????, ???????0; ???????????, ??????????????? ??, ???????????????</li>
+<h3 id="2-1-3-连接管理机制"><a href="#2-1-3-连接管理机制" class="headerlink" title="2.1.3 连接管理机制"></a>2.1.3 连接管理机制</h3><h4 id="2-1-3-1-三次握手"><a href="#2-1-3-1-三次握手" class="headerlink" title="2.1.3.1 三次握手"></a>2.1.3.1 三次握手</h4><p><img src="https://img-blog.csdnimg.cn/20200224190209202.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>客户端创建套接字，并发起请求，服务端绑定套接字，并进入监听状态，并发送ACK+ACK。客户端收到SYN后，回复ACK请求，此时服务端收到后，连接建立成功。</p>
+<h4 id="2-1-3-2-四次挥手"><a href="#2-1-3-2-四次挥手" class="headerlink" title="2.1.3.2 四次挥手"></a>2.1.3.2 四次挥手</h4><p><img src="https://img-blog.csdnimg.cn/20200224191202658.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>注意，客户端主动发FIN请求后，会先进入FIN_WAIT_1状态，随后收到ACK后，进入FIN_WAIT_2状态，随后再收到服务端的FIN请求后，不是直接close，而是会先进入TIME_WAIT状态，在等待两个MSL后close。<br>注意，如果出现大量的CLOSE_WAIT状态，那么就是服务器没有完成正确的四次挥手。</p>
+<h2 id="2-1-4-滑动窗口机制"><a href="#2-1-4-滑动窗口机制" class="headerlink" title="2.1.4 滑动窗口机制"></a>2.1.4 滑动窗口机制</h2><p>窗口大小指的是无需等待确认应答而可以继续发送数据的大值，发送前四个段的时候, 不需要等待任何ACK, 直接发送;收到第一个ACK后, 滑动窗口向后移动, 继续发送第五个段的数据; 依次类推; 操作系统内核为了维护这个滑动窗口, 需要开辟 发送缓冲区 来记录当前还有哪些数据没有应答; 只有确 认应答过的数据, 才能从缓冲区删掉; 窗口越大, 则网络的吞吐率就越高。<br>如果出现丢包现象，TCP也有重传机制。<br><strong>假设丢失了ACK，但是数据已经抵达：</strong><br>这种情况下，可以通过后续的ACK进行确认。<br><strong>假设丢失的是整个数据包：</strong><br>当丢失某一段报文后，客户端会向服务端不停发送ack，如果服务端连续三次收到ack，那么就会重新发送这段报文，客户端收到这段数据后，返回的ack就是窗口的左边的序列号，这样的机制，也被称之为快重传。</p>
+<h2 id="2-1-5-流量控制机制"><a href="#2-1-5-流量控制机制" class="headerlink" title="2.1.5 流量控制机制"></a>2.1.5 流量控制机制</h2><ul>
+<li>接收端将自己可以接收的缓冲区大小放入 TCP 首部中的 “窗口大小” 字段, 通过ACK端通知发送端;。</li>
+<li>窗口大小字段越大, 说明网络的吞吐量越高。</li>
+<li>接收端一旦发现自己的缓冲区快满了, 就会将窗口大小设置成一个更小的值通知给发送端。</li>
+<li>发送端接受到这个窗口之后, 就会减慢自己的发送速度;。</li>
+<li>如果接收端缓冲区满了, 就会将窗口置为0; 这时发送方不再发送数据, 但是需要定期发送一个窗口探测数 据段, 使接收端把窗口大小告诉发送端。</li>
 </ul>
-<h2 id="2-1-5-1"><a href="#2-1-5-1" class="headerlink" title="2.1.5 ??????"></a>2.1.5 ??????</h2><p>TCP?? ??? ??, ???????, ???, ???????????, ??????????????; ?????????????? ???????, ?????????1; ??????ACK??, ?????1; ??????????, ?????????????????????, ????????????? ??</p>
-<h1 id="3-tcp"><a href="#3-tcp" class="headerlink" title="3.???????tcp??"></a>3.???????tcp??</h1><h2 id="3-1"><a href="#3-1" class="headerlink" title="3.1 ????"></a>3.1 ????</h2><p><img src="https://img-blog.csdnimg.cn/20200225122948749.png" alt="?????????"></p>
-<h2 id="3-2"><a href="#3-2" class="headerlink" title="3.2 ????"></a>3.2 ????</h2><p><img src="https://img-blog.csdnimg.cn/20200225123018779.png" alt="?????????"></p>
-<p>??????????????ack?fin?????????????</p>
+<h2 id="2-1-5-拥塞控制机制"><a href="#2-1-5-拥塞控制机制" class="headerlink" title="2.1.5 拥塞控制机制"></a>2.1.5 拥塞控制机制</h2><p>TCP引入 慢启动 机制, 先发少量的数据, 探探路, 摸清当前的网络拥堵状态, 再决定按照多大的速度传输数据; 此处引入一个概念程为拥塞窗口 发送开始的时候, 定义拥塞窗口大小为1; 每次收到一个ACK应答, 拥塞窗口加1; 每次发送数据包的时候, 将拥塞窗口和接收端主机反馈的窗口大小做比较, 取较小的值作为实际发送的窗 口。</p>
+<h1 id="3-用抓包工具查看tcp连接"><a href="#3-用抓包工具查看tcp连接" class="headerlink" title="3.用抓包工具查看tcp连接"></a>3.用抓包工具查看tcp连接</h1><h2 id="3-1-三次握手"><a href="#3-1-三次握手" class="headerlink" title="3.1 三次握手"></a>3.1 三次握手</h2><p><img src="https://img-blog.csdnimg.cn/20200225122948749.png" alt="在这里插入图片描述"></p>
+<h2 id="3-2-四次挥手"><a href="#3-2-四次挥手" class="headerlink" title="3.2 四次挥手"></a>3.2 四次挥手</h2><p><img src="https://img-blog.csdnimg.cn/20200225123018779.png" alt="在这里插入图片描述"></p>
+<p>注意，因为捎带应带机制，这里ack，fin一次发送，形成了三次挥手。</p>
 
       
 
@@ -255,7 +255,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">??</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
         		</li>
       		
 		</ul>
@@ -354,7 +354,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1.???????</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 ?????</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 ??????</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 ??????</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-TCP"><span class="toc-number">2.</span> <span class="toc-text">2. ??TCP??</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-TCP"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 TCP?????</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1 ??????</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2 ??????</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3 ??????</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-1"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">2.1.3.1 ????</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-2"><span class="toc-number">2.1.3.2.</span> <span class="toc-text">2.1.3.2 ????</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-4"><span class="toc-number">2.2.</span> <span class="toc-text">2.1.4 ??????</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-5"><span class="toc-number">2.3.</span> <span class="toc-text">2.1.5 ??????</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-5-1"><span class="toc-number">2.4.</span> <span class="toc-text">2.1.5 ??????</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-tcp"><span class="toc-number">3.</span> <span class="toc-text">3.???????tcp??</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 ????</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 ????</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-传输层相关概念"><span class="toc-number">1.</span> <span class="toc-text">1.传输层相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-传输层作用"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 传输层作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-端口号是什么"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 端口号是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-常见的端口号"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 常见的端口号</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-认识TCP协议"><span class="toc-number">2.</span> <span class="toc-text">2. 认识TCP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-TCP的可靠机制"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 TCP的可靠机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-确认应答机制"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1 确认应答机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-超时重传机制"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2 超时重传机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-连接管理机制"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3 连接管理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-1-三次握手"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">2.1.3.1 三次握手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-2-四次挥手"><span class="toc-number">2.1.3.2.</span> <span class="toc-text">2.1.3.2 四次挥手</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-4-滑动窗口机制"><span class="toc-number">2.2.</span> <span class="toc-text">2.1.4 滑动窗口机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-5-流量控制机制"><span class="toc-number">2.3.</span> <span class="toc-text">2.1.5 流量控制机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-5-拥塞控制机制"><span class="toc-number">2.4.</span> <span class="toc-text">2.1.5 拥塞控制机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-用抓包工具查看tcp连接"><span class="toc-number">3.</span> <span class="toc-text">3.用抓包工具查看tcp连接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-三次握手"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-四次挥手"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 四次挥手</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -368,7 +368,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="传输层-TCP" data-title="???(TCP??)" data-url="http://yoursite.com/2020/03/10/传输层-TCP/"></div>
+	<div class="ds-thread" data-thread-key="传输层-TCP" data-title="传输层(TCP??)" data-url="http://yoursite.com/2020/03/10/传输层-TCP/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -496,15 +496,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">??</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,11 +504,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">

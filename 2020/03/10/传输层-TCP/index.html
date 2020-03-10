@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>传输层(TCP??) | </title>
+  <title>传输层(TCP协议) | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1.传输层相关概念1.1 传输层作用传输层负责端与端间的数据传输，即负责数据能够从发送端传输接收端。通过端口号，确定目的端。 1.2 端口号是什么端口号(Port)标识了一个主机上进行通信的不同的应用程序;在TCP/IP协议中, 用 “源IP”, “源端口号”, “目的IP”, “目的端口号”, “协议号” 这样一个五元组来标识一个通信(linux下可以通过netstat -n查看); 1.2.1">
 <meta name="keywords" content="网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="传输层(TCP??)">
+<meta property="og:title" content="传输层(TCP协议)">
 <meta property="og:url" content="http://yoursite.com/2020/03/10/传输层-TCP/index.html">
 <meta property="og:site_name">
 <meta property="og:description" content="1.传输层相关概念1.1 传输层作用传输层负责端与端间的数据传输，即负责数据能够从发送端传输接收端。通过端口号，确定目的端。 1.2 端口号是什么端口号(Port)标识了一个主机上进行通信的不同的应用程序;在TCP/IP协议中, 用 “源IP”, “源端口号”, “目的IP”, “目的端口号”, “协议号” 这样一个五元组来标识一个通信(linux下可以通过netstat -n查看); 1.2.1">
@@ -20,9 +20,9 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200224191202658.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200225122948749.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200225123018779.png">
-<meta property="og:updated_time" content="2020-03-10T13:24:21.865Z">
+<meta property="og:updated_time" content="2020-03-10T13:28:57.467Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="传输层(TCP??)">
+<meta name="twitter:title" content="传输层(TCP协议)">
 <meta name="twitter:description" content="1.传输层相关概念1.1 传输层作用传输层负责端与端间的数据传输，即负责数据能够从发送端传输接收端。通过端口号，确定目的端。 1.2 端口号是什么端口号(Port)标识了一个主机上进行通信的不同的应用程序;在TCP/IP协议中, 用 “源IP”, “源端口号”, “目的IP”, “目的端口号”, “协议号” 这样一个五元组来标识一个通信(linux下可以通过netstat -n查看); 1.2.1">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200224190209202.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
   
@@ -167,7 +167,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      传输层(TCP??)
+      传输层(TCP协议)
     </h1>
   
 
@@ -194,6 +194,7 @@
 <li>443 - - -https服务器<br>用如下命令即可查看这些端口：</li>
 </ul>
 <p><strong>cat /etc/services</strong></p>
+<a id="more"></a>
 <h1 id="2-认识TCP协议"><a href="#2-认识TCP协议" class="headerlink" title="2. 认识TCP协议"></a>2. 认识TCP协议</h1><p>TCP协议是传输层最常用的协议之一，它是面向字节流，可靠的，有连接的传输方式。</p>
 <h2 id="2-1-TCP的可靠机制"><a href="#2-1-TCP的可靠机制" class="headerlink" title="2.1 TCP的可靠机制"></a>2.1 TCP的可靠机制</h2><h3 id="2-1-1-确认应答机制"><a href="#2-1-1-确认应答机制" class="headerlink" title="2.1.1 确认应答机制"></a>2.1.1 确认应答机制</h3><p>TCP协议为每个字节数据都进行了编号，即序列号，每一个ACK都有相应的确认序列号，从而可以告诉发送者，已经收到哪些数据。</p>
 <h3 id="2-1-2-超时重传机制"><a href="#2-1-2-超时重传机制" class="headerlink" title="2.1.2 超时重传机制"></a>2.1.2 超时重传机制</h3><hr>
@@ -368,7 +369,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="传输层-TCP" data-title="传输层(TCP??)" data-url="http://yoursite.com/2020/03/10/传输层-TCP/"></div>
+	<div class="ds-thread" data-thread-key="传输层-TCP" data-title="传输层(TCP协议)" data-url="http://yoursite.com/2020/03/10/传输层-TCP/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -496,11 +497,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,11 +509,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">

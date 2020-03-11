@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/12 | </title>
+  <title>传输层(UDP协议) | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/archives/2019/12/index.html">
+  <meta name="description" content="1.UDP协议格式  16位UDP长度, 表示整个数据报(UDP首部+UDP数据)的大长度。 如果校验和出错, 就会直接丢弃。">
+<meta name="keywords" content="网络,socket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="传输层(UDP协议)">
+<meta property="og:url" content="http://yoursite.com/2020/03/11/传输层-UDP协议/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="1.UDP协议格式  16位UDP长度, 表示整个数据报(UDP首部+UDP数据)的大长度。 如果校验和出错, 就会直接丢弃。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200228180513117.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-03-11T13:09:02.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="传输层(UDP协议)">
+<meta name="twitter:description" content="1.UDP协议格式  16位UDP长度, 表示整个数据报(UDP首部+UDP数据)的大长度。 如果校验和出错, 就会直接丢弃。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200228180513117.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -150,64 +157,245 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-传输层-UDP协议" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/28/进程间通信/" class="archive-article-date">
-  	<time datetime="2019-12-28T15:38:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/28/进程间通信/">进程间通信</a>
+    <h1 class="article-title" itemprop="name">
+      传输层(UDP协议)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/03/11/传输层-UDP协议/" class="archive-article-date">
+  	<time datetime="2020-03-11T13:08:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：1k字 | 预计阅读时长：5分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-UDP协议格式"><a href="#1-UDP协议格式" class="headerlink" title="1.UDP协议格式"></a>1.UDP协议格式</h1><p><img src="https://img-blog.csdnimg.cn/20200228180513117.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU0OTI1OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>16位UDP长度, 表示整个数据报(UDP首部+UDP数据)的大长度。</li>
+<li>如果校验和出错, 就会直接丢弃。    <a id="more"></a>
+<h1 id="2-UDP协议的特点"><a href="#2-UDP协议的特点" class="headerlink" title="2.UDP协议的特点"></a>2.UDP协议的特点</h1>面向数据报，无连接，不可靠的通信协议。</li>
+<li>无连接: 知道对端的IP和端口号就直接进行传输, 不需要建立连接。</li>
+<li>不可靠: 没有确认机制, 没有重传机制; 如果因为网络故障该段无法发到对方, UDP协议层也不会给应用层 返回任何错误信息。</li>
+<li>面向数据报: 不能够灵活的控制读写数据的次数和数量。</li>
+</ul>
+<h1 id="3-UDP的使用事项"><a href="#3-UDP的使用事项" class="headerlink" title="3. UDP的使用事项"></a>3. UDP的使用事项</h1><p>我们注意到, UDP协议首部中有一个16位的大长度. 也就是说一个UDP能传输的数据大长度是64K(包含UDP首 部).  然而64K在当今的互联网环境下, 是一个非常小的数字. 如果我们需要传输的数据超过64K, 就需要在应用层手动的分包, 多次发送, 并在接收端手动拼装;。</p>
+<h1 id="4-基于UDP的应用层协议"><a href="#4-基于UDP的应用层协议" class="headerlink" title="4.基于UDP的应用层协议"></a>4.基于UDP的应用层协议</h1><ul>
+<li>NFS: 网络文件系统 </li>
+<li>TFTP: 简单文件传输协议 </li>
+<li>DHCP: 动态主机配置协议 </li>
+<li>BOOTP: 启动协议(用于无盘设备启动) </li>
+<li>DNS: 域名解析协议 </li>
+</ul>
+<h1 id="5-基于UDP协议的通信编程"><a href="#5-基于UDP协议的通信编程" class="headerlink" title="5.基于UDP协议的通信编程"></a>5.基于UDP协议的通信编程</h1><p>服务端：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(argc != <span class="number">3</span>)&#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Usage: ./main 192.168.116.129 9000\n"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//创建套接字</span></span><br><span class="line">  <span class="keyword">int</span> sockfd = socket(AF_INET,SOCK_DGRAM,IPPROTO_UDP);</span><br><span class="line">  <span class="keyword">if</span>(sockfd &lt; <span class="number">0</span>)&#123;</span><br><span class="line">      perror(<span class="string">"create error"</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">addr</span>;</span></span><br><span class="line">  addr.sin_family = AF_INET;</span><br><span class="line">  addr.sin_port = htons(atoi(argv[<span class="number">2</span>]));</span><br><span class="line">  addr.sin_addr.s_addr = inet_addr(<span class="string">"192.168.116.129"</span>);</span><br><span class="line">  <span class="comment">//绑定地址信息</span></span><br><span class="line">  <span class="keyword">socklen_t</span> len = <span class="keyword">sizeof</span>(struct sockaddr_in);</span><br><span class="line">  <span class="keyword">int</span> ret = bind(sockfd,(struct sockaddr*)&amp;addr,len);</span><br><span class="line">  <span class="keyword">if</span>(ret &lt; <span class="number">0</span>)&#123;</span><br><span class="line">      perror(<span class="string">"bind error"</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//接收信息</span></span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">char</span> buff[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">      <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">cliaddr</span>;</span></span><br><span class="line">      <span class="keyword">socklen_t</span> len = <span class="keyword">sizeof</span>(struct sockaddr_in);</span><br><span class="line">      <span class="keyword">int</span> ret = recvfrom(sockfd,buff,<span class="number">1023</span>,<span class="number">0</span>,(struct sockaddr*)&amp; cliaddr,&amp;len); <span class="comment">//0默认阻塞</span></span><br><span class="line">      <span class="keyword">if</span>(ret &lt; <span class="number">0</span>)&#123;</span><br><span class="line">          perror(<span class="string">"recvfrom error"</span>);</span><br><span class="line">          close(sockfd);</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"client say: %s\n"</span>,buff);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//发送信息</span></span><br><span class="line">      <span class="built_in">memset</span>(buff,<span class="number">0x00</span>,<span class="number">1024</span>);</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">"%s"</span>,buff);</span><br><span class="line">      ret = sendto(sockfd,buff,<span class="built_in">strlen</span>(buff),<span class="number">0</span>,(struct sockaddr*)&amp; cliaddr,len);</span><br><span class="line">      <span class="keyword">if</span>(ret &lt; <span class="number">0</span>)&#123;</span><br><span class="line">          perror(<span class="string">"sendto error"</span>);</span><br><span class="line">          close(sockfd);</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>客户端：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">include&lt;iostream&gt;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Udpsocket</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Udpsocket():_sockfd(<span class="number">-1</span>)&#123;</span><br><span class="line">        &#125;</span><br><span class="line">        ~Udpsocket()&#123;</span><br><span class="line">            Close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">Socket</span><span class="params">()</span></span>&#123;</span><br><span class="line">            _sockfd = socket(AF_INET,SOCK_DGRAM,IPPROTO_UDP);</span><br><span class="line">            <span class="keyword">if</span>(_sockfd &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"socket error\n"</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">Bind</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;ip,<span class="keyword">uint16_t</span> port)</span></span>&#123;</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">addr</span>;</span></span><br><span class="line">            addr.sin_family = AF_INET;</span><br><span class="line">            addr.sin_port = htons(port);</span><br><span class="line">            addr.sin_addr.s_addr = inet_addr(ip.c_str());</span><br><span class="line">            <span class="keyword">socklen_t</span> len = <span class="keyword">sizeof</span>(struct sockaddr_in);</span><br><span class="line">            <span class="keyword">int</span> ret = bind(_sockfd,(struct sockaddr*)&amp; addr,len);</span><br><span class="line">            <span class="keyword">if</span>(ret &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"bind error\n"</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">Recv</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp; buff,<span class="built_in">std</span>::<span class="built_in">string</span>&amp; ip, <span class="keyword">uint16_t</span>&amp; port)</span></span>&#123;</span><br><span class="line">            <span class="keyword">char</span> tmp[<span class="number">4096</span>];</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">peeraddr</span>;</span></span><br><span class="line">            <span class="keyword">socklen_t</span> len = <span class="keyword">sizeof</span>(struct sockaddr_in);</span><br><span class="line">            <span class="keyword">int</span> ret = recvfrom(_sockfd,tmp,<span class="number">4096</span>,<span class="number">0</span>,(struct sockaddr*)&amp; peeraddr,&amp;len);</span><br><span class="line">            <span class="keyword">if</span>(ret &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"recvfrom error\n"</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            buff.assign(tmp,ret);</span><br><span class="line">            port = ntohs(peeraddr.sin_port);</span><br><span class="line">            ip = inet_ntoa(peeraddr.sin_addr);</span><br><span class="line">            <span class="comment">// inet_ntoa 将网络字节序的整数ip地址转换为字符串ip地址</span></span><br><span class="line">            <span class="comment">// 返回缓冲区首地址，内部实现使用了静态成员变量</span></span><br><span class="line">            <span class="comment">// 非线程安全</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">Send</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> &amp;data,<span class="built_in">std</span>::<span class="built_in">string</span>&amp; ip, <span class="keyword">uint16_t</span> port)</span></span>&#123;</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">addr</span>;</span></span><br><span class="line">            addr.sin_family = AF_INET;</span><br><span class="line">            addr.sin_port = htons(port);</span><br><span class="line">            addr.sin_addr.s_addr = inet_addr(ip.c_str());</span><br><span class="line">            <span class="keyword">socklen_t</span> len = <span class="keyword">sizeof</span>(struct sockaddr_in);</span><br><span class="line">            <span class="keyword">int</span> ret = sendto(_sockfd,&amp;data[<span class="number">0</span>],data.size(),<span class="number">0</span>,(struct sockaddr*)&amp; addr,len);</span><br><span class="line">            <span class="keyword">if</span>(ret &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"sendto error\n"</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">Close</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(_sockfd &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">                close(_sockfd);</span><br><span class="line">                _sockfd = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> _sockfd;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHECK_RET(q) <span class="meta-keyword">if</span>((q) == false)&#123;return -1;&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(argc != <span class="number">3</span>)&#123;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"./udp_cli serverip serverport"</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> srv_ip = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">uint16_t</span> srv_port = atoi(argv[<span class="number">2</span>]);</span><br><span class="line">    Udpsocket sock;</span><br><span class="line">    CHECK_RET(sock.Socket());</span><br><span class="line">    CHECK_RET(sock.Bind(<span class="string">"192.168.116.129"</span>,<span class="number">8000</span>));</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> buff;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; buff;</span><br><span class="line">        CHECK_RET(sock.Send(buff,srv_ip,srv_port));</span><br><span class="line">        buff.clear();</span><br><span class="line">        CHECK_RET(sock.Recv(buff,srv_ip,srv_port));</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"server say:\n"</span> &lt;&lt; buff &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    CHECK_RET(sock.Close());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/aplipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">进程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">socket</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/11/传输层-UDP协议/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/03/10/传输层-TCP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">传输层(TCP协议)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-UDP协议格式"><span class="toc-number">1.</span> <span class="toc-text">1.UDP协议格式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-UDP协议的特点"><span class="toc-number">2.</span> <span class="toc-text">2.UDP协议的特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-UDP的使用事项"><span class="toc-number">3.</span> <span class="toc-text">3. UDP的使用事项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-基于UDP的应用层协议"><span class="toc-number">4.</span> <span class="toc-text">4.基于UDP的应用层协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-基于UDP协议的通信编程"><span class="toc-number">5.</span> <span class="toc-text">5.基于UDP协议的通信编程</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="传输层-UDP协议" data-title="传输层(UDP协议)" data-url="http://yoursite.com/2020/03/11/传输层-UDP协议/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="传输层-UDP协议" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -230,8 +418,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

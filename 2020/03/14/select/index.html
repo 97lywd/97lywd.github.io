@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++:动态内存管理 | </title>
+  <title>select | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.c语言中malloc/calloc/realloc的区别我们来看一下以下demo：">
-<meta name="keywords" content="C++">
+  <meta name="description" content="1. 同步通信与异步通信 同步：所谓同步，就是在发出一个调用时，在没有得到结果之前，该调用就不返回. 但是一旦调用返回，就得到返回值了; 换句话说，就是由调用者主动等待这个调用的结果。 异步：异步则是相反，调用在发出之后，这个调用就直接返回了，所以没有返回结果; 换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果; 而是在调用发出后，被调用者通过状态、通知来通知调用者，或通过回调函数处理这">
+<meta name="keywords" content="socket">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++:动态内存管理">
-<meta property="og:url" content="http://yoursite.com/2019/09/02/C-动态内存管理/index.html">
+<meta property="og:title" content="select">
+<meta property="og:url" content="http://yoursite.com/2020/03/14/select/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="一.c语言中malloc/calloc/realloc的区别我们来看一下以下demo：">
+<meta property="og:description" content="1. 同步通信与异步通信 同步：所谓同步，就是在发出一个调用时，在没有得到结果之前，该调用就不返回. 但是一旦调用返回，就得到返回值了; 换句话说，就是由调用者主动等待这个调用的结果。 异步：异步则是相反，调用在发出之后，这个调用就直接返回了，所以没有返回结果; 换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果; 而是在调用发出后，被调用者通过状态、通知来通知调用者，或通过回调函数处理这">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-02T15:55:56.000Z">
+<meta property="og:updated_time" content="2020-03-14T13:04:20.003Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++:动态内存管理">
-<meta name="twitter:description" content="一.c语言中malloc/calloc/realloc的区别我们来看一下以下demo：">
+<meta name="twitter:title" content="select">
+<meta name="twitter:description" content="1. 同步通信与异步通信 同步：所谓同步，就是在发出一个调用时，在没有得到结果之前，该调用就不返回. 但是一旦调用返回，就得到返回值了; 换句话说，就是由调用者主动等待这个调用的结果。 异步：异步则是相反，调用在发出之后，这个调用就直接返回了，所以没有返回结果; 换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果; 而是在调用发出后，被调用者通过状态、通知来通知调用者，或通过回调函数处理这">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -155,74 +155,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C-动态内存管理" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-select" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++:动态内存管理
+      select
     </h1>
   
 
         
-        <a href="/2019/09/02/C-动态内存管理/" class="archive-article-date">
-  	<time datetime="2019-09-02T15:42:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
+        <a href="/2020/03/14/select/" class="archive-article-date">
+  	<time datetime="2020-03-14T13:02:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
 </a>
         
       </header>
 
       
       <div align="center" class="post-count">
-      字数：986字 | 预计阅读时长：3分钟
+      字数：989字 | 预计阅读时长：3分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一-c语言中malloc-calloc-realloc的区别"><a href="#一-c语言中malloc-calloc-realloc的区别" class="headerlink" title="一.c语言中malloc/calloc/realloc的区别"></a>一.c语言中malloc/calloc/realloc的区别</h1><p>我们来看一下以下demo：</p>
+        <h1 id="1-同步通信与异步通信"><a href="#1-同步通信与异步通信" class="headerlink" title="1. 同步通信与异步通信"></a>1. 同步通信与异步通信</h1><ul>
+<li>同步：所谓同步，就是在发出一个调用时，在没有得到结果之前，该调用就不返回. 但是一旦调用返回，就得到返回值了; 换句话说，就是由调用者主动等待这个调用的结果。</li>
+<li>异步：异步则是相反，调用在发出之后，这个调用就直接返回了，所以没有返回结果; 换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果; 而是在调用发出后，被调用者通过状态、通知来通知调用者，或通过回调函数处理这个调用。</li>
+</ul>
 <a id="more"></a>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p1 = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="built_in">free</span>(p1);</span><br><span class="line">	<span class="keyword">int</span> *p2 = (<span class="keyword">int</span>*)<span class="built_in">calloc</span>(<span class="number">4</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="comment">//free(p2);</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; &amp;p2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//00EFF9A4</span></span><br><span class="line">	<span class="keyword">int</span> *p3 = (<span class="keyword">int</span>*)<span class="built_in">realloc</span>(p2, <span class="keyword">sizeof</span>(<span class="number">10000</span>));</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; &amp;p3 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//00EFF998</span></span><br><span class="line">	<span class="built_in">free</span>(p3);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>malloc会在堆上开辟指定字节的空间，但不会初始化。</li>
-<li>calloc与malloc相似 ，但是会初始化成0，并且可以指定元素个数</li>
-<li>realloc是给已分配空间的指针重新分配指定大小的空间</li>
-<li>需要注意的是，如上例中，我们注意到realloc指定的空间太大，导致后面的空间不够时，会重新开辟一段空间，并且将原来的值拷贝过来。</li>
+<h1 id="2-阻塞与非阻塞"><a href="#2-阻塞与非阻塞" class="headerlink" title="2.阻塞与非阻塞"></a>2.阻塞与非阻塞</h1><ul>
+<li>阻塞调用是指调用结果返回之前，当前线程会被挂起. 调用线程只有在得到结果之后才会返回。 </li>
+<li>非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。<h1 id="3-select模型"><a href="#3-select模型" class="headerlink" title="3.select模型"></a>3.select模型</h1></li>
 </ul>
-<h1 id="二-C-中是如何实现动态内存管理"><a href="#二-C-中是如何实现动态内存管理" class="headerlink" title="二.C++中是如何实现动态内存管理"></a>二.C++中是如何实现动态内存管理</h1><h2 id="1-内置类型"><a href="#1-内置类型" class="headerlink" title="1.内置类型"></a>1.内置类型</h2><p>看以下demo：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p1 = <span class="keyword">new</span> <span class="keyword">int</span>;  <span class="comment">//动态申请一个int类型空间</span></span><br><span class="line">	<span class="keyword">delete</span> p1;</span><br><span class="line">	<span class="keyword">int</span> *p2 = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">10</span>);  <span class="comment">//动态申请一个int类型空间</span></span><br><span class="line">	<span class="keyword">delete</span> p2;;</span><br><span class="line">	<span class="keyword">int</span> *p3 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];   <span class="comment">//动态申请十个int类型空间</span></span><br><span class="line">	<span class="keyword">delete</span> []p3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">select</span><span class="params">(<span class="keyword">int</span> nfds, fd_set *readfds, fd_set *writefds, </span></span></span><br><span class="line"><span class="function"><span class="params">				fd_set *exceptfds, struct timeval *timeout)</span></span>;</span><br><span class="line">ndfs: 需要监视的最大的文件描述符值+<span class="number">1</span>;</span><br><span class="line">rdset,wrset,exset: 分别对应于需要检测的可读文件描述符的集合，</span><br><span class="line">				可写文件描述符的集 合及异常文件描 述符的集合; </span><br><span class="line">timeout: 参数timeout为结构timeval，用来设置select()的等待时间;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>事实上，对于内置类型，new底层调用是operator new（实际上也是malloc来实现的），delete底层调用的是operator delete (实际上是用free来实现的)。<h2 id="2-自定义类型"><a href="#2-自定义类型" class="headerlink" title="2.自定义类型"></a>2.自定义类型</h2>先看下面的demo：</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">demo</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		demo()</span><br><span class="line">			:_data(<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"test()"</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		~demo()</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"~test()"</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> _data;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		demo *p1 = (demo*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(demo));</span><br><span class="line">		<span class="built_in">free</span>(p1);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		demo *p2 = <span class="keyword">new</span> demo;</span><br><span class="line">		<span class="keyword">delete</span> p2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		test2();</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-1-fd-set结构及操作"><a href="#3-1-fd-set结构及操作" class="headerlink" title="3.1 fd_set结构及操作"></a>3.1 fd_set结构及操作</h2><p>fd_set这个结构就是一个整数数组, 更严格的说, 是一个 “位图”. 使用位图中对应的位来表示要监视的文件描述符.提供了一组操作fd_set的接口, 来比较方便的操作位图。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_CLR</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>;      <span class="comment">// 用来清除描述词组set中相关fd 的位 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">FD_ISSET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>;    <span class="comment">// 用来测试描述词组set中相关fd 的位是否为真  </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_SET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>;      <span class="comment">// 用来设置描述词组set中相关fd的位  </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_ZERO</span><span class="params">(fd_set *<span class="built_in">set</span>)</span></span>;             <span class="comment">// 用来清除描述词组set的全部位</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="3-2-select执行过程"><a href="#3-2-select执行过程" class="headerlink" title="3.2 select执行过程"></a>3.2 select执行过程</h2><p>理解select模型的关键在于理解fd_set,为说明方便，取fd_set长度为1字节，fd_set中的每一bit可以对应一个文件描 述符fd。则1字节长的fd_set最大可以对应8个fd。</p>
 <ul>
-<li>自定义类型使用new时会调用构造函数，delete会调用析构函数。而malloc和free不会。</li>
+<li>执行fd_set set; FD_ZERO(&amp;set);则set用位表示是0000,0000。</li>
+<li>若fd＝5,执行FD_SET(fd,&amp;set); 后set变为0001,0000(第5位置为1) 。</li>
+<li>若再加入fd＝2，fd=1,则set变为0001,0011 </li>
+<li>执行 select(6,&amp;set,0,0,0)阻塞等待。</li>
+<li>若fd=1,fd=2上都发生可读事件，则select返回，此时set变为 0000,0011。注意：没有事件发生的fd=5被清空。</li>
 </ul>
-<h1 id="三-new和delete底层实现原理"><a href="#三-new和delete底层实现原理" class="headerlink" title="三.new和delete底层实现原理"></a>三.new和delete底层实现原理</h1><h3 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h3><p>与malloc/delete基本一致，如果申请连续空间，则需要new[]/delete[]</p>
-<h3 id="自定义类型"><a href="#自定义类型" class="headerlink" title="自定义类型"></a>自定义类型</h3><ul>
-<li>new的原理</li>
+<h2 id="3-3-select就绪条件"><a href="#3-3-select就绪条件" class="headerlink" title="3.3 select就绪条件"></a>3.3 select就绪条件</h2><h3 id="3-3-1-读就绪"><a href="#3-3-1-读就绪" class="headerlink" title="3.3.1 读就绪"></a>3.3.1 读就绪</h3><ul>
+<li>socket内核中, 接收缓冲区中的字节数, 大于等于低水位标记SO_RCVLOWAT. 此时可以无阻塞的读该文件 描述符, 并且返回值大于0。</li>
+<li>socket TCP通信中, 对端关闭连接, 此时对该socket读, 则返回0。</li>
+<li>监听的socket上有新的连接请求。</li>
+<li>socket上有未处理的错误。</li>
 </ul>
-<p>1.调用operator new申请空间<br>2.调用构造函数，完成对象的构造</p>
-<ul>
-<li>delete的原理</li>
+<h3 id="3-3-2-写就绪"><a href="#3-3-2-写就绪" class="headerlink" title="3.3.2 写就绪"></a>3.3.2 写就绪</h3><ul>
+<li>socket内核中, 发送缓冲区中的可用字节数(发送缓冲区的空闲位置大小), 大于等于低水位标记 SO_SNDLOWAT, 此时可以无阻塞的写, 并且返回值大于0。</li>
+<li>socket的写操作被关闭(close或者shutdown). 对一个写操作被关闭的socket进行写操作, 会触发SIGPIPE 信号。</li>
+<li>socket使用非阻塞connect连接成功或失败之后。</li>
+<li>socket上有未读取的错误。</li>
 </ul>
-<p>1.调用析构函数，完成对象的清理<br>2.调用operato delete释放空间<br>对于连续n个空间，则执行n次上述操作。</p>
-<h3 id="定位new表达式"><a href="#定位new表达式" class="headerlink" title="定位new表达式"></a>定位new表达式</h3><p>在已分配的空间调用构造函数初始化一个对象<br>使用方法：(以上面的demo类为例)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p1现在指向的是demo对象大小相同的一段空间，但是并不是一个对象</span></span><br><span class="line">demo* p1 = (demo*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(demo));</span><br><span class="line"><span class="comment">//执行完new即调用构造函数后，它就成为了一个对象，</span></span><br><span class="line"><span class="comment">//注意，构造函数有参数，那么下面的代码需要传参</span></span><br><span class="line"><span class="keyword">new</span>(pt) demo;</span><br></pre></td></tr></table></figure>
-
-<h1 id="四-new-delete-与-malloc-free区别总结"><a href="#四-new-delete-与-malloc-free区别总结" class="headerlink" title="四.new/delete 与 malloc/free区别总结"></a>四.new/delete 与 malloc/free区别总结</h1><ul>
-<li><h4 id="1-属性"><a href="#1-属性" class="headerlink" title="1.属性"></a>1.属性</h4><p>new/delete是C++关键字，需要编译器支持。malloc/free是库函数，需要头文件支持。</p>
-</li>
-<li><h4 id="2-参数"><a href="#2-参数" class="headerlink" title="2.参数"></a>2.参数</h4><p>使用new操作符申请内存分配时无须指定内存块的大小，编译器会根据类型信息自行计算。而malloc则需要显式地指出所需内存的尺寸。</p>
-</li>
-<li><h4 id="3-返回类型"><a href="#3-返回类型" class="headerlink" title="3.返回类型"></a>3.返回类型</h4><p>new操作符内存分配成功时，返回的是对象类型的指针，类型严格与对象匹配，无须进行类型转换，故new是符合类型安全性的操作符。而malloc内存分配成功则是返回void * ，需要通过强制类型转换将void*指针转换成我们需要的类型。</p>
-</li>
-<li><h4 id="4-分配失败"><a href="#4-分配失败" class="headerlink" title="4.分配失败"></a>4.分配失败</h4><p>new内存分配失败时，会抛出bac_alloc异常。malloc分配内存失败时返回NULL。</p>
-</li>
-<li><h4 id="5-自定义类型"><a href="#5-自定义类型" class="headerlink" title="5.自定义类型"></a>5.自定义类型</h4><p>new会先调用operator new函数，申请足够的内存（通常底层使用malloc实现）。然后调用类型的构造函数，初始化成员变量，最后返回自定义类型指针。delete先调用析构函数，然后调用operator delete函数释放内存（通常底层使用free实现）。<br>malloc/free是库函数，只能动态的申请和释放内存，无法强制要求其做自定义类型对象构造和析构工作。</p>
-</li>
+<h2 id="3-4-select的缺点"><a href="#3-4-select的缺点" class="headerlink" title="3.4 select的缺点"></a>3.4 select的缺点</h2><ul>
+<li>每次调用select, 都需要手动设置fd集合, 从接口使用角度来说也非常不便。</li>
+<li>每次调用select，都需要把fd集合从用户态拷贝到内核态，这个开销在fd很多时会很大。</li>
+<li>同时每次调用select都需要在内核遍历传递进来的所有fd，这个开销在fd很多时也很大。 </li>
+<li>select支持的文件描述符数量太小。</li>
 </ul>
 
       
@@ -263,7 +259,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">socket</a>
         		</li>
       		
 		</ul>
@@ -319,7 +315,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/02/C-动态内存管理/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/14/select/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -333,18 +329,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/03/Linux下的常用工具/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux下的常用工具
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/01/C-类与对象-三/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++类与对象(三)</div>
+    <a href="/2020/03/13/数据链路层/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据链路层</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -371,7 +358,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-c语言中malloc-calloc-realloc的区别"><span class="toc-number">1.</span> <span class="toc-text">一.c语言中malloc/calloc/realloc的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-C-中是如何实现动态内存管理"><span class="toc-number">2.</span> <span class="toc-text">二.C++中是如何实现动态内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-内置类型"><span class="toc-number">2.1.</span> <span class="toc-text">1.内置类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-自定义类型"><span class="toc-number">2.2.</span> <span class="toc-text">2.自定义类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三-new和delete底层实现原理"><span class="toc-number">3.</span> <span class="toc-text">三.new和delete底层实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内置类型"><span class="toc-number">3.0.1.</span> <span class="toc-text">内置类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义类型"><span class="toc-number">3.0.2.</span> <span class="toc-text">自定义类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位new表达式"><span class="toc-number">3.0.3.</span> <span class="toc-text">定位new表达式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四-new-delete-与-malloc-free区别总结"><span class="toc-number">4.</span> <span class="toc-text">四.new/delete 与 malloc/free区别总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-属性"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">1.属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-参数"><span class="toc-number">4.0.0.2.</span> <span class="toc-text">2.参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-返回类型"><span class="toc-number">4.0.0.3.</span> <span class="toc-text">3.返回类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-分配失败"><span class="toc-number">4.0.0.4.</span> <span class="toc-text">4.分配失败</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-自定义类型"><span class="toc-number">4.0.0.5.</span> <span class="toc-text">5.自定义类型</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-同步通信与异步通信"><span class="toc-number">1.</span> <span class="toc-text">1. 同步通信与异步通信</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-阻塞与非阻塞"><span class="toc-number">2.</span> <span class="toc-text">2.阻塞与非阻塞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-select模型"><span class="toc-number">3.</span> <span class="toc-text">3.select模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-fd-set结构及操作"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 fd_set结构及操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-select执行过程"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 select执行过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-select就绪条件"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 select就绪条件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-读就绪"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.3.1 读就绪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-写就绪"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.3.2 写就绪</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-select的缺点"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 select的缺点</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -385,7 +372,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C-动态内存管理" data-title="C++:动态内存管理" data-url="http://yoursite.com/2019/09/02/C-动态内存管理/"></div>
+	<div class="ds-thread" data-thread-key="select" data-title="select" data-url="http://yoursite.com/2020/03/14/select/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -407,7 +394,7 @@
   
 
   
-  <div id="SOHUCS" sid="C-动态内存管理" ></div> 
+  <div id="SOHUCS" sid="select" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

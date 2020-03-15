@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++入门语法篇 | </title>
+  <title>epoll | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.引用 引用不是重新定义一个变量，而是为变量取了一个别名，且不重新开辟空间，与引用的实体共享一块空间。  引用的特性：定义时必须初始化，一个变量可以有多个引用，但是一个引用只能引用一个实体。//int &amp;amp;ra 就会编译出错(未初始化)">
-<meta name="keywords" content="C++">
+  <meta name="description" content="1.epoll相关函数接口1.创建一个epoll句柄 1int epoll_create(int size);  注意：用完之后，必须调用close()关闭">
+<meta name="keywords" content="socket">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++入门语法篇">
-<meta property="og:url" content="http://yoursite.com/2019/08/23/C-入门语法篇/index.html">
+<meta property="og:title" content="epoll">
+<meta property="og:url" content="http://yoursite.com/2020/03/15/epoll/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="1.引用 引用不是重新定义一个变量，而是为变量取了一个别名，且不重新开辟空间，与引用的实体共享一块空间。  引用的特性：定义时必须初始化，一个变量可以有多个引用，但是一个引用只能引用一个实体。//int &amp;amp;ra 就会编译出错(未初始化)">
+<meta property="og:description" content="1.epoll相关函数接口1.创建一个epoll句柄 1int epoll_create(int size);  注意：用完之后，必须调用close()关闭">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-23T02:59:52.000Z">
+<meta property="og:updated_time" content="2020-03-15T12:59:29.256Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++入门语法篇">
-<meta name="twitter:description" content="1.引用 引用不是重新定义一个变量，而是为变量取了一个别名，且不重新开辟空间，与引用的实体共享一块空间。  引用的特性：定义时必须初始化，一个变量可以有多个引用，但是一个引用只能引用一个实体。//int &amp;amp;ra 就会编译出错(未初始化)">
+<meta name="twitter:title" content="epoll">
+<meta name="twitter:description" content="1.epoll相关函数接口1.创建一个epoll句柄 1int epoll_create(int size);  注意：用完之后，必须调用close()关闭">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -155,96 +155,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C-入门语法篇" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-epoll" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++入门语法篇
+      epoll
     </h1>
   
 
         
-        <a href="/2019/08/23/C-入门语法篇/" class="archive-article-date">
-  	<time datetime="2019-08-23T02:54:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
+        <a href="/2020/03/15/epoll/" class="archive-article-date">
+  	<time datetime="2020-03-15T12:58:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
 </a>
         
       </header>
 
       
       <div align="center" class="post-count">
-      字数：763字 | 预计阅读时长：3分钟
+      字数：943字 | 预计阅读时长：3分钟
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-引用"><a href="#1-引用" class="headerlink" title="1.引用"></a>1.引用</h2><ul>
-<li><p>引用不是重新定义一个变量，而是为变量取了一个别名，且不重新开辟空间，与引用的实体共享一块空间。</p>
-</li>
-<li><p>引用的特性：定义时必须初始化，一个变量可以有多个引用，但是一个引用只能引用一个实体。<code>//int &amp;ra 就会编译出错(未初始化)</code></p>
-<a id="more"></a></li>
-<li><p>引用的用法：</p>
-<p><code>int a = 10;
-int &amp;ra = a;</code></p>
-</li>
-</ul>
-<p><strong>即类型 &amp;引用对象名 = 引用实体</strong></p>
-<ul>
-<li>常引用：<strong>const 类型 &amp; 引用对象名 = 引用实体</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// eg： const &amp;ra = a；</span><br></pre></td></tr></table></figure>
+        <h1 id="1-epoll相关函数接口"><a href="#1-epoll相关函数接口" class="headerlink" title="1.epoll相关函数接口"></a>1.epoll相关函数接口</h1><p>1.创建一个epoll句柄</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_create</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</span><br></pre></td></tr></table></figure>
 
-<p>   但是下面这种方法是不对的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// const int a = 10;  int &amp;ra = a;</span><br></pre></td></tr></table></figure>
-
-<p>显然易见通过ra可以修改a的值</p>
-<ul>
-<li>与指针的区别：<br>a.有多级(NULL)指针，但是没有多级(NULL)引用。<br>b.引用定义时必须初始化，但指针无要求。<br>c.引用只可引用一个实体，但是指针可以指向多个变量。</li>
-</ul>
-<h2 id="2-函数重载"><a href="#2-函数重载" class="headerlink" title="2.函数重载"></a>2.函数重载</h2><ul>
-<li>函数重载的定义：c++允许在同一作用域中声明几个功能类似的同名函数， <pre><code>这些函数的形参列表(参数个数/类型/顺序)必须不一样。</code></pre></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//eg:</span><br><span class="line">int Add(int right, int left)</span><br><span class="line">&#123;</span><br><span class="line">       return left + right;</span><br><span class="line">&#125;</span><br><span class="line">double Add(double right, double left)</span><br><span class="line">&#123;</span><br><span class="line">       return left + right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但是，如果参数列表相同，返回值不同，就不是函数重载，而是函数重定义，这是不被允许的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//编译出错</span><br><span class="line">int Add(int left, int right)</span><br><span class="line">	&#123;</span><br><span class="line">		return left + right;</span><br><span class="line">	&#125;</span><br><span class="line">	double Add(int left, int right)</span><br><span class="line">	&#123;</span><br><span class="line">		return left + right;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-auto关键字-c-11"><a href="#3-auto关键字-c-11" class="headerlink" title="3.auto关键字(c++11)"></a>3.auto关键字(c++11)</h2><ul>
-<li>auto声明的变量必须由编译器在编译时推导</li>
-<li>auto的用法：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">auto a = 10;</span><br><span class="line">//</span><br><span class="line">//也可以这样：</span><br><span class="line">int a = 10;</span><br><span class="line">auto b = a;</span><br><span class="line">auto c = &apos;a&apos;;</span><br></pre></td></tr></table></figure>
+<p>注意：用完之后，必须调用close()关闭</p>
+<a id="more"></a>
+<p>2.注册epoll事件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_ctl</span><span class="params">(<span class="keyword">int</span> epfd, <span class="keyword">int</span> op, <span class="keyword">int</span> fd, struct epoll_event *event)</span></span>;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>在定义指针时，auto与auto*无区别，但是定义引用时必须时auto&amp;<br><code>int a = 10; auto b = &amp;a; auto *b = &amp;a  //等价的</code></li>
-<li>定义多个变量时，变量类型必须一致</li>
+<li>它不同于select()是在监听事件时告诉内核要监听什么类型的事件, 而是在这里先注册要监听的事件类型. </li>
+<li>第一个参数是epoll_create()的返回值(epoll的句柄). </li>
+<li>第二个参数表示动作，用三个宏来表示. </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto a = 10, b =20</span><br><span class="line">auto a = 10,b = 9.0   //编译错误</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EPOLL_CTL_ADD ：注册新的fd到epfd中；</span><br><span class="line">EPOLL_CTL_MOD ：修改已经注册的fd的监听事件；</span><br><span class="line">EPOLL_CTL_DEL ：从epfd中删除一个fd；</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>auto不能直接用来声明数组</li>
-<li>auto不能作为形参</li>
+<li>第三个参数是需要监听的fd. </li>
+<li>第四个参数是告诉内核需要监听什么。</li>
 </ul>
-<h2 id="4-基于范围的for循环-c-11"><a href="#4-基于范围的for循环-c-11" class="headerlink" title="4.基于范围的for循环(c++11)"></a>4.基于范围的for循环(c++11)</h2><ul>
-<li>用法：for的括号内容由：分为两部分，一是范围内用于迭代的变量，一是被表示迭代的范围</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a[] = &#123; 0,1,2,3,4,5 &#125;;</span><br><span class="line">	for (auto e:a)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; e;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>收集在epoll监控的事件中已经发送的事件</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_wait</span><span class="params">(<span class="keyword">int</span> epfd, struct epoll_event * events, <span class="keyword">int</span> maxevents, <span class="keyword">int</span> timeout)</span></span>;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>使用条件:</p>
-<pre><code>a.迭代的范围必须是确定的
-b.迭代的对象必须实现++和==操作</code></pre></li>
+<li>参数events是分配好的epoll_event结构体数组。</li>
+<li>epoll将会把发生的事件赋值到events数组中 (events不可以是空指针，内核只负责把数据复制到这个 events数组中，不会去帮助我们在用户态中分配内存)。</li>
+<li>maxevents告之内核这个events有多大，这个 maxevents的值不能大于创建epoll_create()时的size。</li>
+<li>参数timeout是超时时间 (毫秒，0会立即返回，-1是永久阻塞). 如果函数调用成功，返回对应I/O上已准备好的文件描述符数目，如返回0表示已超时, 返回小于0表示函 数失败。</li>
 </ul>
-<h2 id="5-缺省函数"><a href="#5-缺省函数" class="headerlink" title="5.缺省函数"></a>5.缺省函数</h2><ul>
-<li>缺省函数是定义函数时，为其参数定义的一个默认值，调用该函数时，如果没有指定实参，则采用默认值。</li>
+<h1 id="2-epoll的优点"><a href="#2-epoll的优点" class="headerlink" title="2. epoll的优点"></a>2. epoll的优点</h1><ul>
+<li>接口使用方便: 虽然拆分成了三个函数, 但是反而使用起来更方便高效. 不需要每次循环都设置关注的文 件描述符, 也做到了输入输出参数分离开。 </li>
+<li>数据拷贝轻量: 只在合适的时候调用 EPOLL_CTL_ADD 将文件描述符结构拷贝到内核中, 这个操作并不 频繁(而select/poll都是每次循环都要进行拷贝) 。</li>
+<li>事件回调机制: 避免使用遍历, 而是使用回调函数的方式, 将就绪的文件描述符结构加入到就绪队列中, epoll_wait 返回直接访问就绪队列就知道哪些文件描述符就绪. 这个操作时间复杂度O(1). 即使文件描述 符数目很多, 效率也不会受到影响。</li>
+<li>没有数量限制: 文件描述符数目无上限。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void test(int a = 0)&#123;&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">       test(10)// 传参时，使用指定实参</span><br><span class="line">       test()  //无参数时，将使用默认值0</span><br><span class="line">       return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="3-LT与ET模式"><a href="#3-LT与ET模式" class="headerlink" title="3.LT与ET模式"></a>3.LT与ET模式</h1><p>来看这样一个例子：<br>我们已经把一个tcp socket添加到epoll描述符 这个时候socket的另一端被写入了2KB的数据 调用epoll_wait，并且它会返回. 说明它已经准备好读取操作 然后调用read, 只读取了1KB的数据 继续调用epoll_wait。</p>
+<h2 id="3-1-LT"><a href="#3-1-LT" class="headerlink" title="3.1 LT"></a>3.1 LT</h2><p>LT即Level Triggered 水平触发，epoll默认工作模式就是LT模式。</p>
 <ul>
-<li>全缺省参数<br><code>void test(int a = 10, int b = 20){}</code></li>
-<li>半缺省参数<br><code>void test(int a,int b = 20){}</code><br>注意：半缺省参数必须从左到右依次给出，不给间隔着给</li>
-<li>缺省函数不能同时出现在函数的声明与定义中</li>
+<li>当epoll检测到socket上事件就绪的时候, 可以不立刻进行处理. 或者只处理一部分. </li>
+<li>如上面的例子, 由于只读了1K数据, 缓冲区中还剩1K数据, 在第二次调用 epoll_wait 时, epoll_wait 仍然会立刻返回并通知socket读事件就绪。</li>
+<li>直到缓冲区上所有的数据都被处理完, epoll_wait 才不会立刻返回。 </li>
+<li>支持阻塞读写和非阻塞读写。</li>
+</ul>
+<h2 id="3-2-ET"><a href="#3-2-ET" class="headerlink" title="3.2 ET"></a>3.2 ET</h2><ul>
+<li>当epoll检测到socket上事件就绪时, 必须立刻处理。</li>
+<li>如上面的例子, 虽然只读了1K的数据, 缓冲区还- 剩1K的数据, 在第二次调用 epoll_wait 的时候, epoll_wait 不会再返回了。</li>
+<li>也就是说, ET模式下, 文件描述符上的事件就绪后, 只有一次处理机会. ET的性能比LT性能更高( - epoll_wait 返回的次数少了很多). Nginx默认采用ET模式使用epoll。</li>
+<li>只支持非阻塞的读写。</li>
 </ul>
 
       
@@ -285,7 +268,7 @@ b.迭代的对象必须实现++和==操作</code></pre></li>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">socket</a>
         		</li>
       		
 		</ul>
@@ -341,7 +324,7 @@ b.迭代的对象必须实现++和==操作</code></pre></li>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/23/C-入门语法篇/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/15/epoll/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -355,15 +338,11 @@ b.迭代的对象必须实现++和==操作</code></pre></li>
   
 <nav id="article-nav">
   
-    <a href="/2019/08/25/动态规划-一-：从Fbionacci数列谈起/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          动态规划(一)：从Fbionacci数列谈起
-        
-      </div>
-    </a>
   
+    <a href="/2020/03/14/select/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">select</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -388,7 +367,7 @@ b.迭代的对象必须实现++和==操作</code></pre></li>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-引用"><span class="toc-number">1.</span> <span class="toc-text">1.引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-函数重载"><span class="toc-number">2.</span> <span class="toc-text">2.函数重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-auto关键字-c-11"><span class="toc-number">3.</span> <span class="toc-text">3.auto关键字(c++11)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-基于范围的for循环-c-11"><span class="toc-number">4.</span> <span class="toc-text">4.基于范围的for循环(c++11)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-缺省函数"><span class="toc-number">5.</span> <span class="toc-text">5.缺省函数</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-epoll相关函数接口"><span class="toc-number">1.</span> <span class="toc-text">1.epoll相关函数接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-epoll的优点"><span class="toc-number">2.</span> <span class="toc-text">2. epoll的优点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-LT与ET模式"><span class="toc-number">3.</span> <span class="toc-text">3.LT与ET模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-LT"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 LT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-ET"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 ET</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -402,7 +381,7 @@ b.迭代的对象必须实现++和==操作</code></pre></li>
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C-入门语法篇" data-title="C++入门语法篇" data-url="http://yoursite.com/2019/08/23/C-入门语法篇/"></div>
+	<div class="ds-thread" data-thread-key="epoll" data-title="epoll" data-url="http://yoursite.com/2020/03/15/epoll/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -424,7 +403,7 @@ b.迭代的对象必须实现++和==操作</code></pre></li>
   
 
   
-  <div id="SOHUCS" sid="C-入门语法篇" ></div> 
+  <div id="SOHUCS" sid="epoll" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

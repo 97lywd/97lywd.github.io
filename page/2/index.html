@@ -60,9 +60,9 @@
 			</ul>
 		</nav>
 		<nav>
-		总文章数: 34
+		总文章数: 35
 		</nav>
-		总字数: <span class="post-count">35.9k</span>
+		总字数: <span class="post-count">36.9k</span>
 		<nav class="header-smart-menu">
     		
     			
@@ -151,6 +151,125 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-线程初始" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/02/线程初始/">线程初始</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/02/线程初始/" class="archive-article-date">
+  	<time datetime="2020-03-02T13:19:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-02</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：1k字 | 预计阅读时长：4分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Linux下线程的概念"><a href="#1-Linux下线程的概念" class="headerlink" title="1.Linux下线程的概念"></a>1.Linux下线程的概念</h1><h2 id="1-1-什么是线程"><a href="#1-1-什么是线程" class="headerlink" title="1.1 什么是线程"></a>1.1 什么是线程</h2><ul>
+<li>一个程序里的一个执行路线叫做线程</li>
+<li>线程是一个更轻量级的进程</li>
+<li>线程在进程内部运行，本质在进程地址空间内运行<h2 id="1-2-线程与进程的区别"><a href="#1-2-线程与进程的区别" class="headerlink" title="1.2 线程与进程的区别"></a>1.2 线程与进程的区别</h2></li>
+<li>进程是资源分配的基本单位</li>
+<li>线程是调度的基本单位</li>
+</ul>
+<hr>
+<ul>
+<li>线程共享进程数据，也有自己的一部分数据： 线程ID、寄存器、栈、errno、信号屏蔽字、调度优先级。</li>
+</ul>
+<hr>
+<h1 id="2-Linux线程控制"><a href="#2-Linux线程控制" class="headerlink" title="2. Linux线程控制"></a>2. Linux线程控制</h1><h2 id="2-1-创建线程"><a href="#2-1-创建线程" class="headerlink" title="2.1 创建线程"></a>2.1 创建线程</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_create</span><span class="params">(<span class="keyword">pthread_t</span> *thread, <span class="keyword">const</span> <span class="keyword">pthread_attr_t</span> *attr, <span class="keyword">void</span> * </span></span></span><br><span class="line"><span class="function"><span class="params">                                 (*start_routine)(<span class="keyword">void</span>*), <span class="keyword">void</span> *arg)</span></span>;</span><br><span class="line"> 参数:thread --- 返回线程ID   </span><br><span class="line">     attr --- 设置线程的属性，attr为<span class="literal">NULL</span>表示使用默认属性  </span><br><span class="line">     start_routine --- 是个函数地址，线程启动后要执行的函数 </span><br><span class="line">     arg --- 传给线程启动函数的参数 </span><br><span class="line">     返回值：成功返回<span class="number">0</span>；失败返回错误码</span><br></pre></td></tr></table></figure>
+
+<p>来看以下demo体会pthread_create的使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">thr_start</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="keyword">pthread_t</span> tid = pthread_self();</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">"---odniary-----%s-%lu\n"</span>,(<span class="keyword">char</span>*)arg,tid);</span><br><span class="line">     sleep(<span class="number">1</span>);</span><br><span class="line">   &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ret;</span><br><span class="line">  <span class="keyword">pthread_t</span> tid;</span><br><span class="line">  <span class="keyword">pthread_t</span> mtid = pthread_self();    <span class="comment">//pthread_self()   --- 可以获取线程自身ID</span></span><br><span class="line">  ret = pthread_create(&amp;tid,<span class="literal">NULL</span>,thr_start,(<span class="keyword">void</span>*)<span class="string">"hello"</span>);</span><br><span class="line">  <span class="keyword">if</span>(ret != <span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"thread create error\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"--------main-----------mtid:%lu----ctid:%lu\n"</span>,mtid,tid);</span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再来回顾上述demo：pthread_create函数会产生一个线程ID，存放在第一个参数指向的地址中，pthread_ create函数第一个参数指向一个虚拟内存单元，该内存单元的地址即为新创建线程的线程ID， 属于NPTL线程库的范畴。线程库的后续操作，就是根据该线程ID来操作线程的。 在上面的demo里我们就是用了NPTL线程库提供的pthread_self()，获取线程ID。</p>
+<h2 id="2-2-终止线程"><a href="#2-2-终止线程" class="headerlink" title="2.2 终止线程"></a>2.2 终止线程</h2><p>如果想终止某个线程而不是整个进程，可以有以下三个方法:</p>
+<ol>
+<li>从线程函数return。但这种方法对主线程不适用,从main函数return相当于调用exit。 </li>
+<li>线程可以调用pthread_ exit终止自己。</li>
+<li>一个线程可以调用pthread_ cancel终止同一进程中的另一个线程。<h3 id="2-2-1-pthread-eixt函数"><a href="#2-2-1-pthread-eixt函数" class="headerlink" title="2.2.1 pthread_eixt函数"></a>2.2.1 pthread_eixt函数</h3></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pthread_exit</span><span class="params">(<span class="keyword">void</span> *value_ptr)</span></span>; </span><br><span class="line">参数    value_ptr:value_ptr不要指向一个局部变量。</span><br><span class="line">返回值：无返回值，跟进程一样，线程结束的时候无法返回到它的调用者（自身</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-2-pthread-cancel函数"><a href="#2-2-2-pthread-cancel函数" class="headerlink" title="2.2.2 pthread_cancel函数"></a>2.2.2 pthread_cancel函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cancel</span><span class="params">(<span class="keyword">pthread_t</span> thread)</span></span>; </span><br><span class="line">参数    thread:线程ID </span><br><span class="line">返回值：成功返回<span class="number">0</span>；失败返回错误码</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-线程等待"><a href="#2-3-线程等待" class="headerlink" title="2.3 线程等待"></a>2.3 线程等待</h2><p>为什么需要线程等待？</p>
+<ul>
+<li>已经退出的线程，其空间没有被释放，仍然在进程的地址空间内。</li>
+<li>创建新的线程不会复用刚才退出线程的地址空间。<br>下面的函数就承担了这一作用，调用后，会等待线程结束</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_join</span><span class="params">(<span class="keyword">pthread_t</span> thread, <span class="keyword">void</span> **value_ptr)</span></span>; </span><br><span class="line">参数:thread  --- 线程ID   </span><br><span class="line">     value_ptr --- 它指向一个指针，后者指向线程的返回值 返回值：成功返回<span class="number">0</span>；失败返回错误码</span><br></pre></td></tr></table></figure>
+
+<p>调用该函数的线程将挂起等待,直到id为thread的线程终止。thread线程以不同的方法终止,通过pthread_join得到 的终止状态是不同的。</p>
+<h3 id="2-4-线程分离"><a href="#2-4-线程分离" class="headerlink" title="2.4 线程分离"></a>2.4 线程分离</h3><p>为什么需要线程分离？<br>默认情况下，新创建的线程是joinable的，线程退出后，需要对其进行pthread_join操作，否则无法释 放资源，从而造成系统泄漏。 如果不关心线程的返回值，join是一种负担，这个时候，我们可以告诉系统，当线程退出时，自动释放线程资源。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_detach</span><span class="params">(<span class="keyword">pthread_t</span> thread)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>来看以下demo，体会detach的使用。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">thread_run</span><span class="params">(<span class="keyword">void</span> *arg)</span></span>&#123;</span><br><span class="line">    pthread_detach(pthread_self());</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,(<span class="keyword">char</span>*)arg);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">pthread_t</span> tid;</span><br><span class="line">    <span class="keyword">if</span>(pthread_create(&amp;tid,<span class="literal">NULL</span>,thread_run,<span class="string">"thread_run ..."</span>) != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"create thread error\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(pthread_join(tid,<span class="literal">NULL</span>) == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"pthread wait success\n"</span>);</span><br><span class="line">        ret = <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"pthread wait failed\n"</span>);</span><br><span class="line">        ret = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/02/线程初始/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-信号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -880,88 +999,6 @@
 
 
   
-    <article id="post-socket接口介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/11/socket接口介绍/">socket接口介绍</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/11/socket接口介绍/" class="archive-article-date">
-  	<time datetime="2019-10-11T15:40:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
-</a>
-        
-      </header>
-
-      
-      <div align="center" class="post-count">
-      字数：381字 | 预计阅读时长：1分钟
-</div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-socket常见的API"><a href="#1-socket常见的API" class="headerlink" title="1. socket常见的API"></a>1. socket常见的API</h1><h2 id="1-1socket的创建"><a href="#1-1socket的创建" class="headerlink" title="1.1socket的创建"></a>1.1socket的创建</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">(<span class="keyword">int</span> domain, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span>;</span><br><span class="line">dmain --- 指定底层协议（AF_INET）</span><br><span class="line">type  --- 套接字类型（STREAM/DGRAM）</span><br><span class="line">protocol --- 指定具体协议（Tcp <span class="number">-6</span>，Tcp <span class="number">-17</span>，<span class="number">0</span> -默认协议）</span><br><span class="line">返回值 --- 文件描述符--- 套接字操作句柄</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">socket</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/11/socket接口介绍/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1063,11 +1100,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
               </li>
              
               <li class="article-tag-list-item">

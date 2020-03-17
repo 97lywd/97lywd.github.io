@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: C | </title>
+  <title>搜索二叉树 | C++实现 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/tags/C/index.html">
+  <meta name="description" content="1. 搜索二叉树的定义 二叉搜索树又称二叉排序树，它可以是一棵空树，或者是具有以下性质的二叉树: 若它的左子树不为空，则左子树上所有节点的值都小于根节点的值。 若它的右子树不为空，则右子树上所有节点的值都大于根节点的值 。 它的左右子树也分别为二叉搜索。">
+<meta name="keywords" content="C++,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜索二叉树 | C++实现">
+<meta property="og:url" content="http://yoursite.com/2020/03/17/搜索二叉树-C-实现/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="1. 搜索二叉树的定义 二叉搜索树又称二叉排序树，它可以是一棵空树，或者是具有以下性质的二叉树: 若它的左子树不为空，则左子树上所有节点的值都小于根节点的值。 若它的右子树不为空，则右子树上所有节点的值都大于根节点的值 。 它的左右子树也分别为二叉搜索。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-17T13:16:22.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="搜索二叉树 | C++实现">
+<meta name="twitter:description" content="1. 搜索二叉树的定义 二叉搜索树又称二叉排序树，它可以是一棵空树，或者是具有以下性质的二叉树: 若它的左子树不为空，则左子树上所有节点的值都小于根节点的值。 若它的右子树不为空，则右子树上所有节点的值都大于根节点的值 。 它的左右子树也分别为二叉搜索。">
   
     <link rel="alternative" href="/atom.xml" title type="application/atom+xml">
   
@@ -150,64 +155,247 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-搜索二叉树-C-实现" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/08/Linux下进程的概念/" class="archive-article-date">
-  	<time datetime="2019-09-08T15:18:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/08/Linux下进程的概念/">Linux下进程的概念</a>
+    <h1 class="article-title" itemprop="name">
+      搜索二叉树 | C++实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/03/17/搜索二叉树-C-实现/" class="archive-article-date">
+  	<time datetime="2020-03-17T13:15:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
+</a>
+        
+      </header>
+
+      
+      <div align="center" class="post-count">
+      字数：722字 | 预计阅读时长：3分钟
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-搜索二叉树的定义"><a href="#1-搜索二叉树的定义" class="headerlink" title="1. 搜索二叉树的定义"></a>1. 搜索二叉树的定义</h1><ul>
+<li>二叉搜索树又称二叉排序树，它可以是一棵空树，或者是具有以下性质的二叉树:</li>
+<li>若它的左子树不为空，则左子树上所有节点的值都小于根节点的值。</li>
+<li>若它的右子树不为空，则右子树上所有节点的值都大于根节点的值 。</li>
+<li>它的左右子树也分别为二叉搜索。<a id="more"></a>
+<h1 id="2-插入"><a href="#2-插入" class="headerlink" title="2.插入"></a>2.插入</h1></li>
+<li>情况1 ： 树为空<br>直接插入</li>
+<li>情况2：树不为空<br>从根节点开始判断，如果大于当前节点，则向右出发，否则向左。</li>
+</ul>
+<h1 id="3-删除"><a href="#3-删除" class="headerlink" title="3.删除"></a>3.删除</h1><ul>
+<li><p>情况1：要删除的结点无孩子结点<br>说明删除的是叶子节点，可以直接删除。</p>
+</li>
+<li><p>情况2 ：要删除的结点只有左孩子结点<br>删除当前节点，并使被删节点的父节点指向左孩子节点。</p>
+</li>
+<li><p>情况3：要删除的节点只有右孩子节点<br>删除当前节点，并使被删节点的父节点指向右孩子节点。</p>
+</li>
+<li><p>情况4：要删除的结点有左、右孩子结点<br>在它的右子树中寻找中序下的第一个结点(关键码最小)，用它的值填补到被删除节点中， 再来处理该结点的删除问题。</p>
+<h1 id="4-实现"><a href="#4-实现" class="headerlink" title="4.实现"></a>4.实现</h1><h2 id="4-1-节点初始化"><a href="#4-1-节点初始化" class="headerlink" title="4.1 节点初始化"></a>4.1 节点初始化</h2></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BSTNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	T _data;</span><br><span class="line">	BSTNode&lt;T&gt; * _left;</span><br><span class="line">	BSTNode&lt;T&gt; * _right;</span><br><span class="line">	BSTNode(<span class="keyword">const</span> T&amp; data = T())</span><br><span class="line">		:_left(<span class="literal">nullptr</span>)</span><br><span class="line">		,_right(<span class="literal">nullptr</span>)</span><br><span class="line">		,_data(data)</span><br><span class="line">	&#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2-插入"><a href="#4-2-插入" class="headerlink" title="4.2 插入"></a>4.2 插入</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Insert</span><span class="params">(<span class="keyword">const</span> T&amp; data)</span>            <span class="comment">//插入元素</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (_root == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			_root = <span class="keyword">new</span> Node(data);</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		PNode cur = _root;</span><br><span class="line">		PNode parent = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">while</span> (cur)</span><br><span class="line">		&#123;</span><br><span class="line">			parent = cur;</span><br><span class="line">				<span class="keyword">if</span> (cur-&gt;_data == data)</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (cur-&gt;_data &gt; data)</span><br><span class="line">					cur = cur-&gt;_left;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					cur = cur-&gt;_right;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//插入节点</span></span><br><span class="line">		cur = <span class="keyword">new</span> Node(data);</span><br><span class="line">		<span class="comment">//判断插入的位置</span></span><br><span class="line">		<span class="keyword">if</span> (parent-&gt;_data &gt; data)</span><br><span class="line">			parent-&gt;_left = cur;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			parent-&gt;_right = cur;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3-删除"><a href="#4-3-删除" class="headerlink" title="4.3 删除"></a>4.3 删除</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Erase</span><span class="params">(<span class="keyword">const</span> T&amp; data)</span>            <span class="comment">//删除元素</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	PNode cur = _root;</span><br><span class="line">	PNode parent = cur;</span><br><span class="line">	<span class="keyword">while</span> (cur)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (cur-&gt;_data == data)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		parent = cur;</span><br><span class="line">	    <span class="keyword">if</span> (cur-&gt;_data &gt; data)</span><br><span class="line">			cur = cur-&gt;_left;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			cur = cur-&gt;_right;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (cur == <span class="literal">nullptr</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="comment">//删除的是叶子节点</span></span><br><span class="line">	<span class="keyword">if</span> (cur-&gt;_left == <span class="literal">nullptr</span> &amp;&amp; cur-&gt;_right == <span class="literal">nullptr</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (cur != _root)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (parent-&gt;_left == cur)</span><br><span class="line">				parent-&gt;_left = <span class="literal">nullptr</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				parent-&gt;_right = <span class="literal">nullptr</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">					_root = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">delete</span> cur;</span><br><span class="line">		cur = <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//无右孩子</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (cur-&gt;_right == <span class="literal">nullptr</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (cur != <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (parent-&gt;_left == cur)</span><br><span class="line">				parent-&gt;_left = cur-&gt;_left;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				parent-&gt;_right = cur-&gt;_left;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			_root = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">delete</span> cur;</span><br><span class="line">		cur = <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//无左孩子</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (cur-&gt;_left == <span class="literal">nullptr</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (cur != <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (parent-&gt;_left == cur)</span><br><span class="line">				parent-&gt;_left = cur-&gt;_right;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				parent-&gt;_right = cur-&gt;_right;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			_root = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">delete</span> cur;</span><br><span class="line">		cur = <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//寻找左子树最大的点  or 寻找右子树最小的点</span></span><br><span class="line">		PNode MaxNode = cur-&gt;_left;</span><br><span class="line">		parent = cur;</span><br><span class="line">		<span class="keyword">while</span> (MaxNode-&gt;_right)</span><br><span class="line">		&#123;</span><br><span class="line">			parent = MaxNode;</span><br><span class="line">			MaxNode = MaxNode-&gt;_right;</span><br><span class="line">		&#125;</span><br><span class="line">		cur-&gt;_data = MaxNode-&gt;_data;</span><br><span class="line">		<span class="keyword">if</span> (parent-&gt;_left == MaxNode)</span><br><span class="line">			parent-&gt;_left = MaxNode-&gt;_left;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			parent-&gt;_right = MaxNode-&gt;_left;</span><br><span class="line">		<span class="keyword">delete</span> MaxNode;</span><br><span class="line">		MaxNode = <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/aplipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/17/搜索二叉树-C-实现/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/03/16/归并-快排-C-实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">归并 | 快排 | C++实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-搜索二叉树的定义"><span class="toc-number">1.</span> <span class="toc-text">1. 搜索二叉树的定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-插入"><span class="toc-number">2.</span> <span class="toc-text">2.插入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-删除"><span class="toc-number">3.</span> <span class="toc-text">3.删除</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-实现"><span class="toc-number">4.</span> <span class="toc-text">4.实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-节点初始化"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 节点初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-插入"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 插入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-删除"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 删除</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="搜索二叉树-C-实现" data-title="搜索二叉树 | C++实现" data-url="http://yoursite.com/2020/03/17/搜索二叉树-C-实现/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="搜索二叉树-C-实现" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -230,9 +418,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
